@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/howler-consumer-portal-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - header
+  - query
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: /oauth/authorize
+    tokenUrl: /oauth/token
+    scopes: 3
+  description: OAuth2 authentication for third-party applications
+  sources:
+  - openapi/howler-consumer-portal-openapi.yml
+- name: bearer_header
+  type: http
+  scheme: bearer
+  bearerFormat: oauth2
+  sources:
+  - openapi/howler-consumer-portal-openapi.yml
+- name: bearer_param
+  type: apiKey
+  in: query
+  parameter: bearer_token
+  sources:
+  - openapi/howler-consumer-portal-openapi.yml
+- name: basic_auth
+  type: http
+  scheme: basic
+  description: Basic authentication with email and password
+  sources:
+  - openapi/howler-consumer-portal-openapi.yml
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: x-auth-token
+  description: API key authentication
+  sources:
+  - openapi/howler-consumer-portal-openapi.yml
