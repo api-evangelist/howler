@@ -1,0 +1,228 @@
+openapi: 3.1.0
+info:
+  title: Howler API v3 Artists Transfer Ticket API
+  version: 3.6.1
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*
+
+    '
+servers:
+- url: https://{defaultHost}/api/v3/consumer_portal
+  variables:
+    defaultHost:
+      default: www.howler.co.za
+  description: Server for consumer portal endpoints
+security:
+- bearer_header: []
+  bearer_param: []
+  api_key: []
+  bearer_auth: []
+tags:
+- name: Transfer Ticket
+paths:
+  /tickets/{ticket_id}/transfer:
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    post:
+      summary: create ticket transfer (1)
+      operationId: updateConsumerTicketTransferCreate
+      tags:
+      - Transfer Ticket
+      description: '**Step 1 of 2**
+
+
+        Start the transfer process of a ticket by specifying the details the new owner.
+
+
+        This action can only be performed if transfers are allow for the ticket.
+
+
+        The transfer needs to be completed using `/api/v3/consumer_portal/tickets/{ticket_id}/transfer/{transfer_order_id}/confirmation`.
+
+        '
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transfer_order:
+                    $ref: '#/components/schemas/Order'
+                  next_step:
+                    type: string
+        '404':
+          description: ticket not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transfer_order:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                    email_confirmation:
+                      type: string
+                  required:
+                  - first_name
+                  - last_name
+                  - email
+                  - email_confirmation
+              required:
+              - transfer_order
+        required: true
+  /tickets/{ticket_id}/transfer/{transfer_order_id}/confirmation:
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    - name: transfer_order_id
+      in: path
+      description: transfer_order_id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: confirm ticket transfer (2)
+      operationId: updateConsumerTicketTransferConfirm
+      tags:
+      - Transfer Ticket
+      description: '**Step 2 of 2**
+
+
+        Confirms a transfer order and completes the order.
+
+        '
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transfer_order:
+                    $ref: '#/components/schemas/Order'
+        '404':
+          description: transfer order not found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        first_name:
+          type: string
+          description: First Name
+        last_name:
+          type: string
+          description: Last Name
+        primary_email:
+          type: string
+          readOnly: true
+          description: Email address of user or dummy user
+        dummy?:
+          type: boolean
+          readOnly: true
+          description: True if the user has not yet signed up for an account.
+      required:
+      - id
+      - first_name
+      - last_name
+      - primary_email
+      - dummy?
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+        reference:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - paid
+          - expired
+          - pending_payment
+          - created
+          - processing
+        user:
+          $ref: '#/components/schemas/User'
+        cashless_deposit_cents:
+          type: integer
+      required:
+      - id
+      - reference
+      - status
+      - type
+      - user
+      - cashless_deposit_cents
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication for third-party applications
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            public: Public scope
+            login: Login scope
+            ott: One-time token scope
+    bearer_header:
+      type: http
+      scheme: bearer
+      bearerFormat: oauth2
+      in: header
+    bearer_param:
+      type: apiKey
+      scheme: bearer
+      bearerFormat: oauth2
+      name: bearer_token
+      in: query
+    jwt_header:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from basic authentication login
+    jwt_param:
+      type: apiKey
+      name: bearer_token
+      in: query
+      description: JWT token as query parameter (alternative to Authorization header)
+    basic_auth:
+      type: http
+      scheme: basic
+      description: Basic authentication with email and password
+    api_key:
+      type: apiKey
+      name: x-auth-token
+      in: header
+      description: API key authentication
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication

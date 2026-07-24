@@ -1,0 +1,1124 @@
+---
+openapi: 3.1.0
+info:
+  title: Howler Webhooks v1
+  version: 1.2.0
+  description: |
+    *Last updated: 2024-07-18 11:57:00 +0200*
+
+    # Introduction
+
+    The **Howler Webhooks v1** describes the webhooks which can be sent to *Howler* partners for specific events.
+
+    The location to wich the webbooks are sent need to be configured by an authorised user with the correct access.
+components:
+  schemas:
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: integer
+        barcode:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - pending_payment
+          - active
+          - expired
+          - closed
+          - transferred
+          - refunded
+          - reseated
+          - pending_assignment
+          - on_resale
+          - sold
+        name:
+          type: string
+        is_complimentary:
+          type: boolean
+        ticket_type_id:
+          type: integer
+        ticket_type_name:
+          type: string
+        event_id:
+          type: integer
+        purchased_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        purchaser_email_address:
+          type:
+          - string
+          - 'null'
+        event_name:
+          type: string
+        event_location:
+          type:
+          - string
+          - 'null'
+        cost:
+          type: object
+          properties:
+            currency:
+              type: string
+            base_price_cents:
+              type: integer
+            booking_fees_cents:
+              type: integer
+            total_paid_cents:
+              type: integer
+          required:
+          - currency
+          - base_price_cents
+          - booking_fees_cents
+          - total_paid_cents
+        ticket_questions:
+          type:
+          - array
+          - object
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              type:
+                type: string
+              text:
+                type: string
+              answer:
+                type:
+                - string
+                - array:
+                    items:
+                      type:
+                      - string
+                      - 'null'
+            required:
+            - id
+            - type
+            - text
+            - answer
+        cashless:
+          type: object
+          properties:
+            ticket_included_credits_cents:
+              type: integer
+            paid_credits_cents:
+              type: integer
+        download_url:
+          type: string
+        category_id:
+          type:
+          - integer
+          - 'null'
+        category_name:
+          type:
+          - string
+          - 'null'
+        reporting_category_name:
+          type:
+          - string
+          - 'null'
+        order_reference:
+          type:
+          - string
+          - 'null'
+        payment_reference:
+          type:
+          - string
+          - 'null'
+        payment_type:
+          type:
+          - string
+          - 'null'
+        promo_code:
+          type:
+          - string
+          - 'null'
+        salesforce_distance_id:
+          type:
+          - string
+          - 'null'
+        scanned_at:
+          type:
+          - string
+          - 'null'
+        user:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: integer
+            first_name:
+              type:
+              - string
+              - 'null'
+            last_name:
+              type:
+              - string
+              - 'null'
+            email:
+              type: string
+            cellphone_number:
+              type:
+              - string
+              - 'null'
+            unique_identifier:
+              type:
+              - string
+              - 'null'
+            id_number:
+              type:
+              - string
+              - 'null'
+            passport_number:
+              type:
+              - string
+              - 'null'
+            date_of_birth:
+              type:
+              - string
+              - 'null'
+              format: YYYY-MM-DD
+            gender:
+              type:
+              - string
+              - 'null'
+              enum:
+              - male
+              - female
+              - other
+              -
+            country:
+              type:
+              - string
+              - 'null'
+            country_of_origin:
+              type:
+              - string
+              - 'null'
+            city:
+              type:
+              - string
+              - 'null'
+            province:
+              type:
+              - string
+              - 'null'
+            medical_aid_provider:
+              type:
+              - string
+              - 'null'
+            medical_aid_number:
+              type:
+              - string
+              - 'null'
+            emergency_contact_name:
+              type:
+              - string
+              - 'null'
+            emergency_contact_relationship:
+              type:
+              - string
+              - 'null'
+            emergency_contact_number:
+              type:
+              - string
+              - 'null'
+            allergies:
+              type:
+              - string
+              - 'null'
+            medical_conditions:
+              type:
+              - string
+              - 'null'
+            postal_code:
+              type:
+              - string
+              - 'null'
+            street_and_number:
+              type:
+              - string
+              - 'null'
+            opt_in_email:
+              type:
+              - boolean
+              - 'null'
+            opt_in_sms:
+              type:
+              - boolean
+              - 'null'
+            language_locale:
+              type:
+              - string
+              - 'null'
+            current_sign_in_ip:
+              type:
+              - string
+              - 'null'
+              format: IP Address
+          required:
+          - id
+          - first_name
+          - last_name
+          - email
+          - cellphone_number
+          - unique_identifier
+          - id_number
+          - passport_number
+          - date_of_birth
+          - gender
+          - country
+          - country_of_origin
+          - city
+          - province
+          - medical_aid_provider
+          - medical_aid_number
+          - emergency_contact_name
+          - emergency_contact_relationship
+          - emergency_contact_number
+          - allergies
+          - medical_conditions
+          - postal_code
+          - street_and_number
+          - opt_in_email
+          - opt_in_sms
+          - language_locale
+          - current_sign_in_ip
+        team:
+          type: object
+          properties:
+            entry_type:
+              type: string
+              enum:
+              - Team
+              - Solo
+            team_name:
+              type:
+              - string
+              - 'null'
+            start_time:
+              type:
+              - string
+              - 'null'
+          required:
+          - entry_type
+          - team_name
+          - start_time
+        action:
+          type: string
+          enum:
+          - create
+          - amend
+          - cancel
+        timestamp:
+          type: string
+          format: ISO 8601
+      required:
+      - id
+      - barcode
+      - status
+      - name
+      - is_complimentary
+      - ticket_type_id
+      - ticket_type_name
+      - event_id
+      - purchased_at
+      - purchaser_email_address
+      - event_name
+      - event_location
+      - cost
+      - ticket_questions
+      - cashless
+      - download_url
+      - category_id
+      - category_name
+      - reporting_category_name
+      - order_reference
+      - payment_reference
+      - payment_type
+      - promo_code
+      - salesforce_distance_id
+      - scanned_at
+      - user
+      - action
+      - timestamp
+    Event:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - event_create
+          - event_amend
+        event_id:
+          type: integer
+        event_name:
+          type: string
+        event_header_image_url:
+          type:
+          - string
+          - 'null'
+        event_url:
+          type: string
+        event_created_date:
+          type: string
+          format: ISO 8601
+        event_last_modified_date:
+          type: string
+          format: ISO 8601
+        event_status:
+          type: string
+          enum:
+          - pending
+          - active
+          - cancelled
+        event_country:
+          type: string
+        event_source:
+          type: string
+          enum:
+          - howler
+          - oxynade
+          - diy_ticket
+          - eventbrite
+          - nutickets
+          - quicket
+          - registration
+          - dice
+          - see_tickets
+          - ticket_io
+          - ticket_fairy
+          - monster_ticket
+          - easol
+          - our_crew
+        event_external_identifier:
+          type:
+          - string
+          - 'null'
+        event_details:
+          type:
+          - string
+          - 'null'
+        event_sold_out:
+          type: boolean
+        event_venue:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            address:
+              type: string
+            latitude:
+              type: string
+            longitude:
+              type: string
+          required:
+          - id
+          - name
+          - address
+          - latitude
+          - longitude
+        event_start_time:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        event_end_time:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        event_organiser_name:
+          type: string
+        event_organiser_id:
+          type: integer
+        event_cashouts_enabled_date:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        event_cashouts_disabled_date:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        event_online_streaming:
+          type: boolean
+        event_currency:
+          type: string
+        event_category:
+          type:
+          - string
+          - 'null'
+        event_protect:
+          type: boolean
+        event_tickets_page_accessible:
+          type: boolean
+        event_ticket_types:
+          type: array
+          items:
+            type: object
+            properties:
+              ticket_type_id:
+                type: integer
+              ticket_type_name:
+                type: string
+              ticket_type_created_date:
+                type: string
+                format: ISO8601
+              ticket_type_last_modified_date:
+                type: string
+                format: ISO8601
+              ticket_type_category_id:
+                type:
+                - integer
+                - 'null'
+              ticket_type_description:
+                type: string
+              ticket_type_category_name:
+                type:
+                - string
+                - 'null'
+              ticket_type_quantity:
+                type: integer
+              ticket_type_remaining:
+                type: integer
+              ticket_type_sold:
+                type: integer
+              ticket_type_reserved:
+                type: integer
+              ticket_type_onsale_start_time:
+                type:
+                - string
+                - 'null'
+                format: ISO8601
+              ticket_type_onsale_end_time:
+                type:
+                - string
+                - 'null'
+                format: ISO8601
+              ticket_type_fee_cents:
+                type: integer
+              ticket_type_fee_currency:
+                type: string
+              ticket_type_cost_cents:
+                type: integer
+              ticket_type_cost_currency:
+                type: string
+              ticket_type_commission_cents:
+                type: integer
+              ticket_type_commission_currency:
+                type: string
+              ticket_type_rep_manager_commission_cents:
+                type: integer
+              ticket_type_rep_manager_commission_currency:
+                type: string
+            required:
+            - ticket_type_id
+            - ticket_type_name
+            - ticket_type_created_date
+            - ticket_type_last_modified_date
+            - ticket_type_category_id
+            - ticket_type_description
+            - ticket_type_category_name
+            - ticket_type_quantity
+            - ticket_type_remaining
+            - ticket_type_sold
+            - ticket_type_reserved
+            - ticket_type_onsale_start_time
+            - ticket_type_onsale_end_time
+            - ticket_type_fee_cents
+            - ticket_type_fee_currency
+            - ticket_type_cost_cents
+            - ticket_type_cost_currency
+            - ticket_type_commission_cents
+            - ticket_type_commission_currency
+            - ticket_type_rep_manager_commission_cents
+            - ticket_type_rep_manager_commission_currency
+        event_fees:
+          type: object
+          properties:
+            ticket:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            credit_card:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            eft:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            visa_checkout:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            pay_at:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            refund:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            chargeback:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            zapper:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            snap_scan:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            lay_up:
+              type: object
+              properties:
+                percent:
+                  type: number
+              required:
+              - percent
+            eighteen_app:
+              type: object
+              properties:
+                percent:
+                  type: number
+              required:
+              - percent
+            donation:
+              type: object
+              properties:
+                percent:
+                  type: number
+              required:
+              - percent
+            complimentary:
+              type: object
+              properties:
+                fixed:
+                  type: number
+              required:
+              - fixed
+            promo_email:
+              type: object
+              properties:
+                fixed:
+                  type: number
+              required:
+              - fixed
+            promo_sms:
+              type: object
+              properties:
+                fixed:
+                  type: number
+              required:
+              - fixed
+            notes:
+              type: object
+              properties:
+                value:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - value
+            ticket_resale_buyer:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+            ticket_resale_seller:
+              type: object
+              properties:
+                percent:
+                  type: number
+                min:
+                  type: number
+                max:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - percent
+              - min
+              - max
+      required:
+      - action
+      - event_id
+      - event_name
+      - event_header_image_url
+      - event_url
+      - event_created_date
+      - event_last_modified_date
+      - event_status
+      - event_country
+      - event_source
+      - event_external_identifier
+      - event_details
+      - event_sold_out
+      - event_venue
+      - event_start_time
+      - event_end_time
+      - event_organiser_name
+      - event_organiser_id
+      - event_cashouts_enabled_date
+      - event_cashouts_disabled_date
+      - event_online_streaming
+      - event_currency
+      - event_category
+      - event_protect
+      - event_tickets_page_accessible
+      - event_ticket_types
+      - event_fees
+    Payment:
+      type: object
+      properties:
+        payment_id:
+          type: integer
+        payment_type:
+          type: string
+        payment_merchant_reference:
+          type: string
+        payment_amount_cents:
+          type: integer
+        payment_amount_currency:
+          type: string
+        payment_status:
+          type: string
+          enum:
+          - pending
+          - successful
+          - failed
+          - expired
+          - processing
+          - rejected
+          - retried
+        payment_direction:
+          type: string
+          enum:
+          - incoming
+          - outgoing
+        payment_created_date:
+          type: string
+          format: RFC-3339
+        payment_last_modified_date:
+          type: string
+          format: RFC-3339
+        paying_user_id:
+          type: integer
+        payment_gateway_data:
+          type:
+          - object
+          - 'null'
+        payment_gateway_batch_reference:
+          type:
+          - string
+          - 'null'
+        payment_gateway_batch_date:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        event_id:
+          type: integer
+        organiser_id:
+          type: integer
+        order_data:
+          type: object
+          properties:
+            order_id:
+              type: integer
+            order_type:
+              type: string
+            order_user_id:
+              type:
+              - integer
+              - 'null'
+            order_status:
+              type: string
+              enum:
+              - pending
+              - paid
+              - expired
+              - pending_payment
+              - created
+              - processing
+            order_reference:
+              type: string
+            order_created_date:
+              type:
+              - string
+              - 'null'
+              format: ISO 8601
+            order_last_modified_date:
+              type:
+              - string
+              - 'null'
+              format: ISO 8601
+            order_items:
+              type: array
+              items:
+                type: object
+                properties:
+                  order_item_id:
+                    type: integer
+                  order_item_type:
+                    type: string
+                  order_item_fee_cents:
+                    type: integer
+                  order_item_fee_currency:
+                    type: string
+                  order_item_amount_cents:
+                    type: integer
+                  order_item_amount_currency:
+                    type: string
+                  order_item_orderable_type:
+                    type: string
+                  order_item_created_date:
+                    type: string
+                    format: ISO 8601
+                  order_item_last_modified_date:
+                    type: string
+                    format: ISO 8601
+                  order_item_extra_details:
+                    type: object
+                  billable_order_item_total_cost_cents:
+                    type: integer
+                  billable_order_item_total_cost_currency:
+                    type: string
+                  billable_order_item_cost_per_item_cents:
+                    type: integer
+                  billable_order_item_cost_per_item_currency:
+                    type: string
+                  billable_order_item_quantity:
+                    type: integer
+                  order_item_orderable_data:
+                    type: object
+                    properties:
+                      ticket_id:
+                        type: integer
+                      ticket_barcode:
+                        type:
+                        - string
+                        - 'null'
+                      ticket_type_id:
+                        type: integer
+                      ticket_type_name:
+                        type: string
+                      ticket_status:
+                        type: string
+                        enum:
+                        - pending
+                        - pending_payment
+                        - active
+                        - expired
+                        - closed
+                        - transferred
+                        - refunded
+                        - reseated
+                        - pending_assignment
+                        - on_resale
+                        - sold
+                      ticket_download_link:
+                        type:
+                        - string
+                        - 'null'
+                      ticket_created_at:
+                        type: string
+                        fromat: ISO 8601
+                      ticket_last_modified_date:
+                        type: string
+                        format: ISO 8601
+                      ticket_event_online_streaming:
+                        type: boolean
+                      campaign_name:
+                        type: string
+                      cashless_transaction_id:
+                        type: integer
+                      cashless_transaction_type:
+                        type: string
+                      cashless_transaction_amount_cents:
+                        type: integer
+                      cashless_transaction_amount_currency:
+                        type: string
+                      cashless_transaction_fee_cents:
+                        type: integer
+                      cashless_transaction_fee_currency:
+                        type: string
+                      cashless_transaction_payment_status:
+                        type: string
+                        enum:
+                        - pending
+                        - paid
+                        - failed
+                        - expired
+                        - refunded
+                        - processing
+                        - processed
+                      cashless_transaction_external_order_identifier:
+                        type:
+                        - string
+                        - 'null'
+                      cashless_transaction_cashless_tag_pairing_id:
+                        type:
+                        - integer
+                        - 'null'
+                      cashless_transaction_ticket_id:
+                        type:
+                        - integer
+                        - 'null'
+                      cashless_transaction_created_date:
+                        type: string
+                        format: ISO 8601
+                      cashless_transaction_last_modified_date:
+                        type: string
+                        format: ISO 8601
+                      donation_id:
+                        type: integer
+                      donation_created_at:
+                        type: string
+                        format: ISO 8601
+                      donation_last_modified_date:
+                        type: string
+                        format: ISO 8601
+                      vendor_settlement_id:
+                        type: integer
+                      vendor_settlement_station_id:
+                        type: integer
+                      vendor_settlement_amount_cents:
+                        type: integer
+                      vendor_settlement_amount_currency:
+                        type: string
+                      vendor_settlement_created_date:
+                        type: string
+                        format: ISO 8601
+                      vendor_settlement_last_modified_date:
+                        type: string
+                        format: ISO 8601
+                    required: []
+                  order_item_event_online_streaming:
+                    type: boolean
+                required:
+                - order_item_id
+                - order_item_type
+                - order_item_fee_cents
+                - order_item_fee_currency
+                - order_item_amount_cents
+                - order_item_amount_currency
+                - order_item_orderable_type
+                - order_item_created_date
+                - order_item_last_modified_date
+                - order_item_extra_details
+            order_late_cashout:
+              type: boolean
+          required:
+          - order_id
+          - order_type
+          - order_user_id
+          - order_status
+          - order_reference
+          - order_created_date
+          - order_last_modified_date
+          - order_items
+        refunded_payment_id:
+          type: integer
+        refunded_payment_reference:
+          type: string
+        payment_gateway_credential:
+          type:
+          - string
+          - 'null'
+        retry_of_payment_id:
+          type: integer
+        retry_of_payment_reference:
+          type: string
+      required:
+      - payment_id
+      - payment_type
+      - payment_merchant_reference
+      - payment_amount_cents
+      - payment_amount_currency
+      - payment_status
+      - payment_direction
+      - payment_created_date
+      - payment_last_modified_date
+      - paying_user_id
+      - payment_gateway_data
+      - payment_gateway_batch_reference
+      - payment_gateway_batch_date
+      - event_id
+      - organiser_id
+      - order_data
+tags:
+- name: Webhooks
+webhooks:
+  Ticket Webhook:
+    post:
+      summary: Sent when a ticket is created, amended or cancelled.
+      tags:
+      - Webhooks
+      description: "Send ticket information to an external server.\n\nThis webhook
+        is triggered when a ticket is \n"
+      security: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Ticket"
+  Event Webhook:
+    post:
+      summary: Sent when an event is created or amended.
+      tags:
+      - Webhooks
+      description: |
+        Send event information to an external server.
+
+        This webhook is triggered when an event is created or when an event is updated.
+        Currently there is a known issue where the webhook is not triggered when a new ticket type is created or updated.
+      security: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Event"
+  Payment Webhook:
+    post:
+      summary: Sent when a payment's status changes to successful.
+      tags:
+      - Webhooks
+      description: |
+        Send payment information to an external server.
+
+        This webhook is trigger when a payment's status is updated to successful.
+      security: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Payment"

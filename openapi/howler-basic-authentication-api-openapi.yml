@@ -1,0 +1,448 @@
+openapi: 3.1.0
+info:
+  title: Howler API v3 Artists Basic Authentication API
+  version: 3.6.1
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*
+
+    '
+servers:
+- url: https://{defaultHost}/api/v3/consumer_portal
+  variables:
+    defaultHost:
+      default: www.howler.co.za
+  description: Server for consumer portal endpoints
+security:
+- bearer_header: []
+  bearer_param: []
+  api_key: []
+  bearer_auth: []
+tags:
+- name: Basic Authentication
+paths:
+  /login:
+    post:
+      summary: User Login
+      tags:
+      - Basic Authentication
+      security: []
+      operationId: loginUser
+      parameters: []
+      description: 'Creates a new user session in and returns a JSON web token
+
+        '
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              examples:
+                Successful login:
+                  value:
+                    user:
+                      id: 1
+                      first_name: Derek
+                      last_name: The Admin
+                      primary_email: admin@example.com
+                      dummy?: false
+                    token: eyJhbGciOiHIUzI1NiJ7.eyJ1c2VyX2lkIjoxLCJleHAiOjQ4OTUwMTkzNDh9.DdjO_nag9cJq45UqPIvWEjwE0yvyqtjTYzfpg_R9eg8
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      primary_email:
+                        type: string
+                      dummy?:
+                        type: boolean
+                    required:
+                    - id
+                    - primary_email
+                    - first_name
+                    - last_name
+                    - primary_email
+                    - dummy?
+                  token:
+                    type: string
+                required:
+                - user
+                - token
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              examples:
+                Invalid credentials:
+                  value:
+                    status: 401
+                    message: Invalid email or password.
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  message:
+                    type: string
+                required:
+                - status
+                - message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+              required:
+              - user
+            examples:
+              Login request:
+                summary: Valid login request
+                value:
+                  user:
+                    email: Test@howler.co.za
+                    password: password123
+              Invalid credentials request:
+                summary: Invalid login request
+                value:
+                  user:
+                    email: user@howler.co.za
+                    password: wrongpassword
+        required: true
+  /jwt/ott:
+    post:
+      summary: Create a one-time token using JWT authentication
+      tags:
+      - Basic Authentication
+      operationId: createConsumerJWTOneTimeToken
+      responses:
+        '200':
+          description: one time token created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    example: a7d21ee5-5fff-4097-8884-33a6c1762480
+                  token_type:
+                    type: string
+                    example: Bearer
+                  expires_in:
+                    type: integer
+                    example: 300
+                  created_at:
+                    type: integer
+                    example: 1647245673
+                required:
+                - access_token
+                - token_type
+                - expires_in
+                - created_at
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: JWT authentication required
+                required:
+                - error
+  /password/reset:
+    post:
+      summary: Reset Password
+      tags:
+      - Basic Authentication
+      security: []
+      operationId: resetPassword
+      parameters: []
+      description: 'Requests a password reset email to be sent to the provided email address
+
+        '
+      responses:
+        '201':
+          description: Password reset request for non-existent email
+          content:
+            application/json:
+              examples:
+                Successful password reset request:
+                  value:
+                    status: success
+                    message: Password reset instructions have been sent to your email
+                Non-existent email (still returns success):
+                  value:
+                    status: success
+                    message: If your email exists in our system, password reset instructions have been sent
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - status
+                - message
+        '422':
+          description: Invalid email format
+          content:
+            application/json:
+              examples:
+                Missing email parameter:
+                  value:
+                    status: 422
+                    error: Email is required
+                Missing user parameter:
+                  value:
+                    status: 422
+                    error: Request must include a "user" object with an "email" field
+                Invalid email format:
+                  value:
+                    status: 422
+                    error: Invalid email format
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                required:
+                - status
+                - error
+        '500':
+          description: Server error during email delivery
+          content:
+            application/json:
+              examples:
+                Server error:
+                  value:
+                    status: 500
+                    error: Failed to process password reset request
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                required:
+                - status
+                - error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                  required:
+                  - email
+              required:
+              - user
+            examples:
+              Password reset request:
+                summary: Valid password reset request
+                value:
+                  user:
+                    email: test@example.com
+        required: true
+  /register:
+    post:
+      summary: User Registration
+      tags:
+      - Basic Authentication
+      security: []
+      operationId: registerUser
+      parameters: []
+      description: 'Creates a new user account and returns the user data
+
+        '
+      responses:
+        '201':
+          description: User created and merged with dummy user
+          content:
+            application/json:
+              examples:
+                Successful registration:
+                  value:
+                    user:
+                      id: 1
+                      first_name: John
+                      last_name: Doe
+                      primary_email: new_user@howler.co.za
+                      dummy?: false
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      primary_email:
+                        type: string
+                      dummy?:
+                        type: boolean
+                    required:
+                    - id
+                    - primary_email
+                    - first_name
+                    - last_name
+                    - primary_email
+                    - dummy?
+                required:
+                - user
+        '422':
+          description: Invalid registration data
+          content:
+            application/json:
+              examples:
+                Invalid registration data:
+                  value:
+                    status: 422
+                    message: Registration failed.
+                    errors:
+                      email:
+                      - is invalid
+                      password:
+                      - is too short (minimum is 8 characters)
+                      password_confirmation:
+                      - doesn't match Password
+                      cellphone_number:
+                      - is invalid
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                required:
+                - status
+                - message
+                - errors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                    cellphone_number:
+                      type: string
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                  required:
+                  - email
+                  - password
+                  - password_confirmation
+                  - cellphone_number
+                  - first_name
+                  - last_name
+              required:
+              - user
+            examples:
+              Registration request:
+                summary: Valid registration request
+                value:
+                  user:
+                    email: new_user@howler.co.za
+                    password: password123
+                    password_confirmation: password123
+        required: true
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication for third-party applications
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            public: Public scope
+            login: Login scope
+            ott: One-time token scope
+    bearer_header:
+      type: http
+      scheme: bearer
+      bearerFormat: oauth2
+      in: header
+    bearer_param:
+      type: apiKey
+      scheme: bearer
+      bearerFormat: oauth2
+      name: bearer_token
+      in: query
+    jwt_header:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from basic authentication login
+    jwt_param:
+      type: apiKey
+      name: bearer_token
+      in: query
+      description: JWT token as query parameter (alternative to Authorization header)
+    basic_auth:
+      type: http
+      scheme: basic
+      description: Basic authentication with email and password
+    api_key:
+      type: apiKey
+      name: x-auth-token
+      in: header
+      description: API key authentication
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication

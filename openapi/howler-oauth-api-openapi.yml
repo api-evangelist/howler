@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  title: Howler API v3 Artists OAuth API
+  version: 3.6.1
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*
+
+    '
+servers:
+- url: https://{defaultHost}/api/v3/consumer_portal
+  variables:
+    defaultHost:
+      default: www.howler.co.za
+  description: Server for consumer portal endpoints
+security:
+- bearer_header: []
+  bearer_param: []
+  api_key: []
+  bearer_auth: []
+tags:
+- name: OAuth
+paths:
+  /oauth/authorize:
+    get:
+      summary: grant access
+      operationId: getConsumerOAuthAuthorize
+      tags:
+      - OAuth
+      description: 'Grant access via OAuth
+
+
+        `response_type` should be "code" and `scope` should be "public ott".
+
+        The client_id and redirect_uri should match the values configured for the OAuth application.
+
+
+        Once the user has signed in they will be prompted to authorise access for the application specified.
+
+        After they have authorised the application a redirect will be done to the redirect_uri and a grant code passed in a parameter named `code`.
+
+        This code should be provided to /api/v3/consumer_portal/oauth/token end-point to generate an access token which can be used for authentication.
+
+        '
+      security: []
+      parameters:
+      - name: client_id
+        in: query
+        description: OAuth Application UID
+        schema:
+          type: string
+      - name: redirect_uri
+        in: query
+        description: OAuth Application Redirect URI
+        schema:
+          type: string
+      - name: response_type
+        in: query
+        description: OAuth Response Type
+        schema:
+          type: string
+          enum:
+          - code
+          - token
+      - name: scope
+        in: query
+        description: OAuth Scope
+        schema:
+          type: string
+          enum:
+          - public ott
+      responses:
+        '200':
+          description: successful
+        '302':
+          description: signed out
+  /oauth/token:
+    post:
+      summary: token
+      operationId: createConsumerOAuthToken
+      tags:
+      - OAuth
+      description: 'Generate OAuth access token.
+
+
+        This token can be refreshed using the same end-point and passing in the refresh token and grant_type ''refresh_token''.
+
+
+        Once a token is generated it can be passed in the HTTP Authorization header using the format `Bearer <token>`
+
+        '
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: refresh
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type:
+                    - integer
+                    - 'null'
+                  refresh_token:
+                    type: string
+                  scope:
+                    type: string
+                  created_at:
+                    type: integer
+                required:
+                - access_token
+                - token_type
+                - expires_in
+                - scope
+                - created_at
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  description: OAuth Application UID
+                client_secret:
+                  type: string
+                  description: OAuth Application Secret
+                redirect_uri:
+                  type: string
+                  description: OAuth Application Redirect URI
+                grant_type:
+                  type: string
+                  description: OAuth Grant Type
+                  enum:
+                  - authorization_code
+                  - refresh_token
+                code:
+                  type: string
+                  description: OAuth Grant Token
+                refresh_token:
+                  type: string
+                  description: OAuth Refresh Token
+              required:
+              - client_id
+              - client_secret
+              - redirect_uri
+              - grant_type
+        required: true
+  /oauth/revoke:
+    post:
+      summary: revoke
+      operationId: destroyConsumerOAuthToken
+      tags:
+      - OAuth
+      description: 'Revoke an OAuth access token.
+
+        '
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  description: OAuth Application UID
+                client_secret:
+                  type: string
+                  description: OAuth Application Secret
+                token:
+                  type: string
+                  description: OAuth Access Token
+              required:
+              - client_id
+              - client_secret
+              - token
+        required: true
+  /oauth/ott:
+    post:
+      summary: one-time token
+      operationId: createConsumerOAuthOneTimeToken
+      tags:
+      - OAuth
+      description: 'Generate a one-time token which can be passed to a web view to login the user automatically.
+
+
+        The access token must have the `ott` scope. The token response can only be used once and expires in 30 seconds.
+
+        '
+      responses:
+        '200':
+          description: generate
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: integer
+                  refresh_token:
+                    type: 'null'
+                  scope:
+                    type: string
+                  created_at:
+                    type: integer
+                required:
+                - access_token
+                - token_type
+                - expires_in
+                - scope
+                - created_at
+        '401':
+          description: generate with revoked
+        '403':
+          description: generate with incorrect scope
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication for third-party applications
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            public: Public scope
+            login: Login scope
+            ott: One-time token scope
+    bearer_header:
+      type: http
+      scheme: bearer
+      bearerFormat: oauth2
+      in: header
+    bearer_param:
+      type: apiKey
+      scheme: bearer
+      bearerFormat: oauth2
+      name: bearer_token
+      in: query
+    jwt_header:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from basic authentication login
+    jwt_param:
+      type: apiKey
+      name: bearer_token
+      in: query
+      description: JWT token as query parameter (alternative to Authorization header)
+    basic_auth:
+      type: http
+      scheme: basic
+      description: Basic authentication with email and password
+    api_key:
+      type: apiKey
+      name: x-auth-token
+      in: header
+      description: API key authentication
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication

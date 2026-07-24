@@ -1,0 +1,992 @@
+openapi: 3.1.0
+info:
+  title: Howler API v3 Artists Tickets API
+  version: 3.6.1
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*
+
+    '
+servers:
+- url: https://{defaultHost}/api/v3/consumer_portal
+  variables:
+    defaultHost:
+      default: www.howler.co.za
+  description: Server for consumer portal endpoints
+security:
+- bearer_header: []
+  bearer_param: []
+  api_key: []
+  bearer_auth: []
+tags:
+- name: Tickets
+paths:
+  /tickets:
+    get:
+      summary: list tickets
+      operationId: getConsumerTickets
+      tags:
+      - Tickets
+      description: Retrieves a list of tickets for the current user.
+      parameters:
+      - name: event_id
+        in: query
+        description: Event Id
+        required: false
+        schema:
+          type: integer
+      - name: include_past_events
+        in: query
+        description: Include past events in the response
+        required: false
+        schema:
+          type: boolean
+      security:
+      - bearer_param: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tickets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Ticket'
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  status:
+                    type: string
+                  message:
+                    type: string
+        '400':
+          description: not setup
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+  /tickets/{ticket_id}/update_data_capture:
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: update data capture and marketing questions
+      operationId: updateConsumerTicketDataCapture
+      tags:
+      - Tickets
+      description: Update the data capture and marketing questions for the current ticket.
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      answers:
+                        type: object
+                      sticker:
+                        type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: object
+                  properties:
+                    answers_attributes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          question_instance_id:
+                            type: integer
+                          response:
+                            type:
+                            - array
+                            - object
+                            properties: {}
+                            items:
+                              type: object
+                              properties: {}
+                              required: []
+                            required: []
+                        required:
+                        - id
+                        - question_instance_id
+                        - response
+                  required:
+                  - answers_attributes
+              required:
+              - ticket
+        required: true
+  /tickets/{ticket_id}/update_personalised_name:
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: update personalised name on ticket
+      operationId: updateConsumerTicketPersonalisedName
+      tags:
+      - Tickets
+      description: Update the personalised name on the specified ticket.
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+        '404':
+          description: ticket not found
+        '400':
+          description: invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: object
+                  properties:
+                    personalised_name:
+                      type: string
+                  required:
+                  - personalised_name
+              required:
+              - ticket
+        required: true
+  /tickets/{ticket_id}/update_owner:
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: update ticket owner of ticket
+      operationId: updateConsumerTicketOwner
+      tags:
+      - Tickets
+      description: Update the owner on the specified ticket. This action can only be performed if the current owner of the ticket has not yet created a howler account.
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+        '400':
+          description: invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+        '404':
+          description: ticket not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                    email_confirmation:
+                      type: string
+                  required:
+                  - first_name
+                  - last_name
+                  - email
+                  - email_confirmation
+              required:
+              - ticket
+        required: true
+  /tickets/{ticket_id}/assign/web:
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: assign a ticket to a user
+      operationId: assignConsumerTicketWeb
+      tags:
+      - Tickets
+      description: 'Renders a webpage to allow assigning a ticket to a user.
+
+
+        Once the user has successfully completed the data capture, a redirect will be done to a specific URL.
+
+        '
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: resource not found
+    put:
+      summary: update data capture and marketing questions from a rendered form
+      operationId: updateConsumerTicketAssignWeb
+      tags:
+      - Tickets
+      description: '**Private API**
+
+        This end-point should only ever be called using by the web page rendered using the GET version of this end-point.
+
+        '
+      parameters: []
+      responses:
+        '302':
+          description: successful
+        '200':
+          description: unsuccessful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              required: []
+        required: true
+  /tickets/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: retrieve ticket details
+      operationId: getConsumerTicket
+      tags:
+      - Tickets
+      description: Retrieves the details of a specific ticket. Only returns tickets owned by the current user or purchased by the current user. Additionally, if partner restrictions are in place, only returns tickets from events associated with the current partner.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+        '404':
+          description: ticket not found
+  /tickets/{ticket_id}/update_data_capture/web:
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: input data capture and marketing questions on a rendered form
+      operationId: editConsumerTicketDataCaptureWeb
+      tags:
+      - Tickets
+      description: 'Renders a webpage to allow data capture and input of marketing questions.
+
+
+        Once the user has successfully completed the data capture, a redirect will be done to a specific URL.
+
+        '
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: resource not found
+    put:
+      summary: update data capture and marketing questions from a rendered form
+      operationId: updateConsumerTicketDataCaptureWeb
+      tags:
+      - Tickets
+      description: '**Private API**
+
+        This end-point should only ever be called using by the web page rendered using the GET version of this end-point.
+
+        '
+      parameters: []
+      responses:
+        '302':
+          description: successful
+        '200':
+          description: unsuccessful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              required: []
+        required: true
+components:
+  schemas:
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Answer ID
+        question_id:
+          type: integer
+          description: ID of the question this answer belongs to
+        response:
+          type:
+          - string
+          - 'null'
+          - array
+          description: The answer text
+      required:
+      - id
+      - question_id
+      - response
+    UserValidationConfiguration:
+      type: object
+      properties:
+        require_id_number?:
+          type: boolean
+          description: South African ID number is required
+        require_unique_identifier?:
+          type: boolean
+          description: ''
+        require_first_name?:
+          type: boolean
+          description: First Name is required
+        require_last_name?:
+          type: boolean
+          description: Last Name is required
+        require_cellphone_number?:
+          type: boolean
+          description: Cellphone Number is required
+        require_country?:
+          type: boolean
+          description: Country of Residence is required
+        require_passport_country?:
+          type: boolean
+          description: Passport Country is required
+        require_city?:
+          type: boolean
+          description: City of Residence is required
+        require_gender?:
+          type: boolean
+          description: Gender is required
+        require_date_of_birth?:
+          type: boolean
+          description: Date of Birth is required
+        require_passport_number?:
+          type: boolean
+          description: Passport Number is required
+        require_nickname?:
+          type: boolean
+          description: Nickname is required
+        require_billing_address?:
+          type: boolean
+          description: Nilling Address is required
+      required:
+      - require_id_number?
+      - require_unique_identifier?
+      - require_first_name?
+      - require_last_name?
+      - require_cellphone_number?
+      - require_country?
+      - require_passport_country?
+      - require_city?
+      - require_gender?
+      - require_date_of_birth?
+      - require_passport_number?
+      - require_nickname?
+      - require_billing_address?
+      description: Indicates which user details need to be completed before their profile is considered setup for an event.
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: Name of the event
+        ticket_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/TicketType'
+          description: List of ticket types available for this event
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/TicketType'
+          description: List of addon ticket types for the event
+        status:
+          type: string
+          enum:
+          - pending
+          - active
+          - cancelled
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        end_time:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        currency:
+          type: string
+          description: ISO 4217 Currency Code
+        cashouts_enabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        cashouts_disabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        auto_cashouts_enabled?:
+          type: boolean
+          description: Event supports auto cashouts
+        claim_barcode_feature?:
+          type: boolean
+          description: Tickets can be claimed by topping them up.
+        enable_live_topups?:
+          type: boolean
+          description: Topups are allowed during the event.
+        slug:
+          type: string
+          description: 'URL slug used for the event. The url for the event can be generated as follows: https://{baseUrl}/events/{slug}'
+        short_url:
+          type:
+          - string
+          - 'null'
+          description: 'Short URL slug used for the event. The url for the event can be generated as follows: https://{baseUrl}/{short_url}'
+        classification:
+          type: string
+          enum:
+          - howler
+          - howler_ticketing
+          - howler_cashless
+          - foreign_ticketing
+        venue:
+          $ref: '#/components/schemas/Venue'
+        artist_lineup:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistLineup'
+          description: List of artists performing at the event
+        my_artist_lineup:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistLineup'
+          description: List of this user's performances for the event
+        is_cashless?:
+          type: boolean
+        is_past_event?:
+          type: boolean
+        user_validation_configuration:
+          $ref: '#/components/schemas/UserValidationConfiguration'
+        onsite_top_up_available?:
+          type: boolean
+        cashless_deposit_cents:
+          type: integer
+        header_image_url:
+          type:
+          - string
+          - 'null'
+        live:
+          type: boolean
+        mapboxUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - currency
+      - auto_cashouts_enabled?
+      - slug
+      - enable_live_topups?
+      - onsite_top_up_available?
+      - header_image_url
+      - is_past_event?
+      - live
+      - ticket_types
+      - add_ons
+    TicketType:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        name:
+          type: string
+        ticket_category:
+          $ref: '#/components/schemas/TicketCategory'
+          nullable: true
+        cost:
+          type: integer
+        fee:
+          type: integer
+        booking_status:
+          type: string
+        virtual_credit_cents:
+          type:
+          - integer
+          - 'null'
+        description:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+          description: URL to the ticket type image if attached
+        topups_configuration:
+          $ref: '#/components/schemas/TopupsConfiguration'
+        customer_settings_configuration:
+          $ref: '#/components/schemas/CustomerSettingsConfiguration'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+          description: Questions associated with this ticket type
+        hidden:
+          type: boolean
+        hidden_by_promo_code:
+          type: boolean
+      required:
+      - id
+      - updated_at
+      - created_at
+      - topups_configuration
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Question ID
+        text:
+          type: string
+          description: Question text
+        required:
+          type: boolean
+          description: Whether the question is required
+        question_type:
+          type: string
+          description: Type of question
+          enum:
+          - text
+          - number
+          - multiple_choice
+          - multiple_answer
+          - date
+          - boolean
+          - cellphone_number
+          - id_number
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Available options for multiple choice questions
+        position:
+          type: integer
+          description: Display position of the question
+      required:
+      - id
+      - text
+      - required
+      - question_type
+    TopupsConfiguration:
+      type: object
+      properties:
+        topups_enabled?:
+          type: boolean
+          description: Top Ups are enabled for the event
+        prevent_topup_for_multiple_tickets_of_same_type?:
+          type: boolean
+          description: If a user own mutliple tickets of the same ticket type then they cannot bt topped up.
+        small_topup_amount:
+          type: integer
+          description: Small Topup Amount
+        medium_topup_amount:
+          type: integer
+          description: Medium Topup Amount
+        large_topup_amount:
+          type: integer
+          description: Large Topup Amount
+      required:
+      - topups_enabled?
+      - small_topup_amount
+      - medium_topup_amount
+      - large_topup_amount
+    Venue:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        address:
+          type: string
+          description: Address
+        external_identifier:
+          type:
+          - string
+          - 'null'
+          description: External Identifier
+        latitude:
+          type: string
+          description: Latitude
+        longitude:
+          type: string
+          description: Longitude
+        name:
+          type: string
+          description: Name
+        source:
+          type:
+          - string
+          - 'null'
+          description: Source
+      required:
+      - id
+      - address
+      - external_identifier
+      - latitude
+      - longitude
+      - name
+      - source
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: integer
+        barcode:
+          type:
+          - string
+          - 'null'
+        personalised_name:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+          enum:
+          - pending
+          - pending_payment
+          - active
+          - expired
+          - closed
+          - transferred
+          - refunded
+          - reseated
+          - pending_assignment
+          - on_resale
+          - sold
+          - pending_allocation
+        created_at:
+          type: string
+          format: ISO 8601
+        event_id:
+          type: integer
+        event:
+          $ref: '#/components/schemas/Event'
+          nullable: true
+        ticket_type:
+          $ref: '#/components/schemas/TicketType'
+        is_addonable?:
+          type: boolean
+        addonable:
+          $ref: '#/components/schemas/Addonable'
+        updated_at:
+          type: string
+          format: ISO 8601
+        scanned_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        user:
+          anyOf:
+          - $ref: '#/components/schemas/User'
+          - type: 'null'
+        purchaser:
+          $ref: '#/components/schemas/User'
+        cashless_tag_uid:
+          type:
+          - string
+          - 'null'
+        can_be_transferred?:
+          type: boolean
+        can_be_topped_up?:
+          type: boolean
+        can_be_downloaded?:
+          type: boolean
+        can_show_barcode?:
+          type: boolean
+        active_status:
+          type: string
+          enum:
+          - pending
+          - pending_payment
+          - active
+          - expired
+          - closed
+          - transferred
+          - refunded
+          - reseated
+          - pending_assignment
+          - on_resale
+          - sold
+          - pending_allocation
+          - incomplete_registration
+          - refund_processing
+          - transfer_pending
+          - resale_pending_purchase
+          - assignment_pending
+        claimed?:
+          type: boolean
+        can_edit_ticket_transfer?:
+          type: boolean
+        registered?:
+          type: boolean
+        total_top_up_amount_cents:
+          type: integer
+        download_url:
+          type:
+          - string
+          - 'null'
+        answers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Answer'
+          description: Answers to ticket questions
+      required:
+      - id
+      - personalised_name
+      - barcode
+      - status
+      - purchaser
+      - updated_at
+      - created_at
+      - event_id
+      - event
+      - ticket_type
+      - is_addonable?
+      - addonable
+      - can_be_transferred?
+      - can_be_topped_up?
+      - can_show_barcode?
+      - claimed?
+    TicketCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        position:
+          type: integer
+        description:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+      required:
+      - id
+      - name
+      - position
+      - created_at
+      - updated_at
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        first_name:
+          type: string
+          description: First Name
+        last_name:
+          type: string
+          description: Last Name
+        primary_email:
+          type: string
+          readOnly: true
+          description: Email address of user or dummy user
+        dummy?:
+          type: boolean
+          readOnly: true
+          description: True if the user has not yet signed up for an account.
+      required:
+      - id
+      - first_name
+      - last_name
+      - primary_email
+      - dummy?
+    CustomerSettingsConfiguration:
+      type: object
+      properties:
+        customer_transfers_enabled?:
+          type: boolean
+          description: Ticket transfers are allowed
+        require_signup_for_ticket_downloads?:
+          type: boolean
+          description: User profile must be setup, all required data capture completed and marketing questions answered before a user can download their tickets.
+        ticket_downloads_enabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+          description: Specified date and time when tickets will be able to be downloaded.
+        ticket_downloads_enabled?:
+          type: boolean
+          description: If true a user will be able to download their tickets at the specified date and time
+        show_ticket_barcode?:
+          type: boolean
+          description: If tickets cannot be downloaded and this is true then the user will be able to see their barcode number of their ticket as text but not download or view it.
+        sharing_required_enabled?:
+          type: boolean
+          description: Sharing required enabled.
+      required: []
+    Addonable:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type: string
+          description: Name
+        size:
+          type: string
+          description: Size
+      required:
+      - name
+      - size
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication for third-party applications
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            public: Public scope
+            login: Login scope
+            ott: One-time token scope
+    bearer_header:
+      type: http
+      scheme: bearer
+      bearerFormat: oauth2
+      in: header
+    bearer_param:
+      type: apiKey
+      scheme: bearer
+      bearerFormat: oauth2
+      name: bearer_token
+      in: query
+    jwt_header:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from basic authentication login
+    jwt_param:
+      type: apiKey
+      name: bearer_token
+      in: query
+      description: JWT token as query parameter (alternative to Authorization header)
+    basic_auth:
+      type: http
+      scheme: basic
+      description: Basic authentication with email and password
+    api_key:
+      type: apiKey
+      name: x-auth-token
+      in: header
+      description: API key authentication
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication

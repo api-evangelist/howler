@@ -1,0 +1,263 @@
+openapi: 3.1.0
+info:
+  title: Howler API v3 Artists Cashless Tags API
+  version: 3.6.1
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*
+
+    '
+servers:
+- url: https://{defaultHost}/api/v3/consumer_portal
+  variables:
+    defaultHost:
+      default: www.howler.co.za
+  description: Server for consumer portal endpoints
+security:
+- bearer_header: []
+  bearer_param: []
+  api_key: []
+  bearer_auth: []
+tags:
+- name: Cashless Tags
+paths:
+  /cashless_tags:
+    get:
+      summary: list cashless tags
+      operationId: getConsumerCashlessTags
+      tags:
+      - Cashless Tags
+      description: Retrieve a list of cashless tags for the current user.
+      parameters:
+      - name: event_id
+        in: query
+        description: Event Id
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cashless_tag_pairings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CashlessTagPairing'
+  /cashless_tags/{cashless_tag_uid}/transactions:
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: Cashless Tag UID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list cashless transactions
+      operationId: getConsumerCashlessTagTransactions
+      tags:
+      - Cashless Tags
+      description: Retrieve a list of cashless transactions for the specified cashless tag.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cashless_transactions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CashlessTransaction'
+        '400':
+          description: cashless tag pairing cannot view transactions
+        '404':
+          description: cashless tag pairing cannot be found
+components:
+  schemas:
+    CashlessTagPairing:
+      type: object
+      properties:
+        id:
+          type: integer
+        event_id:
+          type: integer
+        cashless_tag_uid:
+          type: string
+        status:
+          type: string
+          status:
+            type: string
+            enum:
+            - not_cashed_out
+            - cashed_out
+            - pending_cash_out
+            - pending_pair_and_cash_out
+        user:
+          $ref: '#/components/schemas/User'
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        cashless_tag_balance:
+          $ref: '#/components/schemas/CashlessTagBalance'
+      required:
+      - id
+      - event_id
+      - cashless_tag_uid
+      - status
+      - user
+      - created_at
+      - updated_at
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        first_name:
+          type: string
+          description: First Name
+        last_name:
+          type: string
+          description: Last Name
+        primary_email:
+          type: string
+          readOnly: true
+          description: Email address of user or dummy user
+        dummy?:
+          type: boolean
+          readOnly: true
+          description: True if the user has not yet signed up for an account.
+      required:
+      - id
+      - first_name
+      - last_name
+      - primary_email
+      - dummy?
+    CashlessTransaction:
+      type: object
+      properties:
+        action:
+          type: string
+        transaction_messages:
+          type: array
+          items:
+            type: object
+            properties:
+              product_name:
+                type: string
+              quantity:
+                type: integer
+              amount_cents:
+                type: integer
+            required:
+            - product_name
+            - quantity
+            - amount_cents
+        currency_symbol:
+          type: string
+        amount_cents:
+          type: integer
+        amount_currency:
+          type: string
+        paid_with_virtual_credits:
+          type: boolean
+        station_name:
+          type: string
+        date:
+          type: string
+        credit_balance_cents:
+          type: integer
+        running_balance_cents:
+          type: integer
+        transaction_amounts:
+          type: array
+          items:
+            type: object
+            properties:
+              amount_currency:
+                type: string
+              amount_cents:
+                type: integer
+            required:
+            - amount_currency
+            - amount_cents
+      required:
+      - action
+      - date
+    CashlessTagBalance:
+      type: object
+      properties:
+        id:
+          type: integer
+        amount_cents:
+          type: integer
+        amount_currency:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        last_transaction_time:
+          type: string
+      required:
+      - id
+      - amount_cents
+      - amount_currency
+      - created_at
+      - updated_at
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication for third-party applications
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            public: Public scope
+            login: Login scope
+            ott: One-time token scope
+    bearer_header:
+      type: http
+      scheme: bearer
+      bearerFormat: oauth2
+      in: header
+    bearer_param:
+      type: apiKey
+      scheme: bearer
+      bearerFormat: oauth2
+      name: bearer_token
+      in: query
+    jwt_header:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from basic authentication login
+    jwt_param:
+      type: apiKey
+      name: bearer_token
+      in: query
+      description: JWT token as query parameter (alternative to Authorization header)
+    basic_auth:
+      type: http
+      scheme: basic
+      description: Basic authentication with email and password
+    api_key:
+      type: apiKey
+      name: x-auth-token
+      in: header
+      description: API key authentication
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication

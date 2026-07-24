@@ -1,0 +1,164 @@
+openapi: 3.1.0
+info:
+  title: Howler API v3 Artists Third Party OAuth API
+  version: 3.6.1
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*
+
+    '
+servers:
+- url: https://{defaultHost}/api/v3/consumer_portal
+  variables:
+    defaultHost:
+      default: www.howler.co.za
+  description: Server for consumer portal endpoints
+security:
+- bearer_header: []
+  bearer_param: []
+  api_key: []
+  bearer_auth: []
+tags:
+- name: Third Party OAuth
+paths:
+  /auth/google/web:
+    get:
+      summary: Google authentication
+      operationId: getConsumerGoogleAuth
+      tags:
+      - Third Party OAuth
+      description: Redirects to Google authentication page
+      security: []
+      responses:
+        '302':
+          description: redirect to Google
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Google authentication URL
+  /auth/facebook/web:
+    get:
+      summary: Facebook authentication
+      operationId: getConsumerFacebookAuth
+      tags:
+      - Third Party OAuth
+      description: Redirects to Facebook authentication page
+      security: []
+      responses:
+        '302':
+          description: redirect to Facebook
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Facebook authentication URL
+  /auth/google_oauth2/callback:
+    get:
+      summary: Google authentication callback
+      operationId: getConsumerGoogleAuthCallback
+      tags:
+      - Third Party OAuth
+      description: Failed to authenticate with Google
+      security: []
+      responses:
+        '302':
+          description: authentication failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Redirect URL for failure
+  /auth/facebook/callback:
+    get:
+      summary: Facebook authentication callback
+      operationId: getConsumerFacebookAuthCallback
+      tags:
+      - Third Party OAuth
+      description: Failed to authenticate with Facebook
+      security: []
+      responses:
+        '302':
+          description: authentication failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Redirect URL for failure
+  /auth/failure:
+    get:
+      summary: Authentication failure
+      operationId: getConsumerAuthFailure
+      tags:
+      - Third Party OAuth
+      description: Authentication failure handler
+      security: []
+      responses:
+        '302':
+          description: authentication failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Redirect URL for failure
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication for third-party applications
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            public: Public scope
+            login: Login scope
+            ott: One-time token scope
+    bearer_header:
+      type: http
+      scheme: bearer
+      bearerFormat: oauth2
+      in: header
+    bearer_param:
+      type: apiKey
+      scheme: bearer
+      bearerFormat: oauth2
+      name: bearer_token
+      in: query
+    jwt_header:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from basic authentication login
+    jwt_param:
+      type: apiKey
+      name: bearer_token
+      in: query
+      description: JWT token as query parameter (alternative to Authorization header)
+    basic_auth:
+      type: http
+      scheme: basic
+      description: Basic authentication with email and password
+    api_key:
+      type: apiKey
+      name: x-auth-token
+      in: header
+      description: API key authentication
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication
