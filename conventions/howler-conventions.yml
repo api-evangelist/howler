@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/howler-consumer-portal-openapi.yml
+authentication:
+  styles:
+  - oauth2 (authorizationCode)
+  - http bearer JWT
+  - apiKey x-auth-token header
+  - http basic
+  - bearer_token query param
+  - email OTP
+  - third-party OAuth (Google/Facebook)
+  primary: OAuth2 bearer token / JWT in Authorization header
+idempotency:
+  supported: false
+  note: No idempotency-key mechanism is documented in the Howler API v3 spec.
+pagination:
+  supported: false
+  note: No standard pagination parameters observed.
+versioning:
+  scheme: uri-path
+  current: v3
+error_envelope:
+  format: json
+  shapes:
+  - '{status, message}'
+  - '{code, status, message}'
+  - '{error}'
+  - '{errors: {field: [messages]}}'
+  ref: errors/howler-problem-types.yml
+rate_limiting:
+  signaled: false
+  note: No rate-limit response headers documented in spec.
+webhooks:
+  supported: true
+  ref: openapi/howler-webhooks-openapi.yml
+  events:
+  - Ticket Webhook
+  - Event Webhook
+  - Payment Webhook
+cross_links:
+  authentication: authentication/howler-authentication.yml
+  scopes: scopes/howler-scopes.yml
+  errors: errors/howler-problem-types.yml
+  lifecycle: lifecycle/howler-lifecycle.yml

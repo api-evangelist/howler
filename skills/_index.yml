@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/howler-consumer-portal-openapi.yml
+skills:
+- file: howler-topup-cashless-tag.md
+  name: Top up a Howler cashless tag
+  api: openapi/howler-consumer-portal-openapi.yml
+  operations: [loginUser, getConsumerCashlessTags, updateConsumerCashlessTagTopup, updateConsumerCashlessTagAmounts, getConsumerCashlessTagComplete]
+- file: howler-assign-transfer-ticket.md
+  name: Assign or transfer a Howler ticket
+  api: openapi/howler-consumer-portal-openapi.yml
+  operations: [getConsumerTickets, updateConsumerTicketAssign, updateConsumerTicketTransferCreate, updateConsumerTicketTransferConfirm]
+- file: howler-cashout-tag.md
+  name: Cash out a Howler cashless tag balance
+  api: openapi/howler-consumer-portal-openapi.yml
+  operations: [showConsumerBankAccount, createConsumerBankAccount, updateConsumerCashoutEvent, updateConsumerCashoutAmounts, updateConsumerCashoutConfirm]

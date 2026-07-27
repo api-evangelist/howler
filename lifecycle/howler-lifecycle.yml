@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/howler-consumer-portal-openapi.yml
+versioning:
+  scheme: uri-path
+  current: v3
+  spec_version: 3.6.1
+  server: https://www.howler.co.za/api/v3/consumer_portal
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public deprecation policy or RFC 8594 Sunset header support found.
+status_page: null
+sla: null
+spec_last_updated: '2026-01-20'
+deprecated_operations: []

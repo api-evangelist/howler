@@ -1,0 +1,3670 @@
+---
+openapi: 3.1.0
+info:
+  title: Howler API v3
+  version: 3.6.1
+  description: "*Last updated: 2026-01-20 21:15:49 +0200*\n"
+components:
+  schemas:
+    Addonable:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type: string
+          description: Name
+        size:
+          type: string
+          description: Size
+      required:
+      - name
+      - size
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Answer ID
+        question_id:
+          type: integer
+          description: ID of the question this answer belongs to
+        response:
+          type:
+          - string
+          - 'null'
+          - array
+          description: The answer text
+      required:
+      - id
+      - question_id
+      - response
+    CashlessTag:
+      type: object
+      properties:
+        id:
+          type: integer
+        event_id:
+          type: integer
+        uid:
+          type: string
+        tag_type:
+          type: string
+          enum:
+          - card
+          - wristband
+      required:
+      - id
+      - uid
+    CashlessTagBalance:
+      type: object
+      properties:
+        id:
+          type: integer
+        amount_cents:
+          type: integer
+        amount_currency:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        last_transaction_time:
+          type: string
+      required:
+      - id
+      - amount_cents
+      - amount_currency
+      - created_at
+      - updated_at
+    CashlessTagPairing:
+      type: object
+      properties:
+        id:
+          type: integer
+        event_id:
+          type: integer
+        cashless_tag_uid:
+          type: string
+        status:
+          type: string
+          status:
+            type: string
+            enum:
+            - not_cashed_out
+            - cashed_out
+            - pending_cash_out
+            - pending_pair_and_cash_out
+        user:
+          "$ref": "#/components/schemas/User"
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        cashless_tag_balance:
+          "$ref": "#/components/schemas/CashlessTagBalance"
+      required:
+      - id
+      - event_id
+      - cashless_tag_uid
+      - status
+      - user
+      - created_at
+      - updated_at
+    CashlessTransaction:
+      type: object
+      properties:
+        action:
+          type: string
+        transaction_messages:
+          type: array
+          items:
+            type: object
+            properties:
+              product_name:
+                type: string
+              quantity:
+                type: integer
+              amount_cents:
+                type: integer
+            required:
+            - product_name
+            - quantity
+            - amount_cents
+        currency_symbol:
+          type: string
+        amount_cents:
+          type: integer
+        amount_currency:
+          type: string
+        paid_with_virtual_credits:
+          type: boolean
+        station_name:
+          type: string
+        date:
+          type: string
+        credit_balance_cents:
+          type: integer
+        running_balance_cents:
+          type: integer
+        transaction_amounts:
+          type: array
+          items:
+            type: object
+            properties:
+              amount_currency:
+                type: string
+              amount_cents:
+                type: integer
+            required:
+            - amount_currency
+            - amount_cents
+      required:
+      - action
+      - date
+    CustomerSettingsConfiguration:
+      type: object
+      properties:
+        customer_transfers_enabled?:
+          type: boolean
+          description: Ticket transfers are allowed
+        require_signup_for_ticket_downloads?:
+          type: boolean
+          description: User profile must be setup, all required data capture completed
+            and marketing questions answered before a user can download their tickets.
+        ticket_downloads_enabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+          description: Specified date and time when tickets will be able to be downloaded.
+        ticket_downloads_enabled?:
+          type: boolean
+          description: If true a user will be able to download their tickets at the
+            specified date and time
+        show_ticket_barcode?:
+          type: boolean
+          description: If tickets cannot be downloaded and this is true then the user
+            will be able to see their barcode number of their ticket as text but not
+            download or view it.
+        sharing_required_enabled?:
+          type: boolean
+          description: Sharing required enabled.
+      required: []
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: Name of the event
+        ticket_types:
+          type: array
+          items:
+            "$ref": "#/components/schemas/TicketType"
+          description: List of ticket types available for this event
+        add_ons:
+          type: array
+          items:
+            "$ref": "#/components/schemas/TicketType"
+          description: List of addon ticket types for the event
+        status:
+          type: string
+          enum:
+          - pending
+          - active
+          - cancelled
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        end_time:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        currency:
+          type: string
+          description: ISO 4217 Currency Code
+        cashouts_enabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        cashouts_disabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        auto_cashouts_enabled?:
+          type: boolean
+          description: Event supports auto cashouts
+        claim_barcode_feature?:
+          type: boolean
+          description: Tickets can be claimed by topping them up.
+        enable_live_topups?:
+          type: boolean
+          description: Topups are allowed during the event.
+        slug:
+          type: string
+          description: 'URL slug used for the event. The url for the event can be
+            generated as follows: https://{baseUrl}/events/{slug}'
+        short_url:
+          type:
+          - string
+          - 'null'
+          description: 'Short URL slug used for the event. The url for the event can
+            be generated as follows: https://{baseUrl}/{short_url}'
+        classification:
+          type: string
+          enum:
+          - howler
+          - howler_ticketing
+          - howler_cashless
+          - foreign_ticketing
+        venue:
+          "$ref": "#/components/schemas/Venue"
+        artist_lineup:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ArtistLineup"
+          description: List of artists performing at the event
+        my_artist_lineup:
+          type: array
+          items:
+            "$ref": "#/components/schemas/ArtistLineup"
+          description: List of this user's performances for the event
+        is_cashless?:
+          type: boolean
+        is_past_event?:
+          type: boolean
+        user_validation_configuration:
+          "$ref": "#/components/schemas/UserValidationConfiguration"
+        onsite_top_up_available?:
+          type: boolean
+        cashless_deposit_cents:
+          type: integer
+        header_image_url:
+          type:
+          - string
+          - 'null'
+        live:
+          type: boolean
+        mapboxUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - currency
+      - auto_cashouts_enabled?
+      - slug
+      - enable_live_topups?
+      - onsite_top_up_available?
+      - header_image_url
+      - is_past_event?
+      - live
+      - ticket_types
+      - add_ons
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+        reference:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - paid
+          - expired
+          - pending_payment
+          - created
+          - processing
+        user:
+          "$ref": "#/components/schemas/User"
+        cashless_deposit_cents:
+          type: integer
+      required:
+      - id
+      - reference
+      - status
+      - type
+      - user
+      - cashless_deposit_cents
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Question ID
+        text:
+          type: string
+          description: Question text
+        required:
+          type: boolean
+          description: Whether the question is required
+        question_type:
+          type: string
+          description: Type of question
+          enum:
+          - text
+          - number
+          - multiple_choice
+          - multiple_answer
+          - date
+          - boolean
+          - cellphone_number
+          - id_number
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Available options for multiple choice questions
+        position:
+          type: integer
+          description: Display position of the question
+      required:
+      - id
+      - text
+      - required
+      - question_type
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: integer
+        barcode:
+          type:
+          - string
+          - 'null'
+        personalised_name:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+          enum:
+          - pending
+          - pending_payment
+          - active
+          - expired
+          - closed
+          - transferred
+          - refunded
+          - reseated
+          - pending_assignment
+          - on_resale
+          - sold
+          - pending_allocation
+        created_at:
+          type: string
+          format: ISO 8601
+        event_id:
+          type: integer
+        event:
+          "$ref": "#/components/schemas/Event"
+          nullable: true
+        ticket_type:
+          "$ref": "#/components/schemas/TicketType"
+        is_addonable?:
+          type: boolean
+        addonable:
+          "$ref": "#/components/schemas/Addonable"
+        updated_at:
+          type: string
+          format: ISO 8601
+        scanned_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        user:
+          anyOf:
+          - "$ref": "#/components/schemas/User"
+          - type: 'null'
+        purchaser:
+          "$ref": "#/components/schemas/User"
+        cashless_tag_uid:
+          type:
+          - string
+          - 'null'
+        can_be_transferred?:
+          type: boolean
+        can_be_topped_up?:
+          type: boolean
+        can_be_downloaded?:
+          type: boolean
+        can_show_barcode?:
+          type: boolean
+        active_status:
+          type: string
+          enum:
+          - pending
+          - pending_payment
+          - active
+          - expired
+          - closed
+          - transferred
+          - refunded
+          - reseated
+          - pending_assignment
+          - on_resale
+          - sold
+          - pending_allocation
+          - incomplete_registration
+          - refund_processing
+          - transfer_pending
+          - resale_pending_purchase
+          - assignment_pending
+        claimed?:
+          type: boolean
+        can_edit_ticket_transfer?:
+          type: boolean
+        registered?:
+          type: boolean
+        total_top_up_amount_cents:
+          type: integer
+        download_url:
+          type:
+          - string
+          - 'null'
+        answers:
+          type:
+          - array
+          - 'null'
+          items:
+            "$ref": "#/components/schemas/Answer"
+          description: Answers to ticket questions
+      required:
+      - id
+      - personalised_name
+      - barcode
+      - status
+      - purchaser
+      - updated_at
+      - created_at
+      - event_id
+      - event
+      - ticket_type
+      - is_addonable?
+      - addonable
+      - can_be_transferred?
+      - can_be_topped_up?
+      - can_show_barcode?
+      - claimed?
+    TicketCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        position:
+          type: integer
+        description:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+      required:
+      - id
+      - name
+      - position
+      - created_at
+      - updated_at
+    TicketType:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        name:
+          type: string
+        ticket_category:
+          "$ref": "#/components/schemas/TicketCategory"
+          nullable: true
+        cost:
+          type: integer
+        fee:
+          type: integer
+        booking_status:
+          type: string
+        virtual_credit_cents:
+          type:
+          - integer
+          - 'null'
+        description:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+          description: URL to the ticket type image if attached
+        topups_configuration:
+          "$ref": "#/components/schemas/TopupsConfiguration"
+        customer_settings_configuration:
+          "$ref": "#/components/schemas/CustomerSettingsConfiguration"
+        questions:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Question"
+          description: Questions associated with this ticket type
+        hidden:
+          type: boolean
+        hidden_by_promo_code:
+          type: boolean
+      required:
+      - id
+      - updated_at
+      - created_at
+      - topups_configuration
+    Topupable:
+      type: object
+      properties:
+        ticket:
+          "$ref": "#/components/schemas/Ticket"
+        cashless_tag_pairing:
+          "$ref": "#/components/schemas/CashlessTagPairing"
+      required: []
+    TopupsConfiguration:
+      type: object
+      properties:
+        topups_enabled?:
+          type: boolean
+          description: Top Ups are enabled for the event
+        prevent_topup_for_multiple_tickets_of_same_type?:
+          type: boolean
+          description: If a user own mutliple tickets of the same ticket type then
+            they cannot bt topped up.
+        small_topup_amount:
+          type: integer
+          description: Small Topup Amount
+        medium_topup_amount:
+          type: integer
+          description: Medium Topup Amount
+        large_topup_amount:
+          type: integer
+          description: Large Topup Amount
+      required:
+      - topups_enabled?
+      - small_topup_amount
+      - medium_topup_amount
+      - large_topup_amount
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        first_name:
+          type: string
+          description: First Name
+        last_name:
+          type: string
+          description: Last Name
+        primary_email:
+          type: string
+          readOnly: true
+          description: Email address of user or dummy user
+        dummy?:
+          type: boolean
+          readOnly: true
+          description: True if the user has not yet signed up for an account.
+      required:
+      - id
+      - first_name
+      - last_name
+      - primary_email
+      - dummy?
+    UserDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        first_name:
+          type: string
+          description: First Name
+        last_name:
+          type: string
+          description: Last Name
+        primary_email:
+          type: string
+          readOnly: true
+          description: Email address of user or dummy user
+        dummy?:
+          type: boolean
+          readOnly: true
+          description: True if the user has not yet signed up for an account.
+        auto_cashout:
+          type: boolean
+          readOnly: true
+          description: Auto cashouts are enabled. This setting is updated when bank
+            account details are captured.
+        cellphone_number:
+          type: string
+          description: Cellphone Number
+        country:
+          type: string
+          description: Country of Residence
+        city:
+          type: string
+          description: City of Residence
+        id_number:
+          type: string
+          description: South African ID Number
+        gender:
+          type:
+          - string
+          - 'null'
+          enum:
+          - male
+          - female
+          - other
+          -
+          description: Gender
+        date_of_birth:
+          type: string
+          format: ISO 8601
+          description: Date of Birth
+        nickname:
+          type:
+          - string
+          - 'null'
+          description: Nickname
+        billing_address:
+          type:
+          - string
+          - 'null'
+          description: Billing Address
+        is_rsa_citizen:
+          type: boolean
+          description: Indicates the user is a South African Citisen. If true they
+            will need to fill in an ID number, otherwise they will need to fill in
+            their passprt country and number.
+        passport_number:
+          type:
+          - string
+          - 'null'
+          description: Passport Number
+        passport_country:
+          type:
+          - string
+          - 'null'
+          description: Passport Country
+        email_confirmed?:
+          type: boolean
+          description: Email has been confirmed
+        avatar_url:
+          type:
+          - string
+          - 'null'
+          description: Avatar URL
+        required_fields:
+          type: array
+          description: Required fields
+        allow_email:
+          type:
+          - boolean
+          - 'null'
+          description: User allows email communication
+        allow_sms:
+          type:
+          - boolean
+          - 'null'
+          description: User allows SMS communication
+        postal_code:
+          type:
+          - string
+          - 'null'
+          description: Postal Code
+        street_and_number:
+          type:
+          - string
+          - 'null'
+          description: Street and Number
+        province:
+          type:
+          - string
+          - 'null'
+          description: Province
+        country_of_birth:
+          type:
+          - string
+          - 'null'
+          description: Country of Birth
+        province_of_birth:
+          type:
+          - string
+          - 'null'
+          description: Province of Birth
+        city_of_birth:
+          type:
+          - string
+          - 'null'
+          description: City of Birth
+        medical_aid_provider:
+          type:
+          - string
+          - 'null'
+          description: Medical Aid Provider
+        medical_aid_number:
+          type:
+          - string
+          - 'null'
+          description: Medical Aid Number
+        emergency_contact_name:
+          type:
+          - string
+          - 'null'
+          description: Emergency Contact Name
+        emergency_contact_relationship:
+          type:
+          - string
+          - 'null'
+          description: Emergency Contact Relationship
+        emergency_contact_number:
+          type:
+          - string
+          - 'null'
+          description: Emergency Contact Number
+        allergies:
+          type:
+          - string
+          - 'null'
+          description: Allergies
+        medical_conditions:
+          type:
+          - string
+          - 'null'
+          description: Medical Conditions
+        language_locale:
+          type: string
+          description: User language preference
+        is_language_locale_manually_set:
+          type: boolean
+          description: Whether the language locale was manually set by the user
+      required:
+      - id
+      - first_name
+      - last_name
+      - primary_email
+      - dummy?
+      - allow_email
+      - allow_sms
+    UserValidationConfiguration:
+      type: object
+      properties:
+        require_id_number?:
+          type: boolean
+          description: South African ID number is required
+        require_unique_identifier?:
+          type: boolean
+          description: ''
+        require_first_name?:
+          type: boolean
+          description: First Name is required
+        require_last_name?:
+          type: boolean
+          description: Last Name is required
+        require_cellphone_number?:
+          type: boolean
+          description: Cellphone Number is required
+        require_country?:
+          type: boolean
+          description: Country of Residence is required
+        require_passport_country?:
+          type: boolean
+          description: Passport Country is required
+        require_city?:
+          type: boolean
+          description: City of Residence is required
+        require_gender?:
+          type: boolean
+          description: Gender is required
+        require_date_of_birth?:
+          type: boolean
+          description: Date of Birth is required
+        require_passport_number?:
+          type: boolean
+          description: Passport Number is required
+        require_nickname?:
+          type: boolean
+          description: Nickname is required
+        require_billing_address?:
+          type: boolean
+          description: Nilling Address is required
+      required:
+      - require_id_number?
+      - require_unique_identifier?
+      - require_first_name?
+      - require_last_name?
+      - require_cellphone_number?
+      - require_country?
+      - require_passport_country?
+      - require_city?
+      - require_gender?
+      - require_date_of_birth?
+      - require_passport_number?
+      - require_nickname?
+      - require_billing_address?
+      description: Indicates which user details need to be completed before their
+        profile is considered setup for an event.
+    Venue:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        address:
+          type: string
+          description: Address
+        external_identifier:
+          type:
+          - string
+          - 'null'
+          description: External Identifier
+        latitude:
+          type: string
+          description: Latitude
+        longitude:
+          type: string
+          description: Longitude
+        name:
+          type: string
+          description: Name
+        source:
+          type:
+          - string
+          - 'null'
+          description: Source
+      required:
+      - id
+      - address
+      - external_identifier
+      - latitude
+      - longitude
+      - name
+      - source
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication for third-party applications
+      flows:
+        authorizationCode:
+          authorizationUrl: "/oauth/authorize"
+          tokenUrl: "/oauth/token"
+          scopes:
+            public: Public scope
+            login: Login scope
+            ott: One-time token scope
+    bearer_header:
+      type: http
+      scheme: bearer
+      bearerFormat: oauth2
+      in: header
+    bearer_param:
+      type: apiKey
+      scheme: bearer
+      bearerFormat: oauth2
+      name: bearer_token
+      in: query
+    jwt_header:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from basic authentication login
+    jwt_param:
+      type: apiKey
+      name: bearer_token
+      in: query
+      description: JWT token as query parameter (alternative to Authorization header)
+    basic_auth:
+      type: http
+      scheme: basic
+      description: Basic authentication with email and password
+    api_key:
+      type: apiKey
+      name: x-auth-token
+      in: header
+      description: API key authentication
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication
+security:
+- bearer_header: []
+  bearer_param: []
+  api_key: []
+  bearer_auth: []
+tags:
+- name: OAuth
+- name: Email OTP
+- name: Third Party OAuth
+- name: Basic Authentication
+- name: Events
+- name: Topupables
+- name: Tickets
+- name: Assign Ticket
+- name: Transfer Ticket
+- name: Top Up Ticket
+- name: Cashless Tags
+- name: Top Up Cashless Tag
+- name: Cashout
+- name: Top Up
+- name: User
+- name: Bank Account
+paths:
+  "/oauth/authorize":
+    get:
+      summary: grant access
+      operationId: getConsumerOAuthAuthorize
+      tags:
+      - OAuth
+      description: |
+        Grant access via OAuth
+
+        `response_type` should be "code" and `scope` should be "public ott".
+        The client_id and redirect_uri should match the values configured for the OAuth application.
+
+        Once the user has signed in they will be prompted to authorise access for the application specified.
+        After they have authorised the application a redirect will be done to the redirect_uri and a grant code passed in a parameter named `code`.
+        This code should be provided to /api/v3/consumer_portal/oauth/token end-point to generate an access token which can be used for authentication.
+      security: []
+      parameters:
+      - name: client_id
+        in: query
+        description: OAuth Application UID
+        schema:
+          type: string
+      - name: redirect_uri
+        in: query
+        description: OAuth Application Redirect URI
+        schema:
+          type: string
+      - name: response_type
+        in: query
+        description: OAuth Response Type
+        schema:
+          type: string
+          enum:
+          - code
+          - token
+      - name: scope
+        in: query
+        description: OAuth Scope
+        schema:
+          type: string
+          enum:
+          - public ott
+      responses:
+        '200':
+          description: successful
+        '302':
+          description: signed out
+  "/oauth/token":
+    post:
+      summary: token
+      operationId: createConsumerOAuthToken
+      tags:
+      - OAuth
+      description: |
+        Generate OAuth access token.
+
+        This token can be refreshed using the same end-point and passing in the refresh token and grant_type 'refresh_token'.
+
+        Once a token is generated it can be passed in the HTTP Authorization header using the format `Bearer <token>`
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: refresh
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type:
+                    - integer
+                    - 'null'
+                  refresh_token:
+                    type: string
+                  scope:
+                    type: string
+                  created_at:
+                    type: integer
+                required:
+                - access_token
+                - token_type
+                - expires_in
+                - scope
+                - created_at
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  description: OAuth Application UID
+                client_secret:
+                  type: string
+                  description: OAuth Application Secret
+                redirect_uri:
+                  type: string
+                  description: OAuth Application Redirect URI
+                grant_type:
+                  type: string
+                  description: OAuth Grant Type
+                  enum:
+                  - authorization_code
+                  - refresh_token
+                code:
+                  type: string
+                  description: OAuth Grant Token
+                refresh_token:
+                  type: string
+                  description: OAuth Refresh Token
+              required:
+              - client_id
+              - client_secret
+              - redirect_uri
+              - grant_type
+        required: true
+  "/oauth/revoke":
+    post:
+      summary: revoke
+      operationId: destroyConsumerOAuthToken
+      tags:
+      - OAuth
+      description: 'Revoke an OAuth access token.
+
+        '
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  description: OAuth Application UID
+                client_secret:
+                  type: string
+                  description: OAuth Application Secret
+                token:
+                  type: string
+                  description: OAuth Access Token
+              required:
+              - client_id
+              - client_secret
+              - token
+        required: true
+  "/oauth/ott":
+    post:
+      summary: one-time token
+      operationId: createConsumerOAuthOneTimeToken
+      tags:
+      - OAuth
+      description: |
+        Generate a one-time token which can be passed to a web view to login the user automatically.
+
+        The access token must have the `ott` scope. The token response can only be used once and expires in 30 seconds.
+      responses:
+        '200':
+          description: generate
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: integer
+                  refresh_token:
+                    type: 'null'
+                  scope:
+                    type: string
+                  created_at:
+                    type: integer
+                required:
+                - access_token
+                - token_type
+                - expires_in
+                - scope
+                - created_at
+        '401':
+          description: generate with revoked
+        '403':
+          description: generate with incorrect scope
+  "/login":
+    post:
+      summary: User Login
+      tags:
+      - Basic Authentication
+      security: []
+      operationId: loginUser
+      parameters: []
+      description: 'Creates a new user session in and returns a JSON web token
+
+        '
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              examples:
+                Successful login:
+                  value:
+                    user:
+                      id: 1
+                      first_name: Derek
+                      last_name: The Admin
+                      primary_email: admin@example.com
+                      dummy?: false
+                    token: eyJhbGciOiHIUzI1NiJ7.eyJ1c2VyX2lkIjoxLCJleHAiOjQ4OTUwMTkzNDh9.DdjO_nag9cJq45UqPIvWEjwE0yvyqtjTYzfpg_R9eg8
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      primary_email:
+                        type: string
+                      dummy?:
+                        type: boolean
+                    required:
+                    - id
+                    - primary_email
+                    - first_name
+                    - last_name
+                    - primary_email
+                    - dummy?
+                  token:
+                    type: string
+                required:
+                - user
+                - token
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              examples:
+                Invalid credentials:
+                  value:
+                    status: 401
+                    message: Invalid email or password.
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  message:
+                    type: string
+                required:
+                - status
+                - message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+              required:
+              - user
+            examples:
+              Login request:
+                summary: Valid login request
+                value:
+                  user:
+                    email: Test@howler.co.za
+                    password: password123
+              Invalid credentials request:
+                summary: Invalid login request
+                value:
+                  user:
+                    email: user@howler.co.za
+                    password: wrongpassword
+        required: true
+  "/email_otp/generate":
+    post:
+      summary: generate email otp
+      tags:
+      - Email OTP
+      security: []
+      description: Generates a one-time password (OTP) for email-based authentication
+      operationId: generateEmailOtp
+      parameters:
+      - name: email
+        in: query
+        format: email
+        required: true
+        description: Email address to send the OTP to
+        schema:
+          type: string
+      responses:
+        '201':
+          description: OTP generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: If your email exists in our system, you will receive
+                      an email with a one-time password.
+        '422':
+          description: Invalid email format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Invalid email format
+  "/email_otp/login":
+    post:
+      summary: login with email otp
+      tags:
+      - Email OTP
+      security: []
+      description: Authenticates user with email and OTP
+      operationId: loginWithEmailOtp
+      parameters: []
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  token:
+                    type: string
+                    example: jwt_token_here
+                  user:
+                    "$ref": "#/components/schemas/User"
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Invalid email or OTP
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Email and OTP are required
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address
+                  example: user@example.com
+                otp:
+                  type: string
+                  description: One-time password received via email
+                  example: '123456'
+              required:
+              - email
+              - otp
+  "/auth/google/web":
+    get:
+      summary: Google authentication
+      operationId: getConsumerGoogleAuth
+      tags:
+      - Third Party OAuth
+      description: Redirects to Google authentication page
+      security: []
+      responses:
+        '302':
+          description: redirect to Google
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Google authentication URL
+  "/auth/facebook/web":
+    get:
+      summary: Facebook authentication
+      operationId: getConsumerFacebookAuth
+      tags:
+      - Third Party OAuth
+      description: Redirects to Facebook authentication page
+      security: []
+      responses:
+        '302':
+          description: redirect to Facebook
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Facebook authentication URL
+  "/auth/google_oauth2/callback":
+    get:
+      summary: Google authentication callback
+      operationId: getConsumerGoogleAuthCallback
+      tags:
+      - Third Party OAuth
+      description: Failed to authenticate with Google
+      security: []
+      responses:
+        '302':
+          description: authentication failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Redirect URL for failure
+  "/auth/facebook/callback":
+    get:
+      summary: Facebook authentication callback
+      operationId: getConsumerFacebookAuthCallback
+      tags:
+      - Third Party OAuth
+      description: Failed to authenticate with Facebook
+      security: []
+      responses:
+        '302':
+          description: authentication failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Redirect URL for failure
+  "/auth/failure":
+    get:
+      summary: Authentication failure
+      operationId: getConsumerAuthFailure
+      tags:
+      - Third Party OAuth
+      description: Authentication failure handler
+      security: []
+      responses:
+        '302':
+          description: authentication failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: Redirect URL for failure
+  "/event/{event_id}": {}
+  "/topupables":
+    get:
+      summary: list topupables
+      operationId: getConsumerTopupables
+      tags:
+      - Topupables
+      description: Retrieves a list of tickets and cashless tags for the current user.
+      parameters:
+      - name: event_id
+        in: query
+        description: Event Id
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful with closed event
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  topupables:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/Topupable"
+        '400':
+          description: not setup
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+  "/tickets":
+    get:
+      summary: list tickets
+      operationId: getConsumerTickets
+      tags:
+      - Tickets
+      description: Retrieves a list of tickets for the current user.
+      parameters:
+      - name: event_id
+        in: query
+        description: Event Id
+        required: false
+        schema:
+          type: integer
+      - name: include_past_events
+        in: query
+        description: Include past events in the response
+        required: false
+        schema:
+          type: boolean
+      security:
+      - bearer_param: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tickets:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/Ticket"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  status:
+                    type: string
+                  message:
+                    type: string
+        '400':
+          description: not setup
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+  "/tickets/{ticket_id}/update_data_capture":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: update data capture and marketing questions
+      operationId: updateConsumerTicketDataCapture
+      tags:
+      - Tickets
+      description: Update the data capture and marketing questions for the current
+        ticket.
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    "$ref": "#/components/schemas/Ticket"
+        '422':
+          description: unprocessable entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      answers:
+                        type: object
+                      sticker:
+                        type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: object
+                  properties:
+                    answers_attributes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          question_instance_id:
+                            type: integer
+                          response:
+                            type:
+                            - array
+                            - object
+                            properties: {}
+                            items:
+                              type: object
+                              properties: {}
+                              required: []
+                            required: []
+                        required:
+                        - id
+                        - question_instance_id
+                        - response
+                  required:
+                  - answers_attributes
+              required:
+              - ticket
+        required: true
+  "/tickets/{ticket_id}/update_personalised_name":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: update personalised name on ticket
+      operationId: updateConsumerTicketPersonalisedName
+      tags:
+      - Tickets
+      description: Update the personalised name on the specified ticket.
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    "$ref": "#/components/schemas/Ticket"
+        '404':
+          description: ticket not found
+        '400':
+          description: invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: object
+                  properties:
+                    personalised_name:
+                      type: string
+                  required:
+                  - personalised_name
+              required:
+              - ticket
+        required: true
+  "/tickets/{ticket_id}/update_owner":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: update ticket owner of ticket
+      operationId: updateConsumerTicketOwner
+      tags:
+      - Tickets
+      description: Update the owner on the specified ticket. This action can only
+        be performed if the current owner of the ticket has not yet created a howler
+        account.
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    "$ref": "#/components/schemas/Ticket"
+        '400':
+          description: invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+        '404':
+          description: ticket not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                    email_confirmation:
+                      type: string
+                  required:
+                  - first_name
+                  - last_name
+                  - email
+                  - email_confirmation
+              required:
+              - ticket
+        required: true
+  "/tickets/{ticket_id}/assign":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: string
+    put:
+      summary: assign ticket
+      operationId: updateConsumerTicketAssign
+      tags:
+      - Assign Ticket
+      description: |
+        Assign the specified ticket to a user.
+
+        The ticket currently does not have an owner.
+
+        Only the purchaser of the ticket can perform this action.
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    "$ref": "#/components/schemas/Ticket"
+        '400':
+          description: invalid
+        '404':
+          description: ticket not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                    email_confirmation:
+                      type: string
+                  required:
+                  - first_name
+                  - last_name
+                  - email
+                  - email_confirmation
+              required:
+              - ticket
+        required: true
+  "/tickets/{ticket_id}/assign/web":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: assign a ticket to a user
+      operationId: assignConsumerTicketWeb
+      tags:
+      - Tickets
+      description: |
+        Renders a webpage to allow assigning a ticket to a user.
+
+        Once the user has successfully completed the data capture, a redirect will be done to a specific URL.
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: resource not found
+    put:
+      summary: update data capture and marketing questions from a rendered form
+      operationId: updateConsumerTicketAssignWeb
+      tags:
+      - Tickets
+      description: |
+        **Private API**
+        This end-point should only ever be called using by the web page rendered using the GET version of this end-point.
+      parameters: []
+      responses:
+        '302':
+          description: successful
+        '200':
+          description: unsuccessful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              required: []
+        required: true
+  "/tickets/{ticket_id}/transfer":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    post:
+      summary: create ticket transfer (1)
+      operationId: updateConsumerTicketTransferCreate
+      tags:
+      - Transfer Ticket
+      description: |
+        **Step 1 of 2**
+
+        Start the transfer process of a ticket by specifying the details the new owner.
+
+        This action can only be performed if transfers are allow for the ticket.
+
+        The transfer needs to be completed using `/api/v3/consumer_portal/tickets/{ticket_id}/transfer/{transfer_order_id}/confirmation`.
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transfer_order:
+                    "$ref": "#/components/schemas/Order"
+                  next_step:
+                    type: string
+        '404':
+          description: ticket not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transfer_order:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                    email_confirmation:
+                      type: string
+                  required:
+                  - first_name
+                  - last_name
+                  - email
+                  - email_confirmation
+              required:
+              - transfer_order
+        required: true
+  "/tickets/{ticket_id}/transfer/{transfer_order_id}/confirmation":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    - name: transfer_order_id
+      in: path
+      description: transfer_order_id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: confirm ticket transfer (2)
+      operationId: updateConsumerTicketTransferConfirm
+      tags:
+      - Transfer Ticket
+      description: |
+        **Step 2 of 2**
+
+        Confirms a transfer order and completes the order.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transfer_order:
+                    "$ref": "#/components/schemas/Order"
+        '404':
+          description: transfer order not found
+  "/tickets/{ticket_id}/top_up":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    post:
+      summary: select ticket (1)
+      operationId: updateConsumerticketTopup
+      tags:
+      - Top Up Ticket
+      description: |
+        Start the top up process of a ticket by providing the ticket id.
+
+        The next_step in the body will indicate which action should be performed next.
+
+        If the user is typing in the barcode manually use `/api/v3/consumer_portal/top_up` instead.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  top_up_order:
+                    "$ref": "#/components/schemas/Order"
+                  next_step:
+                    type: string
+                required:
+                - top_up_order
+                - next_step
+        '404':
+          description: ticket not found
+        '400':
+          description: ticket already claimed
+  "/tickets/{ticket_id}/top_up/{top_up_order_id}/amounts":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: accept amounts (2)
+      operationId: updateConsumerTicketAmounts
+      tags:
+      - Top Up Ticket
+      description: 'Specify the amount to top up the ticket with.
+
+        '
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  top_up_order:
+                    "$ref": "#/components/schemas/Order"
+                  next_step:
+                    type: string
+                required:
+                - top_up_order
+                - next_step
+        '404':
+          description: ticket not found
+        '400':
+          description: ticket already claimed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cashless_top_up:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                  required:
+                  - amount
+              required:
+              - cashless_top_up
+            examples:
+              top_up:
+                summary: Top Up
+                value:
+                  cashless_top_up:
+                    amount: 5.25
+        required: true
+  "/tickets/{ticket_id}/top_up/{top_up_order_id}/payments":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: select payment method (3)
+      operationId: editConsumerTicketPayment
+      tags:
+      - Top Up Ticket
+      description: |
+        Renders a webpage to allow the user to pay for their top up order.
+
+        Once the user has successfully completed a payment, a redirect will be done to a specific URL.
+      responses:
+        '200':
+          description: successful
+        '400':
+          description: top up order invalid status
+  "/tickets/{ticket_id}/top_up/{top_up_order_id}/completes":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: check complete (4)
+      operationId: getConsumerTicketComplete
+      tags:
+      - Top Up Ticket
+      description: 'Check if the top up order was completed. This request should be
+        made after the payment web page has redirected back to the application.
+
+        '
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  top_up_order:
+                    "$ref": "#/components/schemas/Order"
+                required:
+                - top_up_order
+        '404':
+          description: top up order not found
+  "/cashless_tags":
+    get:
+      summary: list cashless tags
+      operationId: getConsumerCashlessTags
+      tags:
+      - Cashless Tags
+      description: Retrieve a list of cashless tags for the current user.
+      parameters:
+      - name: event_id
+        in: query
+        description: Event Id
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cashless_tag_pairings:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/CashlessTagPairing"
+  "/cashless_tags/{cashless_tag_uid}/transactions":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: Cashless Tag UID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list cashless transactions
+      operationId: getConsumerCashlessTagTransactions
+      tags:
+      - Cashless Tags
+      description: Retrieve a list of cashless transactions for the specified cashless
+        tag.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cashless_transactions:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/CashlessTransaction"
+        '400':
+          description: cashless tag pairing cannot view transactions
+        '404':
+          description: cashless tag pairing cannot be found
+  "/cashless_tags/{cashless_tag_uid}/top_up":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: string
+    post:
+      summary: select cashless tag (1)
+      operationId: updateConsumerCashlessTagTopup
+      tags:
+      - Top Up Cashless Tag
+      description: |
+        Start the top up process of a cashless tag by providing the cashless tag's uid.
+
+        The next_step field in the body will indicate which action should be performed next.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                Cashless Tag:
+                  value:
+                    top_up_order:
+                      id: 4
+                      reference: '123'
+                      status: pending
+                      type: TopUpOrder
+                      user: {}
+                    next_step: "/api/v3/consumer_portal/cashless_tags/1234EEEEE/top_up/4/amounts"
+              schema:
+                type: object
+                properties:
+                  top_up_order:
+                    "$ref": "#/components/schemas/Order"
+                  next_step:
+                    type: string
+                required:
+                - top_up_order
+                - next_step
+        '404':
+          description: cashless tag not found
+  "/cashless_tags/{cashless_tag_uid}/top_up/{top_up_order_id}/amounts":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: string
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: accept amounts (2)
+      operationId: updateConsumerCashlessTagAmounts
+      tags:
+      - Top Up Cashless Tag
+      description: 'Specify the amount to top up the cashless tag with.
+
+        '
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  top_up_order:
+                    "$ref": "#/components/schemas/Order"
+                  next_step:
+                    type: string
+                required:
+                - top_up_order
+                - next_step
+        '404':
+          description: uid not found
+        '400':
+          description: top up order invalid status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cashless_top_up:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                  required:
+                  - amount
+              required:
+              - cashless_top_up
+            examples:
+              top_up:
+                summary: Top Up
+                value:
+                  cashless_top_up:
+                    amount: 5.25
+        required: true
+  "/cashless_tags/{cashless_tag_uid}/top_up/{top_up_order_id}/payments":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: string
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: select payment method (3)
+      operationId: editConsumerCashlessTagPayment
+      tags:
+      - Top Up Cashless Tag
+      description: |
+        Renders a webpage to allow the user to pay for their top up order.
+
+        Once the user has successfully completed a payment a redirect will be done to a specific URL.
+      responses:
+        '200':
+          description: successful
+        '400':
+          description: top up order invalid status
+  "/cashless_tags/{cashless_tag_uid}/top_up/{top_up_order_id}/completes":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: string
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: check complete (4)
+      operationId: getConsumerCashlessTagComplete
+      tags:
+      - Top Up Cashless Tag
+      description: 'Check if the top up order was completed. This request should be
+        made after the payment web page has redirected back to the application.
+
+        '
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  top_up_order:
+                    "$ref": "#/components/schemas/Order"
+                required:
+                - top_up_order
+        '404':
+          description: top up order not found
+  "/cashless_tags/{cashless_tag_uid}/cashout":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: string
+    post:
+      summary: check event (1)
+      operationId: updateConsumerCashoutEvent
+      tags:
+      - Cashout
+      parameters: []
+      description: 'Create a new cashless tag pairing for a specific cashless tag
+        and event.
+
+        '
+      responses:
+        '200':
+          description: pair (during event - where cashless_tag does not exist in core)
+          content:
+            application/json:
+              examples:
+                Cashless Tag Pairing:
+                  value:
+                    cashless_tag_pairing:
+                      id: 1
+                      cashless_tag_uid: '123'
+                      status: not_cashed_out
+                      event: {}
+                      user: {}
+                    next_step: "/api/v3/consumer_portal/cashless_tags/1234EEEEE/cashout/1/amounts"
+              schema:
+                type: object
+                properties:
+                  cashless_tag_pairing:
+                    "$ref": "#/components/schemas/CashlessTagPairing"
+                  next_step:
+                    type: string
+                required:
+                - cashless_tag_pairing
+        '400':
+          description: cashless tag already linked
+        '404':
+          description: event not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cashless_tag_pairing:
+                  type: object
+                  properties:
+                    event_id:
+                      type: integer
+                    ticket_id:
+                      type: integer
+                  required:
+                  - event_id
+              required:
+              - cashless_tag_pairing
+            examples:
+              cashless_tag_pairing:
+                summary: Cashless Tag Pairing
+                value:
+                  cashless_tag_pairing:
+                    event_id: 3
+        required: true
+  "/cashless_tags/{cashless_tag_uid}/cashout/{cashless_tag_pairing_id}/amounts":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: string
+    - name: cashless_tag_pairing_id
+      in: path
+      description: cashless_tag_pairing_id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: cashout amounts (2)
+      operationId: updateConsumerCashoutAmounts
+      tags:
+      - Cashout
+      description: |
+        Check if the cashless tag pairing can be cashed out and if so retrieve the amounts for the cashouts.
+
+        The amounts include the current balance, estimated cashout fee and refundable balance (balance less fee).
+        It is also possible that the user might not have enough remaining balance to cashout.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                Cashless Tag Pairing:
+                  value:
+                    cashless_tag_pairing:
+                      id: 1
+                      cashless_tag_uid: '123'
+                      status: not_cashed_out
+                      event: {}
+                      user: {}
+                    amounts:
+                      balance: 1000
+                      fee: 100
+                      balance_less_fee: 900
+                    next_step: "/api/v3/consumer_portal/cashless_tags/1234EEEEE/cashout/1/confirmation"
+              schema:
+                type: object
+                properties:
+                  cashless_tag_pairing:
+                    "$ref": "#/components/schemas/CashlessTagPairing"
+                  amounts:
+                    balance:
+                      type: number
+                    fee:
+                      type: number
+                    balance_less_fee:
+                      type: number
+                  next_step:
+                    type: string
+                required:
+                - cashless_tag_pairing
+                - next_step
+        '400':
+          description: tag paired to someone else
+        '404':
+          description: cashless tag pairing does not exist
+  "/cashless_tags/{cashless_tag_uid}/cashout/{cashless_tag_pairing_id}/confirmation":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: string
+    - name: cashless_tag_pairing_id
+      in: path
+      description: cashless_tag_pairing_id
+      required: true
+      schema:
+        type: integer
+    put:
+      summary: confirm cashout (3)
+      operationId: updateConsumerCashoutConfirm
+      tags:
+      - Cashout
+      description: |
+        Confirm that the cashout should be processed.
+
+        The user must have enough balance available and have a bank account set up.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                Cashless Tag Pairing:
+                  value:
+                    cashless_tag_pairing:
+                      id: 1
+                      cashless_tag_uid: '123'
+                      status: not_cashed_out
+                      event: {}
+                      user: {}
+              schema:
+                type: object
+                properties:
+                  cashless_tag_pairing:
+                    "$ref": "#/components/schemas/CashlessTagPairing"
+                  amounts:
+                    balance:
+                      type: number
+                    fee:
+                      type: number
+                    balance_less_fee:
+                      type: number
+                required:
+                - cashless_tag_pairing
+        '400':
+          description: tag paired to someone else
+        '404':
+          description: cashless tag pairing does not exist
+  "/cashless_tags/top_up": {}
+  "/user/edit": {}
+  "/user":
+    delete:
+      summary: request user account deletion
+      operationId: requestUserDeletion
+      tags:
+      - User
+      description: Request deletion of a user account.
+      responses:
+        '204':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: string
+                nullable: true
+                example:
+    get:
+      summary: get user details
+      operationId: getConsumerUser
+      tags:
+      - User
+      description: 'Retrieve details of the current user.
+
+        '
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    "$ref": "#/components/schemas/UserDetails"
+    put:
+      summary: update user details
+      operationId: updateConsumerUser
+      tags:
+      - User
+      description: 'Update details of the current user.
+
+        '
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    "$ref": "#/components/schemas/UserDetails"
+        '422':
+          description: invalid locale
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          language_locale:
+                            type: array
+                            items:
+                              type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  "$ref": "#/components/schemas/UserDetails"
+              required:
+              - user
+        required: true
+  "/bank_account/edit":
+    get:
+      summary: edit bank account
+      operationId: editConsumerBankAccount
+      parameters:
+      - name: show_auto_cashout
+        in: query
+        description: show_auto_cashout
+        schema:
+          type: boolean
+      - name: cashless_tag_pairing_id
+        in: query
+        required: false
+        schema:
+          type: integer
+      tags:
+      - Bank Account
+      description: |
+        Renders a webpage to allow the user to complete their bank account details. The user can also enable auto cashouts from this page.
+
+        Once the user has successfully updated their details a redirect will be done to a specific URL.
+      responses:
+        '200':
+          description: successful without auto cashout
+  "/bank_account":
+    get:
+      summary: show bank account details
+      operationId: showConsumerBankAccount
+      tags:
+      - Bank Account
+      description: Returns the current bank account details of the authenticated user.
+      security:
+      - oauth2: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bank_account:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      id:
+                        type: integer
+                      type:
+                        type: string
+                      bank_name:
+                        type: string
+                      account_number:
+                        type: string
+                      account_type:
+                        type: string
+                      account_holder:
+                        type: string
+                      branch_code:
+                        type: string
+                      bank_country:
+                        type: string
+                      payment_method:
+                        type: string
+                  auto_cashout:
+                    type: boolean
+    post:
+      summary: create bank account
+      operationId: createConsumerBankAccount
+      tags:
+      - Bank Account
+      description: Creates or updates bank account details for the authenticated user.
+      security:
+      - oauth2: []
+      parameters: []
+      responses:
+        '422':
+          description: unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payment_method:
+                  type: string
+                  example: Bank transfer
+                bank_country:
+                  type: string
+                  example: South Africa
+                bank_name:
+                  type: string
+                  example: Standard Bank
+                account_number:
+                  type: string
+                  example: '62146101811'
+                account_holder:
+                  type: string
+                  example: John Doe
+                branch_code:
+                  type: string
+                  example: '08067100'
+                account_type:
+                  type: string
+                  example: cheque
+                auto_cashout:
+                  type: boolean
+                  example: true
+        required: true
+    put:
+      summary: update bank account
+      operationId: updateConsumerBankAccount
+      tags:
+      - Bank Account
+      description: |
+        **Private API**
+        This end-point should only ever be called using by the web page rendered using the GET version of this end-point.
+      parameters: []
+      responses:
+        '302':
+          description: successful with redirect context
+        '200':
+          description: failed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              required: []
+        required: true
+  "/bank_account/refresh_form":
+    post:
+      summary: refresh bank account form layout
+      operationId: refreshConsumerBankAccountForm
+      tags:
+      - Bank Account
+      description: |
+        **Private API**
+        This end-point should only ever be called using by the web page rendered using the GET version of this end-point.
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  account_type:
+                    type: string
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                required:
+                - account_type
+                - fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bank_account:
+                  type: object
+                  properties:
+                    bank_account_attributes:
+                      type: object
+                  required:
+                  - bank_account_attributes
+                country:
+                  type: string
+                account_type:
+                  type: string
+              required:
+              - bank_account
+        required: true
+  "/artists/{id}/favourite":
+    parameters:
+    - name: id
+      in: path
+      description: Artist ID
+      required: true
+      schema:
+        type: integer
+    post:
+      summary: favourite an artist
+      tags:
+      - Artists
+      operationId: favouriteArtist
+      description: Favourite an artist for the current user.
+      responses:
+        '201':
+          description: artist favourited
+        '422':
+          description: already favourited
+    delete:
+      summary: unfavourite an artist
+      tags:
+      - Artists
+      operationId: unfavouriteArtist
+      description: Unfavourite an artist for the current user.
+      responses:
+        '204':
+          description: artist unfavourited
+        '422':
+          description: not favourited
+  "/cashless_tags/{cashless_tag_uid}/cashout/{cashless_tag_pairing_id}/web/amounts":
+    get:
+      summary: view amounts
+      operationId: showCashlessTagCashoutAmountWeb
+      tags:
+      - Cashout
+      description: "**Private API**\n"
+      parameters:
+      - name: cashless_tag_uid
+        in: path
+        description: cashless_tag_uid
+        required: true
+        schema:
+          type: string
+      - name: cashless_tag_pairing_id
+        in: path
+        description: cashless_tag_pairing_id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: confirm amounts
+      operationId: updateCashlessTagCashoutAmountWeb
+      tags:
+      - Cashout
+      description: "**Private API**\n"
+      parameters:
+      - name: cashless_tag_uid
+        in: path
+        description: cashless_tag_uid
+        required: true
+        schema:
+          type: string
+      - name: cashless_tag_pairing_id
+        in: path
+        description: cashless_tag_pairing_id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '302':
+          description: successful
+  "/events/{event_id}":
+    parameters:
+    - name: event_id
+      in: path
+      description: event_id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show never live event
+      security:
+      - api_key: {}
+      operationId: getConsumerEvent
+      tags:
+      - Events
+      description: 'Retrieve details of the specified event.
+
+        '
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  event:
+                    "$ref": "#/components/schemas/Event"
+  "/jwt/ott":
+    post:
+      summary: Create a one-time token using JWT authentication
+      tags:
+      - Basic Authentication
+      operationId: createConsumerJWTOneTimeToken
+      responses:
+        '200':
+          description: one time token created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    example: a7d21ee5-5fff-4097-8884-33a6c1762480
+                  token_type:
+                    type: string
+                    example: Bearer
+                  expires_in:
+                    type: integer
+                    example: 300
+                  created_at:
+                    type: integer
+                    example: 1647245673
+                required:
+                - access_token
+                - token_type
+                - expires_in
+                - created_at
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: JWT authentication required
+                required:
+                - error
+  "/tickets/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: retrieve ticket details
+      operationId: getConsumerTicket
+      tags:
+      - Tickets
+      description: Retrieves the details of a specific ticket. Only returns tickets
+        owned by the current user or purchased by the current user. Additionally,
+        if partner restrictions are in place, only returns tickets from events associated
+        with the current partner.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    "$ref": "#/components/schemas/Ticket"
+        '404':
+          description: ticket not found
+  "/cashless_tags/{cashless_tag_uid}/top_up/{top_up_order_id}/successful_payment":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: cashless_tag_uid
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    - name: merchant_reference
+      in: query
+      description: merchant_reference
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: submit payment method (3)
+      operationId: updateConsumerCashlessTagPayment
+      tags:
+      - Top Up Cashless Tag
+      description: |
+        **Private API**
+        This end-point should only ever be called by the web page rendered using the GET version of this end-point.
+      responses:
+        '303':
+          description: successful
+  "/cashless_tags/{cashless_tag_uid}/top_up/{top_up_order_id}/pending_successful_payment":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: cashless_tag_uid
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    - name: merchant_reference
+      in: query
+      description: merchant_reference
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: submit pending successful payment method (3)
+      operationId: pendingSuccessConsumerCashlessTagPayment
+      tags:
+      - Top Up Cashless Tag
+      description: |
+        **Private API**
+        This end-point should only ever be called by the web page rendered using the GET version of this end-point.
+      responses:
+        '303':
+          description: failed
+  "/cashless_tags/{cashless_tag_uid}/top_up/{top_up_order_id}/failed_payment":
+    parameters:
+    - name: cashless_tag_uid
+      in: path
+      description: cashless_tag_uid
+      required: true
+      schema:
+        type: string
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    - name: merchant_reference
+      in: query
+      description: merchant_reference
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: submit failed payment method (3)
+      operationId: failedConsumerCashlessTagPayment
+      tags:
+      - Top Up Cashless Tag
+      description: |
+        **Private API**
+        This end-point should only ever be called by the web page rendered using the GET version of this end-point.
+      responses:
+        '303':
+          description: successful
+  "/tickets/{ticket_id}/top_up/{top_up_order_id}/successful_payment":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    - name: merchant_reference
+      in: query
+      description: merchant_reference
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: custom schema redirect for Safari browser
+      operationId: customSchemaRedirectForSafari
+      tags:
+      - Top Up Ticket
+      description: |
+        **Private API**
+        Tests the custom redirect page rendering for Safari browsers with custom schema URLs.
+      responses:
+        '303':
+          description: successful
+        '302':
+          description: custom redirect page rendered
+  "/tickets/{ticket_id}/top_up/{top_up_order_id}/pending_successful_payment":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    - name: merchant_reference
+      in: query
+      description: merchant_reference
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: submit pending successful payment method (3)
+      operationId: pendingSuccessConsumerTicketPayment
+      tags:
+      - Top Up Ticket
+      description: |
+        **Private API**
+        This end-point should only ever be called by the web page rendered using the GET version of this end-point.
+      responses:
+        '303':
+          description: failed
+  "/tickets/{ticket_id}/top_up/{top_up_order_id}/failed_payment":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: ticket_id
+      required: true
+      schema:
+        type: integer
+    - name: top_up_order_id
+      in: path
+      description: top_up_order_id
+      required: true
+      schema:
+        type: integer
+    - name: merchant_reference
+      in: query
+      description: merchant_reference
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: submit failed payment method (3)
+      operationId: failedConsumerTicketPayment
+      tags:
+      - Top Up Ticket
+      description: |
+        **Private API**
+        This end-point should only ever be called by the web page rendered using the GET version of this end-point.
+      responses:
+        '303':
+          description: successful
+  "/top_up":
+    post:
+      summary: select ticket or cashless tag (1)
+      operationId: updateConsumerTopup
+      tags:
+      - Top Up
+      parameters: []
+      description: |
+        Start the top up process of either a ticket or cashless tag by proving the barcode of the ticket or the uid of the cashless tag.
+
+        The next_step in the body will indicate which action should be performed next.
+
+        Whether the provided barcode or uid is a ticket or cashless tag will also depend on the response. Either the ticket or cashless_tag property will be populated.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                Ticket:
+                  value:
+                    top_up_order:
+                      id: 1
+                      reference: '123'
+                      status: pending
+                      type: TopUpOrder
+                      user: {}
+                    ticket:
+                      id: 2
+                      barcode: '1234'
+                    next_step: "/api/v3/consumer_portal/tickets/2/top_up/1/amounts"
+                Cashless Tag:
+                  value:
+                    top_up_order:
+                      id: 4
+                      reference: '123'
+                      status: pending
+                      type: TopUpOrder
+                      user: {}
+                    cashless_tag:
+                      id: 3
+                      uid: 1234EEEEE
+                    next_step: "/api/v3/consumer_portal/cashless_tags/1234EEEEE/top_up/4/amounts"
+              schema:
+                type: object
+                properties:
+                  top_up_order:
+                    "$ref": "#/components/schemas/Order"
+                  ticket:
+                    "$ref": "#/components/schemas/Ticket"
+                  cashless_tag:
+                    "$ref": "#/components/schemas/CashlessTag"
+                  next_step:
+                    type: string
+                required:
+                - top_up_order
+                - next_step
+        '404':
+          description: topupable not found
+        '400':
+          description: topups not available
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                barcode_or_uid:
+                  type: string
+              required:
+              - barcode_or_uid
+            examples:
+              ticket:
+                summary: Ticket
+                value:
+                  barcode_or_uid: '1234'
+              cashless_tag:
+                summary: Cashless Tag
+                value:
+                  barcode_or_uid: 1234EEEEE
+        required: true
+  "/events/{event_id}/performance/{performance_id}":
+    parameters:
+    - name: event_id
+      in: path
+      description: Event ID
+      required: true
+      schema:
+        type: integer
+    - name: performance_id
+      in: path
+      description: Performance ID
+      required: true
+      schema:
+        type: integer
+    post:
+      summary: add performance to time table
+      tags:
+      - Events
+      operationId: addPerformanceToTimeTable
+      description: Add a performance to the time table for the current user.
+      responses:
+        '201':
+          description: already added to time table
+    delete:
+      summary: remove performance from time table
+      tags:
+      - Events
+      operationId: removePerformanceFromTimeTable
+      description: Remove a performance from the time table for the current user.
+      responses:
+        '204':
+          description: not added to time table
+  "/events/{event_id}/user/setup":
+    parameters:
+    - name: event_id
+      in: path
+      description: Event Id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: check if user is setup for event
+      operationId: updateConsumerUserIsSetup
+      tags:
+      - User
+      description: |
+        Checks if the current user is setup for a specific event. Will return true if all required details are filled in for the user profile.
+
+        This can be compared to the event's `user_validation_configuration`.
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  event_id:
+                    type: integer
+                  is_setup?:
+                    type: boolean
+                required:
+                - event_id
+                - is_setup?
+  "/user/resend_confirmation":
+    post:
+      summary: resend user confirmation email
+      operationId: resendUserConfirmation
+      tags:
+      - User
+      description: 'Resend the confirmation email to the user''s primary email address.
+
+        '
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  status:
+                    type: string
+                  message:
+                    type: string
+  "/tickets/{ticket_id}/update_data_capture/web":
+    parameters:
+    - name: ticket_id
+      in: path
+      description: Ticket Id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: input data capture and marketing questions on a rendered form
+      operationId: editConsumerTicketDataCaptureWeb
+      tags:
+      - Tickets
+      description: |
+        Renders a webpage to allow data capture and input of marketing questions.
+
+        Once the user has successfully completed the data capture, a redirect will be done to a specific URL.
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: resource not found
+    put:
+      summary: update data capture and marketing questions from a rendered form
+      operationId: updateConsumerTicketDataCaptureWeb
+      tags:
+      - Tickets
+      description: |
+        **Private API**
+        This end-point should only ever be called using by the web page rendered using the GET version of this end-point.
+      parameters: []
+      responses:
+        '302':
+          description: successful
+        '200':
+          description: unsuccessful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              required: []
+        required: true
+  "/user/web":
+    get:
+      summary: input user details on a rendered form
+      operationId: editConsumerUserWeb
+      tags:
+      - User
+      description: |
+        Renders a webpage to allow the user to set their user details.
+
+        Once the user information has successfully been entered, a redirect will be done to a specific URL.
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update user details from a rendered form
+      operationId: updateConsumerUserWeb
+      tags:
+      - User
+      description: |
+        **Private API**
+        This end-point should only ever be called using by the web page rendered using the GET version of this end-point.
+      parameters: []
+      responses:
+        '303':
+          description: successful
+        '200':
+          description: failed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              required: []
+        required: true
+  "/password/reset":
+    post:
+      summary: Reset Password
+      tags:
+      - Basic Authentication
+      security: []
+      operationId: resetPassword
+      parameters: []
+      description: 'Requests a password reset email to be sent to the provided email
+        address
+
+        '
+      responses:
+        '201':
+          description: Password reset request for non-existent email
+          content:
+            application/json:
+              examples:
+                Successful password reset request:
+                  value:
+                    status: success
+                    message: Password reset instructions have been sent to your email
+                Non-existent email (still returns success):
+                  value:
+                    status: success
+                    message: If your email exists in our system, password reset instructions
+                      have been sent
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - status
+                - message
+        '422':
+          description: Invalid email format
+          content:
+            application/json:
+              examples:
+                Missing email parameter:
+                  value:
+                    status: 422
+                    error: Email is required
+                Missing user parameter:
+                  value:
+                    status: 422
+                    error: Request must include a "user" object with an "email" field
+                Invalid email format:
+                  value:
+                    status: 422
+                    error: Invalid email format
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                required:
+                - status
+                - error
+        '500':
+          description: Server error during email delivery
+          content:
+            application/json:
+              examples:
+                Server error:
+                  value:
+                    status: 500
+                    error: Failed to process password reset request
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                required:
+                - status
+                - error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                  required:
+                  - email
+              required:
+              - user
+            examples:
+              Password reset request:
+                summary: Valid password reset request
+                value:
+                  user:
+                    email: test@example.com
+        required: true
+  "/register":
+    post:
+      summary: User Registration
+      tags:
+      - Basic Authentication
+      security: []
+      operationId: registerUser
+      parameters: []
+      description: 'Creates a new user account and returns the user data
+
+        '
+      responses:
+        '201':
+          description: User created and merged with dummy user
+          content:
+            application/json:
+              examples:
+                Successful registration:
+                  value:
+                    user:
+                      id: 1
+                      first_name: John
+                      last_name: Doe
+                      primary_email: new_user@howler.co.za
+                      dummy?: false
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      primary_email:
+                        type: string
+                      dummy?:
+                        type: boolean
+                    required:
+                    - id
+                    - primary_email
+                    - first_name
+                    - last_name
+                    - primary_email
+                    - dummy?
+                required:
+                - user
+        '422':
+          description: Invalid registration data
+          content:
+            application/json:
+              examples:
+                Invalid registration data:
+                  value:
+                    status: 422
+                    message: Registration failed.
+                    errors:
+                      email:
+                      - is invalid
+                      password:
+                      - is too short (minimum is 8 characters)
+                      password_confirmation:
+                      - doesn't match Password
+                      cellphone_number:
+                      - is invalid
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                required:
+                - status
+                - message
+                - errors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                    cellphone_number:
+                      type: string
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                  required:
+                  - email
+                  - password
+                  - password_confirmation
+                  - cellphone_number
+                  - first_name
+                  - last_name
+              required:
+              - user
+            examples:
+              Registration request:
+                summary: Valid registration request
+                value:
+                  user:
+                    email: new_user@howler.co.za
+                    password: password123
+                    password_confirmation: password123
+        required: true
+servers:
+- url: https://{defaultHost}/api/v3/consumer_portal
+  variables:
+    defaultHost:
+      default: www.howler.co.za
+  description: Server for consumer portal endpoints

@@ -1,0 +1,62 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/howler-consumer-portal-openapi.yml
+entities:
+- Addonable
+- Answer
+- CashlessTag
+- CashlessTagBalance
+- CashlessTagPairing
+- CashlessTransaction
+- CustomerSettingsConfiguration
+- Event
+- Order
+- Question
+- Ticket
+- TicketCategory
+- TicketType
+- Topupable
+- TopupsConfiguration
+- User
+- UserDetails
+- UserValidationConfiguration
+- Venue
+relationships:
+- entity: Answer
+  relationship: belongs_to
+  target: Question
+  via: question_id
+- entity: CashlessTag
+  relationship: belongs_to
+  target: Event
+  via: event_id
+- entity: CashlessTagPairing
+  relationship: belongs_to
+  target: Event
+  via: event_id
+- entity: CashlessTagPairing
+  relationship: belongs_to
+  target: User
+  via: user
+- entity: Order
+  relationship: belongs_to
+  target: User
+  via: user
+- entity: Ticket
+  relationship: belongs_to
+  target: Event
+  via: event_id
+- entity: Ticket
+  relationship: belongs_to
+  target: User
+  via: user
+- entity: Topupable
+  relationship: belongs_to
+  target: Ticket
+  via: ticket
+- entity: CashlessTransaction
+  relationship: belongs_to
+  target: CashlessTag
+  via: cashless_tag_uid
+note: Entity graph derived from OpenAPI component schemas and id-reference fields in the Howler API v3
+  consumer portal spec.

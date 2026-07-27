@@ -1,0 +1,26 @@
+# Howler
+
+> Howler is a South African event technology platform that consolidates ticketing, RFID cashless payments, and vendor/access management into one system. Its consumer-facing Howler API v3 covers authentication, tickets, cashless tags, top-ups, and cashout, and a Howler Webhooks v1 surface pushes ticket, event, and payment events to partners.
+
+## APIs
+- [Howler API v3 (consumer portal) — OpenAPI](https://developer.howler.co.za/api-docs/v3/consumer_portal_swagger.yaml): 67 operations across OAuth, tickets, cashless tags, top-up, cashout, events, users, and bank accounts. Base server https://www.howler.co.za/api/v3/consumer_portal
+- [Howler Webhooks v1 — OpenAPI](https://developer.howler.co.za/api-docs/webhooks/webhooks_swagger.yaml): Ticket, Event, and Payment webhook events delivered to partner endpoints.
+
+## Specs (in this repo)
+- openapi/howler-consumer-portal-openapi.yml
+- openapi/howler-webhooks-openapi.yml
+- authentication/howler-authentication.yml
+- scopes/howler-scopes.yml
+- conventions/howler-conventions.yml
+- errors/howler-problem-types.yml
+- data-model/howler-data-model.yml
+- conformance/howler-conformance.yml
+- lifecycle/howler-lifecycle.yml
+
+## Docs
+- [Developer API reference (Swagger UI)](https://developer.howler.co.za/api-docs)
+- [Help & Support center](https://help.howler.co.za/)
+- [Organiser portal](https://organisers.howler.co.za/)
+- [Sign up](https://www.howler.co.za/users/sign_up)
+- [Terms & Conditions](https://www.howler.co.za/terms_and_conditions)
+- [Privacy Policy](https://www.howler.co.za/privacy_policy)

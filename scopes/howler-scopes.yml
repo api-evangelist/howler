@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/howler-consumer-portal-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/howler-consumer-portal-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: /oauth/authorize
+    tokenUrl: /oauth/token
+  description: OAuth2 authentication for third-party applications
+scopes:
+- scope: login
+  description: Login scope
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/howler-consumer-portal-openapi.yml
+- scope: ott
+  description: One-time token scope
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/howler-consumer-portal-openapi.yml
+- scope: public
+  description: Public scope
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/howler-consumer-portal-openapi.yml

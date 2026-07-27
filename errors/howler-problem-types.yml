@@ -1,0 +1,63 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/howler-consumer-portal-openapi.yml
+format: json
+note: 'Howler does not use RFC 9457 problem+json; error bodies are plain application/json objects. Observed
+  envelope shapes: {status, message}, {code, status, message}, {error}, and {errors: {<field>: [...]}}
+  for 422 validation errors.'
+envelope_fields:
+- status
+- code
+- message
+- error
+- errors
+problems:
+- status: 400
+  title: Bad request
+  detail: the request was malformed or missing required parameters.
+  source_operations:
+  - editConsumerCashlessTagPayment
+  - editConsumerTicketPayment
+  - getConsumerCashlessTagTransactions
+  - getConsumerTickets
+  - getConsumerTopupables
+  - updateConsumerCashlessTagAmounts
+- status: 401
+  title: Unauthorized
+  detail: authentication is missing, invalid, or expired.
+  source_operations:
+  - createConsumerJWTOneTimeToken
+  - createConsumerOAuthOneTimeToken
+  - getConsumerTickets
+  - loginUser
+  - loginWithEmailOtp
+- status: 403
+  title: Forbidden
+  detail: the authenticated principal may not perform this action.
+  source_operations:
+  - createConsumerOAuthOneTimeToken
+- status: 404
+  title: Not found
+  detail: the referenced resource does not exist.
+  source_operations:
+  - assignConsumerTicketWeb
+  - editConsumerTicketDataCaptureWeb
+  - getConsumerCashlessTagComplete
+  - getConsumerCashlessTagTransactions
+  - getConsumerTicket
+  - getConsumerTicketComplete
+- status: 422
+  title: Unprocessable entity
+  detail: validation failed on one or more fields.
+  source_operations:
+  - createConsumerBankAccount
+  - favouriteArtist
+  - generateEmailOtp
+  - loginWithEmailOtp
+  - registerUser
+  - resetPassword
+- status: 500
+  title: Internal server error
+  detail: an unexpected error occurred on the Howler side.
+  source_operations:
+  - resetPassword

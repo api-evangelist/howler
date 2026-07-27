@@ -1,0 +1,14 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Howler API v3
+  version: 1.0.0
+extends: openapi/howler-consumer-portal-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-apievangelist-category: event-ticketing-cashless-payments
+- target: $.info
+  update:
+    x-api-evangelist-provider: howler
+    x-api-evangelist-country: ZA

@@ -1,0 +1,52 @@
+{
+  "provider": "howler",
+  "sources": [
+    "howler-artists-api-openapi.yml",
+    "howler-assign-ticket-api-openapi.yml",
+    "howler-bank-account-api-openapi.yml",
+    "howler-basic-authentication-api-openapi.yml",
+    "howler-cashless-tags-api-openapi.yml",
+    "howler-cashout-api-openapi.yml",
+    "howler-email-otp-api-openapi.yml",
+    "howler-events-api-openapi.yml",
+    "howler-oauth-api-openapi.yml",
+    "howler-third-party-oauth-api-openapi.yml",
+    "howler-tickets-api-openapi.yml",
+    "howler-top-up-api-openapi.yml",
+    "howler-top-up-cashless-tag-api-openapi.yml",
+    "howler-top-up-ticket-api-openapi.yml",
+    "howler-topupables-api-openapi.yml",
+    "howler-transfer-ticket-api-openapi.yml",
+    "howler-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "howler-artists-api-openapi.yml",
+    "howler-assign-ticket-api-openapi.yml",
+    "howler-bank-account-api-openapi.yml",
+    "howler-basic-authentication-api-openapi.yml",
+    "howler-cashless-tags-api-openapi.yml",
+    "howler-cashout-api-openapi.yml",
+    "howler-email-otp-api-openapi.yml",
+    "howler-events-api-openapi.yml",
+    "howler-oauth-api-openapi.yml",
+    "howler-third-party-oauth-api-openapi.yml",
+    "howler-tickets-api-openapi.yml",
+    "howler-top-up-api-openapi.yml",
+    "howler-top-up-cashless-tag-api-openapi.yml",
+    "howler-top-up-ticket-api-openapi.yml",
+    "howler-topupables-api-openapi.yml",
+    "howler-transfer-ticket-api-openapi.yml",
+    "howler-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "howler-assign-ticket-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup",
+    "howler-events-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup",
+    "howler-tickets-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup",
+    "howler-top-up-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup",
+    "howler-topupables-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

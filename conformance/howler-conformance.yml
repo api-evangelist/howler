@@ -1,0 +1,29 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/howler-consumer-portal-openapi.yml
+standards:
+- id: oauth2
+  conforms: true
+  evidence: components.securitySchemes declares an oauth2 authorizationCode flow (/oauth/authorize, /oauth/token)
+    with scopes public/login/ott
+- id: oidc
+  conforms: false
+  evidence: no openIdConnect scheme or discovery document
+- id: jwt-bearer
+  conforms: true
+  evidence: http bearer schemes with bearerFormat JWT; /jwt/ott and /login issue JWTs
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: error responses use plain application/json, not application/problem+json
+- id: rfc8594-sunset
+  conforms: false
+  evidence: no Sunset/Deprecation header usage documented in spec
+- id: pagination
+  conforms: false
+  evidence: no standard pagination parameters/links observed in spec
+- id: idempotency
+  conforms: false
+  evidence: no Idempotency-Key header documented
+- id: webhooks
+  conforms: true
+  evidence: Howler Webhooks v1 OpenAPI publishes Ticket, Event and Payment webhook events

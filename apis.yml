@@ -1,7 +1,26 @@
 aid: howler
 name: Howler
-description: Howler is a company surfaced as a portfolio company of techstars and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Howler is a South African event technology platform that consolidates ticketing, RFID cashless
+  payments, and vendor and access-control management into a single system for event organisers and
+  attendees. Founded out of the Barclays Accelerator powered by Techstars (2017) and Techstars-backed,
+  Howler has processed over R1.5 billion in transactions across thousands of events. Its public Howler
+  API v3 consumer portal exposes 67 operations for authentication (OAuth2, JWT, email OTP, third-party
+  OAuth), tickets (buy, assign, transfer), cashless RFID tags, top-ups, and cashout to bank accounts,
+  and a Howler Webhooks v1 surface pushes ticket, event, and payment events to partner endpoints.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://d1as2iufift1z3.cloudfront.net/assets/opengraph_image-5c147fd54bd5d4a768273fb2aa31296c060de259bc86df716898404aa091830c.jpg
 url: https://raw.githubusercontent.com/api-evangelist/howler/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,15 +30,316 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Events
+- Ticketing
+- Payments
+- Cashless
+- RFID
+- Event Management
+- Fintech
+- South Africa
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: howler:howler-artists-api
+  name: Howler Artists API
+  description: The Artists API from Howler — 1 operation(s) for artists.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Artists
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-artists-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-assign-ticket-api
+  name: Howler Assign Ticket API
+  description: The Assign Ticket API from Howler — 1 operation(s) for assign ticket.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Assign Ticket
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-assign-ticket-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-bank-account-api
+  name: Howler Bank Account API
+  description: The Bank Account API from Howler — 3 operation(s) for bank account.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Bank Account
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-bank-account-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-basic-authentication-api
+  name: Howler Basic Authentication API
+  description: The Basic Authentication API from Howler — 4 operation(s) for basic authentication.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Basic Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-basic-authentication-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-cashless-tags-api
+  name: Howler Cashless Tags API
+  description: The Cashless Tags API from Howler — 2 operation(s) for cashless tags.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Cashless Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-cashless-tags-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-cashout-api
+  name: Howler Cashout API
+  description: The Cashout API from Howler — 4 operation(s) for cashout.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Cashout
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-cashout-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-email-otp-api
+  name: Howler Email OTP API
+  description: The Email OTP API from Howler — 2 operation(s) for email otp.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Email OTP
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-email-otp-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-events-api
+  name: Howler Events API
+  description: The Events API from Howler — 2 operation(s) for events.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-events-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-oauth-api
+  name: Howler OAuth API
+  description: The OAuth API from Howler — 4 operation(s) for oauth.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-oauth-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-third-party-oauth-api
+  name: Howler Third Party OAuth API
+  description: The Third Party OAuth API from Howler — 5 operation(s) for third party oauth.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Third Party OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-third-party-oauth-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-tickets-api
+  name: Howler Tickets API
+  description: The Tickets API from Howler — 7 operation(s) for tickets.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Tickets
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-tickets-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-top-up-api
+  name: Howler Top Up API
+  description: The Top Up API from Howler — 1 operation(s) for top up.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Top Up
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-top-up-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-top-up-cashless-tag-api
+  name: Howler Top Up Cashless Tag API
+  description: The Top Up Cashless Tag API from Howler — 7 operation(s) for top up cashless tag.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Top Up Cashless Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-top-up-cashless-tag-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-top-up-ticket-api
+  name: Howler Top Up Ticket API
+  description: The Top Up Ticket API from Howler — 7 operation(s) for top up ticket.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Top Up Ticket
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-top-up-ticket-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-topupables-api
+  name: Howler Topupables API
+  description: The Topupables API from Howler — 1 operation(s) for topupables.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Topupables
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-topupables-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-transfer-ticket-api
+  name: Howler Transfer Ticket API
+  description: The Transfer Ticket API from Howler — 2 operation(s) for transfer ticket.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - Transfer Ticket
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-transfer-ticket-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-user-api
+  name: Howler User API
+  description: The User API from Howler — 4 operation(s) for user.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-user-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
 common:
 - type: Website
-  url: https://howler.co.za/
+  url: https://www.howler.co.za/
+- type: Documentation
+  url: https://help.howler.co.za/
+- type: APIReference
+  url: https://developer.howler.co.za/api-docs
+- type: Portal
+  url: https://organisers.howler.co.za/
+- type: Support
+  url: https://www.howler.co.za/contact_us
+- type: HelpCenter
+  url: https://help.howler.co.za/
+- type: SignUp
+  url: https://www.howler.co.za/users/sign_up
+- type: Login
+  url: https://www.howler.co.za/users/sign_in
+- type: TermsOfService
+  url: https://www.howler.co.za/terms_and_conditions
+- type: PrivacyPolicy
+  url: https://www.howler.co.za/privacy_policy
+- type: LinkedIn
+  url: https://za.linkedin.com/company/howlertech
+- type: Authentication
+  url: authentication/howler-authentication.yml
+- type: OAuthScopes
+  url: scopes/howler-scopes.yml
+- type: Conventions
+  url: conventions/howler-conventions.yml
+- type: ErrorCatalog
+  url: errors/howler-problem-types.yml
+- type: DataModel
+  url: data-model/howler-data-model.yml
+- type: Conformance
+  url: conformance/howler-conformance.yml
+- type: Lifecycle
+  url: lifecycle/howler-lifecycle.yml
+- type: Webhooks
+  url: openapi/howler-webhooks-openapi.yml
+- type: MCPServer
+  url: mcp/howler-mcp.yml
+- type: LLMsTxt
+  url: llms/howler-llms.txt
+- type: Overlay
+  url: overlays/howler-consumer-portal-overlay.yaml
+- type: WellKnown
+  url: well-known/howler-well-known.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/howler-agentic-access.yml
+- type: DomainSecurity
+  url: security/howler-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

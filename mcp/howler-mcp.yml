@@ -1,0 +1,211 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/howler-consumer-portal-openapi.yml
+server:
+  name: howler
+  transport: http
+  note: No official Howler MCP server was found; tools derived one-per-operation from the Howler API v3
+    OpenAPI as a candidate surface.
+tools:
+- name: getConsumerOAuthAuthorize
+  description: grant access
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerOAuthAuthorize
+- name: createConsumerOAuthToken
+  description: token
+  source_operation: openapi/howler-consumer-portal-openapi.yml#createConsumerOAuthToken
+- name: destroyConsumerOAuthToken
+  description: revoke
+  source_operation: openapi/howler-consumer-portal-openapi.yml#destroyConsumerOAuthToken
+- name: createConsumerOAuthOneTimeToken
+  description: one-time token
+  source_operation: openapi/howler-consumer-portal-openapi.yml#createConsumerOAuthOneTimeToken
+- name: loginUser
+  description: User Login
+  source_operation: openapi/howler-consumer-portal-openapi.yml#loginUser
+- name: generateEmailOtp
+  description: generate email otp
+  source_operation: openapi/howler-consumer-portal-openapi.yml#generateEmailOtp
+- name: loginWithEmailOtp
+  description: login with email otp
+  source_operation: openapi/howler-consumer-portal-openapi.yml#loginWithEmailOtp
+- name: getConsumerGoogleAuth
+  description: Google authentication
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerGoogleAuth
+- name: getConsumerFacebookAuth
+  description: Facebook authentication
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerFacebookAuth
+- name: getConsumerGoogleAuthCallback
+  description: Google authentication callback
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerGoogleAuthCallback
+- name: getConsumerFacebookAuthCallback
+  description: Facebook authentication callback
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerFacebookAuthCallback
+- name: getConsumerAuthFailure
+  description: Authentication failure
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerAuthFailure
+- name: getConsumerTopupables
+  description: list topupables
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerTopupables
+- name: getConsumerTickets
+  description: list tickets
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerTickets
+- name: updateConsumerTicketDataCapture
+  description: update data capture and marketing questions
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTicketDataCapture
+- name: updateConsumerTicketPersonalisedName
+  description: update personalised name on ticket
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTicketPersonalisedName
+- name: updateConsumerTicketOwner
+  description: update ticket owner of ticket
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTicketOwner
+- name: updateConsumerTicketAssign
+  description: assign ticket
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTicketAssign
+- name: assignConsumerTicketWeb
+  description: assign a ticket to a user
+  source_operation: openapi/howler-consumer-portal-openapi.yml#assignConsumerTicketWeb
+- name: updateConsumerTicketAssignWeb
+  description: update data capture and marketing questions from a rendered form
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTicketAssignWeb
+- name: updateConsumerTicketTransferCreate
+  description: create ticket transfer (1)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTicketTransferCreate
+- name: updateConsumerTicketTransferConfirm
+  description: confirm ticket transfer (2)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTicketTransferConfirm
+- name: updateConsumerticketTopup
+  description: select ticket (1)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerticketTopup
+- name: updateConsumerTicketAmounts
+  description: accept amounts (2)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTicketAmounts
+- name: editConsumerTicketPayment
+  description: select payment method (3)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#editConsumerTicketPayment
+- name: getConsumerTicketComplete
+  description: check complete (4)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerTicketComplete
+- name: getConsumerCashlessTags
+  description: list cashless tags
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerCashlessTags
+- name: getConsumerCashlessTagTransactions
+  description: list cashless transactions
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerCashlessTagTransactions
+- name: updateConsumerCashlessTagTopup
+  description: select cashless tag (1)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerCashlessTagTopup
+- name: updateConsumerCashlessTagAmounts
+  description: accept amounts (2)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerCashlessTagAmounts
+- name: editConsumerCashlessTagPayment
+  description: select payment method (3)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#editConsumerCashlessTagPayment
+- name: getConsumerCashlessTagComplete
+  description: check complete (4)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerCashlessTagComplete
+- name: updateConsumerCashoutEvent
+  description: check event (1)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerCashoutEvent
+- name: updateConsumerCashoutAmounts
+  description: cashout amounts (2)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerCashoutAmounts
+- name: updateConsumerCashoutConfirm
+  description: confirm cashout (3)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerCashoutConfirm
+- name: requestUserDeletion
+  description: request user account deletion
+  source_operation: openapi/howler-consumer-portal-openapi.yml#requestUserDeletion
+- name: getConsumerUser
+  description: get user details
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerUser
+- name: updateConsumerUser
+  description: update user details
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerUser
+- name: editConsumerBankAccount
+  description: edit bank account
+  source_operation: openapi/howler-consumer-portal-openapi.yml#editConsumerBankAccount
+- name: showConsumerBankAccount
+  description: show bank account details
+  source_operation: openapi/howler-consumer-portal-openapi.yml#showConsumerBankAccount
+- name: createConsumerBankAccount
+  description: create bank account
+  source_operation: openapi/howler-consumer-portal-openapi.yml#createConsumerBankAccount
+- name: updateConsumerBankAccount
+  description: update bank account
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerBankAccount
+- name: refreshConsumerBankAccountForm
+  description: refresh bank account form layout
+  source_operation: openapi/howler-consumer-portal-openapi.yml#refreshConsumerBankAccountForm
+- name: favouriteArtist
+  description: favourite an artist
+  source_operation: openapi/howler-consumer-portal-openapi.yml#favouriteArtist
+- name: unfavouriteArtist
+  description: unfavourite an artist
+  source_operation: openapi/howler-consumer-portal-openapi.yml#unfavouriteArtist
+- name: showCashlessTagCashoutAmountWeb
+  description: view amounts
+  source_operation: openapi/howler-consumer-portal-openapi.yml#showCashlessTagCashoutAmountWeb
+- name: updateCashlessTagCashoutAmountWeb
+  description: confirm amounts
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateCashlessTagCashoutAmountWeb
+- name: getConsumerEvent
+  description: show never live event
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerEvent
+- name: createConsumerJWTOneTimeToken
+  description: Create a one-time token using JWT authentication
+  source_operation: openapi/howler-consumer-portal-openapi.yml#createConsumerJWTOneTimeToken
+- name: getConsumerTicket
+  description: retrieve ticket details
+  source_operation: openapi/howler-consumer-portal-openapi.yml#getConsumerTicket
+- name: updateConsumerCashlessTagPayment
+  description: submit payment method (3)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerCashlessTagPayment
+- name: pendingSuccessConsumerCashlessTagPayment
+  description: submit pending successful payment method (3)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#pendingSuccessConsumerCashlessTagPayment
+- name: failedConsumerCashlessTagPayment
+  description: submit failed payment method (3)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#failedConsumerCashlessTagPayment
+- name: customSchemaRedirectForSafari
+  description: custom schema redirect for Safari browser
+  source_operation: openapi/howler-consumer-portal-openapi.yml#customSchemaRedirectForSafari
+- name: pendingSuccessConsumerTicketPayment
+  description: submit pending successful payment method (3)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#pendingSuccessConsumerTicketPayment
+- name: failedConsumerTicketPayment
+  description: submit failed payment method (3)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#failedConsumerTicketPayment
+- name: updateConsumerTopup
+  description: select ticket or cashless tag (1)
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTopup
+- name: addPerformanceToTimeTable
+  description: add performance to time table
+  source_operation: openapi/howler-consumer-portal-openapi.yml#addPerformanceToTimeTable
+- name: removePerformanceFromTimeTable
+  description: remove performance from time table
+  source_operation: openapi/howler-consumer-portal-openapi.yml#removePerformanceFromTimeTable
+- name: updateConsumerUserIsSetup
+  description: check if user is setup for event
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerUserIsSetup
+- name: resendUserConfirmation
+  description: resend user confirmation email
+  source_operation: openapi/howler-consumer-portal-openapi.yml#resendUserConfirmation
+- name: editConsumerTicketDataCaptureWeb
+  description: input data capture and marketing questions on a rendered form
+  source_operation: openapi/howler-consumer-portal-openapi.yml#editConsumerTicketDataCaptureWeb
+- name: updateConsumerTicketDataCaptureWeb
+  description: update data capture and marketing questions from a rendered form
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerTicketDataCaptureWeb
+- name: editConsumerUserWeb
+  description: input user details on a rendered form
+  source_operation: openapi/howler-consumer-portal-openapi.yml#editConsumerUserWeb
+- name: updateConsumerUserWeb
+  description: update user details from a rendered form
+  source_operation: openapi/howler-consumer-portal-openapi.yml#updateConsumerUserWeb
+- name: resetPassword
+  description: Reset Password
+  source_operation: openapi/howler-consumer-portal-openapi.yml#resetPassword
+- name: registerUser
+  description: User Registration
+  source_operation: openapi/howler-consumer-portal-openapi.yml#registerUser
