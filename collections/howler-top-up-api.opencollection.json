@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Top Up API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Top Up",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "select ticket or cashless tag (1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/top_up",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start the top up process of either a ticket or cashless tag by proving the barcode of the ticket or the uid of the cashless tag.\n\nThe next_step in the body will indicate which action should be performed next.\n\nWhether the provided barcode or uid is a ticket or cashless tag will also depend on the response. Either the ticket or cashless_tag property will be populated.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

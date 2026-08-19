@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "favourite an artist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/artists/:id/favourite",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Artist ID"
+              }
+            ]
+          },
+          "docs": "Favourite an artist for the current user."
+        },
+        {
+          "info": {
+            "name": "unfavourite an artist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/artists/:id/favourite",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Artist ID"
+              }
+            ]
+          },
+          "docs": "Unfavourite an artist for the current user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

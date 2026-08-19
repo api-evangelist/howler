@@ -209,3 +209,9 @@ tools:
 - name: registerUser
   description: User Registration
   source_operation: openapi/howler-consumer-portal-openapi.yml#registerUser
+deployment:
+  mode: none
+  verified: derived
+  tools: 67
+  checked: '2026-08-12'
+  source: catalog MCP census

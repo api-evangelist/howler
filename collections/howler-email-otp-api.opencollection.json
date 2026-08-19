@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Email OTP API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Email OTP",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "generate email otp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/email_otp/generate",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address to send the OTP to"
+              }
+            ]
+          },
+          "docs": "Generates a one-time password (OTP) for email-based authentication"
+        },
+        {
+          "info": {
+            "name": "login with email otp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/email_otp/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates user with email and OTP"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

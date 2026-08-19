@@ -1,0 +1,424 @@
+{
+  "item": [
+    {
+      "id": "6f26d59b-a366-412f-8663-d5219d815328",
+      "name": "Events",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfac7770-d61a-4778-a26f-d6e9eaf1f1b1",
+          "name": "show never live event",
+          "request": {
+            "name": "show never live event",
+            "description": {
+              "content": "Retrieve details of the specified event.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":event_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "event_id",
+                  "description": "(Required) event_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-auth-token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "33eb4723-2c52-4f1d-8e9f-be3fe835cc61",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":event_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "event_id",
+                      "description": "(Required) event_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-auth-token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"event\": {\n    \"id\": 6691,\n    \"name\": \"string\",\n    \"currency\": \"string\",\n    \"auto_cashouts_enabled?\": false,\n    \"slug\": \"string\",\n    \"enable_live_topups?\": false,\n    \"onsite_top_up_available?\": false,\n    \"header_image_url\": \"string\",\n    \"is_past_event?\": true,\n    \"live\": true,\n    \"ticket_types\": [\n      {\n        \"id\": 3663,\n        \"updated_at\": \"string\",\n        \"created_at\": \"string\",\n        \"topups_configuration\": {\n          \"topups_enabled?\": true,\n          \"small_topup_amount\": 5832,\n          \"medium_topup_amount\": 7432,\n          \"large_topup_amount\": 9680,\n          \"prevent_topup_for_multiple_tickets_of_same_type?\": true\n        },\n        \"name\": \"string\",\n        \"ticket_category\": {\n          \"id\": 342,\n          \"name\": \"string\",\n          \"position\": 6049,\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"description\": \"string\"\n        },\n        \"cost\": 6771,\n        \"fee\": 8750,\n        \"booking_status\": \"string\",\n        \"virtual_credit_cents\": 1618,\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"customer_settings_configuration\": {\n          \"customer_transfers_enabled?\": false,\n          \"require_signup_for_ticket_downloads?\": false,\n          \"ticket_downloads_enabled_at\": \"string\",\n          \"ticket_downloads_enabled?\": false,\n          \"show_ticket_barcode?\": false,\n          \"sharing_required_enabled?\": true\n        },\n        \"questions\": [\n          {\n            \"id\": 5091,\n            \"text\": \"string\",\n            \"required\": true,\n            \"question_type\": \"boolean\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 2728\n          },\n          {\n            \"id\": 8146,\n            \"text\": \"string\",\n            \"required\": false,\n            \"question_type\": \"text\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 5001\n          }\n        ],\n        \"hidden\": true,\n        \"hidden_by_promo_code\": true\n      },\n      {\n        \"id\": 829,\n        \"updated_at\": \"string\",\n        \"created_at\": \"string\",\n        \"topups_configuration\": {\n          \"topups_enabled?\": false,\n          \"small_topup_amount\": 5030,\n          \"medium_topup_amount\": 7874,\n          \"large_topup_amount\": 4244,\n          \"prevent_topup_for_multiple_tickets_of_same_type?\": true\n        },\n        \"name\": \"string\",\n        \"ticket_category\": {\n          \"id\": 3500,\n          \"name\": \"string\",\n          \"position\": 6407,\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"description\": \"string\"\n        },\n        \"cost\": 3587,\n        \"fee\": 6084,\n        \"booking_status\": \"string\",\n        \"virtual_credit_cents\": 665,\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"customer_settings_configuration\": {\n          \"customer_transfers_enabled?\": false,\n          \"require_signup_for_ticket_downloads?\": false,\n          \"ticket_downloads_enabled_at\": \"string\",\n          \"ticket_downloads_enabled?\": false,\n          \"show_ticket_barcode?\": true,\n          \"sharing_required_enabled?\": true\n        },\n        \"questions\": [\n          {\n            \"id\": 2019,\n            \"text\": \"string\",\n            \"required\": false,\n            \"question_type\": \"multiple_choice\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 7316\n          },\n          {\n            \"id\": 6961,\n            \"text\": \"string\",\n            \"required\": false,\n            \"question_type\": \"multiple_answer\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 9\n          }\n        ],\n        \"hidden\": false,\n        \"hidden_by_promo_code\": true\n      }\n    ],\n    \"add_ons\": [\n      {\n        \"id\": 9602,\n        \"updated_at\": \"string\",\n        \"created_at\": \"string\",\n        \"topups_configuration\": {\n          \"topups_enabled?\": true,\n          \"small_topup_amount\": 2261,\n          \"medium_topup_amount\": 4915,\n          \"large_topup_amount\": 6024,\n          \"prevent_topup_for_multiple_tickets_of_same_type?\": false\n        },\n        \"name\": \"string\",\n        \"ticket_category\": {\n          \"id\": 9812,\n          \"name\": \"string\",\n          \"position\": 2337,\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"description\": \"string\"\n        },\n        \"cost\": 8360,\n        \"fee\": 7413,\n        \"booking_status\": \"string\",\n        \"virtual_credit_cents\": 1143,\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"customer_settings_configuration\": {\n          \"customer_transfers_enabled?\": true,\n          \"require_signup_for_ticket_downloads?\": true,\n          \"ticket_downloads_enabled_at\": \"string\",\n          \"ticket_downloads_enabled?\": false,\n          \"show_ticket_barcode?\": true,\n          \"sharing_required_enabled?\": false\n        },\n        \"questions\": [\n          {\n            \"id\": 6982,\n            \"text\": \"string\",\n            \"required\": true,\n            \"question_type\": \"multiple_answer\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 2726\n          },\n          {\n            \"id\": 7102,\n            \"text\": \"string\",\n            \"required\": false,\n            \"question_type\": \"date\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 6331\n          }\n        ],\n        \"hidden\": false,\n        \"hidden_by_promo_code\": false\n      },\n      {\n        \"id\": 6009,\n        \"updated_at\": \"string\",\n        \"created_at\": \"string\",\n        \"topups_configuration\": {\n          \"topups_enabled?\": true,\n          \"small_topup_amount\": 1151,\n          \"medium_topup_amount\": 1029,\n          \"large_topup_amount\": 9030,\n          \"prevent_topup_for_multiple_tickets_of_same_type?\": false\n        },\n        \"name\": \"string\",\n        \"ticket_category\": {\n          \"id\": 824,\n          \"name\": \"string\",\n          \"position\": 5005,\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"description\": \"string\"\n        },\n        \"cost\": 4813,\n        \"fee\": 6415,\n        \"booking_status\": \"string\",\n        \"virtual_credit_cents\": 9859,\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"customer_settings_configuration\": {\n          \"customer_transfers_enabled?\": true,\n          \"require_signup_for_ticket_downloads?\": true,\n          \"ticket_downloads_enabled_at\": \"string\",\n          \"ticket_downloads_enabled?\": true,\n          \"show_ticket_barcode?\": false,\n          \"sharing_required_enabled?\": true\n        },\n        \"questions\": [\n          {\n            \"id\": 7636,\n            \"text\": \"string\",\n            \"required\": false,\n            \"question_type\": \"date\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 6736\n          },\n          {\n            \"id\": 2236,\n            \"text\": \"string\",\n            \"required\": false,\n            \"question_type\": \"date\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 8523\n          }\n        ],\n        \"hidden\": false,\n        \"hidden_by_promo_code\": false\n      }\n    ],\n    \"status\": \"pending\",\n    \"start_time\": \"string\",\n    \"end_time\": \"string\",\n    \"cashouts_enabled_at\": \"string\",\n    \"cashouts_disabled_at\": \"string\",\n    \"claim_barcode_feature?\": true,\n    \"short_url\": \"string\",\n    \"classification\": \"foreign_ticketing\",\n    \"venue\": {\n      \"id\": 1638,\n      \"address\": \"string\",\n      \"external_identifier\": \"string\",\n      \"latitude\": \"string\",\n      \"longitude\": \"string\",\n      \"name\": \"string\",\n      \"source\": \"string\"\n    },\n    \"artist_lineup\": [\n      {\n        \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n      },\n      {\n        \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n      }\n    ],\n    \"my_artist_lineup\": [\n      {\n        \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n      },\n      {\n        \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n      }\n    ],\n    \"is_cashless?\": false,\n    \"user_validation_configuration\": {\n      \"require_id_number?\": false,\n      \"require_unique_identifier?\": false,\n      \"require_first_name?\": false,\n      \"require_last_name?\": false,\n      \"require_cellphone_number?\": false,\n      \"require_country?\": true,\n      \"require_passport_country?\": true,\n      \"require_city?\": true,\n      \"require_gender?\": false,\n      \"require_date_of_birth?\": false,\n      \"require_passport_number?\": true,\n      \"require_nickname?\": false,\n      \"require_billing_address?\": false\n    },\n    \"cashless_deposit_cents\": 2000,\n    \"mapboxUrl\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "020be378-5da5-4e72-adf5-a844c50ed776",
+          "name": "add performance to time table",
+          "request": {
+            "name": "add performance to time table",
+            "description": {
+              "content": "Add a performance to the time table for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":event_id",
+                "performance",
+                ":performance_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "event_id",
+                  "description": "(Required) Event ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "performance_id",
+                  "description": "(Required) Performance ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e6aa7fd-341b-473c-a7ed-7d22eedccc0e",
+              "name": "already added to time table",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":event_id",
+                    "performance",
+                    ":performance_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "event_id",
+                      "description": "(Required) Event ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "performance_id",
+                      "description": "(Required) Performance ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2022c24b-5fa3-4133-91d7-8df1f0356f20",
+          "name": "remove performance from time table",
+          "request": {
+            "name": "remove performance from time table",
+            "description": {
+              "content": "Remove a performance from the time table for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":event_id",
+                "performance",
+                ":performance_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "event_id",
+                  "description": "(Required) Event ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "performance_id",
+                  "description": "(Required) Performance ID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de621d6b-dc2f-4286-82d9-b6ef1f4ec429",
+              "name": "not added to time table",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":event_id",
+                    "performance",
+                    ":performance_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "event_id",
+                      "description": "(Required) Event ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "performance_id",
+                      "description": "(Required) Performance ID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "www.howler.co.za",
+      "key": "defaultHost"
+    },
+    {
+      "type": "string",
+      "value": "https://{{defaultHost}}/api/v3/consumer_portal",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "258e9369-0511-473b-a115-434e82d7e082",
+    "name": "Howler API v3 Artists Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: 2026-01-20 21:15:49 +0200*\n",
+      "type": "text/plain"
+    }
+  }
+}

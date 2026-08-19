@@ -1,0 +1,215 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Top Up Ticket API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Top Up Ticket",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "select ticket (1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/top_up",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              }
+            ]
+          },
+          "docs": "Start the top up process of a ticket by providing the ticket id.\n\nThe next_step in the body will indicate which action should be performed next.\n\nIf the user is typing in the barcode manually use `/api/v3/consumer_portal/top_up` instead.\n"
+        },
+        {
+          "info": {
+            "name": "accept amounts (2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/top_up/:top_up_order_id/amounts",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Specify the amount to top up the ticket with.\n"
+        },
+        {
+          "info": {
+            "name": "select payment method (3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/top_up/:top_up_order_id/payments",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              }
+            ]
+          },
+          "docs": "Renders a webpage to allow the user to pay for their top up order.\n\nOnce the user has successfully completed a payment, a redirect will be done to a specific URL.\n"
+        },
+        {
+          "info": {
+            "name": "check complete (4)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/top_up/:top_up_order_id/completes",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              }
+            ]
+          },
+          "docs": "Check if the top up order was completed. This request should be made after the payment web page has redirected back to the application.\n"
+        },
+        {
+          "info": {
+            "name": "custom schema redirect for Safari browser",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/top_up/:top_up_order_id/successful_payment",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              },
+              {
+                "name": "merchant_reference",
+                "value": "",
+                "type": "query",
+                "description": "merchant_reference"
+              }
+            ]
+          },
+          "docs": "**Private API**\nTests the custom redirect page rendering for Safari browsers with custom schema URLs.\n"
+        },
+        {
+          "info": {
+            "name": "submit pending successful payment method (3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/top_up/:top_up_order_id/pending_successful_payment",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              },
+              {
+                "name": "merchant_reference",
+                "value": "",
+                "type": "query",
+                "description": "merchant_reference"
+              }
+            ]
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called by the web page rendered using the GET version of this end-point.\n"
+        },
+        {
+          "info": {
+            "name": "submit failed payment method (3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/top_up/:top_up_order_id/failed_payment",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              },
+              {
+                "name": "merchant_reference",
+                "value": "",
+                "type": "query",
+                "description": "merchant_reference"
+              }
+            ]
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called by the web page rendered using the GET version of this end-point.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

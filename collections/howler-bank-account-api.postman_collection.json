@@ -1,0 +1,699 @@
+{
+  "item": [
+    {
+      "id": "e93d8b3e-fff1-4753-967c-461d84e26275",
+      "name": "Bank Account",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb405ffa-3686-4fd0-972b-96d66ca44da6",
+          "name": "edit bank account",
+          "request": {
+            "name": "edit bank account",
+            "description": {
+              "content": "Renders a webpage to allow the user to complete their bank account details. The user can also enable auto cashouts from this page.\n\nOnce the user has successfully updated their details a redirect will be done to a specific URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bank_account",
+                "edit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "show_auto_cashout",
+                  "value": "<boolean>",
+                  "description": "show_auto_cashout"
+                },
+                {
+                  "disabled": false,
+                  "key": "cashless_tag_pairing_id",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b0d7017-d011-4f7f-9727-02b99dc18cae",
+              "name": "successful without auto cashout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bank_account",
+                    "edit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_auto_cashout",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "cashless_tag_pairing_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8091cbb2-a8b5-4e48-8e85-18343f7aa7d6",
+          "name": "show bank account details",
+          "request": {
+            "name": "show bank account details",
+            "description": {
+              "content": "Returns the current bank account details of the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bank_account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "public login ott"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "37f84a6b-b204-466f-af62-993edcd9a16f",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bank_account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bank_account\": {\n    \"id\": 7003,\n    \"type\": \"string\",\n    \"bank_name\": \"string\",\n    \"account_number\": \"string\",\n    \"account_type\": \"string\",\n    \"account_holder\": \"string\",\n    \"branch_code\": \"string\",\n    \"bank_country\": \"string\",\n    \"payment_method\": \"string\"\n  },\n  \"auto_cashout\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f7393de-8b48-4936-9e73-442d4234b2df",
+          "name": "create bank account",
+          "request": {
+            "name": "create bank account",
+            "description": {
+              "content": "Creates or updates bank account details for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bank_account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "public login ott"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_method\": \"<string>\",\n  \"bank_country\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"account_holder\": \"<string>\",\n  \"branch_code\": \"<string>\",\n  \"account_type\": \"<string>\",\n  \"auto_cashout\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0cd0f2dc-4dd2-4d6b-949a-3e54dd2c6794",
+              "name": "unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bank_account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": \"Bank transfer\",\n  \"bank_country\": \"South Africa\",\n  \"bank_name\": \"Standard Bank\",\n  \"account_number\": \"62146101811\",\n  \"account_holder\": \"John Doe\",\n  \"branch_code\": \"<string>\",\n  \"account_type\": \"cheque\",\n  \"auto_cashout\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8582807-5224-4b05-ba74-e6f3b0eab5b3",
+          "name": "update bank account",
+          "request": {
+            "name": "update bank account",
+            "description": {
+              "content": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bank_account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f692f8c4-a3f5-4240-96ae-3b0df287bd4b",
+              "name": "failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bank_account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "992b9167-4920-4c94-9446-6d78d998e68e",
+              "name": "successful with redirect context",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bank_account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ae391c6-a1d0-4958-9410-ab35a67d5a55",
+          "name": "refresh bank account form layout",
+          "request": {
+            "name": "refresh bank account form layout",
+            "description": {
+              "content": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bank_account",
+                "refresh_form"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bank_account\": {\n    \"bank_account_attributes\": \"<object>\"\n  },\n  \"country\": \"<string>\",\n  \"account_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10627917-d814-4c92-b45d-c7340d4e8d6d",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bank_account",
+                    "refresh_form"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"bank_account_attributes\": \"<object>\"\n  },\n  \"country\": \"<string>\",\n  \"account_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_type\": \"string\",\n  \"fields\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "www.howler.co.za",
+      "key": "defaultHost"
+    },
+    {
+      "type": "string",
+      "value": "https://{{defaultHost}}/api/v3/consumer_portal",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "94b9cfd2-6744-42de-adeb-5442ae4082e4",
+    "name": "Howler API v3 Artists Bank Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: 2026-01-20 21:15:49 +0200*\n",
+      "type": "text/plain"
+    }
+  }
+}

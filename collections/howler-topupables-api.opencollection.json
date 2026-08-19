@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Topupables API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Topupables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list topupables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/topupables",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "query",
+                "description": "Event Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of tickets and cashless tags for the current user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

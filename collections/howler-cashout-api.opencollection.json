@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Cashout API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cashout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "check event (1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/cashout",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new cashless tag pairing for a specific cashless tag and event.\n"
+        },
+        {
+          "info": {
+            "name": "cashout amounts (2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/cashout/:cashless_tag_pairing_id/amounts",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "cashless_tag_pairing_id",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_pairing_id"
+              }
+            ]
+          },
+          "docs": "Check if the cashless tag pairing can be cashed out and if so retrieve the amounts for the cashouts.\n\nThe amounts include the current balance, estimated cashout fee and refundable balance (balance less fee).\nIt is also possible that the user might not have enough remaining balance to cashout.\n"
+        },
+        {
+          "info": {
+            "name": "confirm cashout (3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/cashout/:cashless_tag_pairing_id/confirmation",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "cashless_tag_pairing_id",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_pairing_id"
+              }
+            ]
+          },
+          "docs": "Confirm that the cashout should be processed.\n\nThe user must have enough balance available and have a bank account set up.\n"
+        },
+        {
+          "info": {
+            "name": "view amounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/cashout/:cashless_tag_pairing_id/web/amounts",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "cashless_tag_pairing_id",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_pairing_id"
+              }
+            ]
+          },
+          "docs": "**Private API**\n"
+        },
+        {
+          "info": {
+            "name": "confirm amounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/cashout/:cashless_tag_pairing_id/web/amounts",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "cashless_tag_pairing_id",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_pairing_id"
+              }
+            ]
+          },
+          "docs": "**Private API**\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Transfer Ticket API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transfer Ticket",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "create ticket transfer (1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/transfer",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Step 1 of 2**\n\nStart the transfer process of a ticket by specifying the details the new owner.\n\nThis action can only be performed if transfers are allow for the ticket.\n\nThe transfer needs to be completed using `/api/v3/consumer_portal/tickets/{ticket_id}/transfer/{transfer_order_id}/confirmation`.\n"
+        },
+        {
+          "info": {
+            "name": "confirm ticket transfer (2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/transfer/:transfer_order_id/confirmation",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              },
+              {
+                "name": "transfer_order_id",
+                "value": "",
+                "type": "path",
+                "description": "transfer_order_id"
+              }
+            ]
+          },
+          "docs": "**Step 2 of 2**\n\nConfirms a transfer order and completes the order.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

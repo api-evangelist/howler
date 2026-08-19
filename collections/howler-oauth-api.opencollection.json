@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists OAuth API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "grant access",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/oauth/authorize",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "OAuth Application UID"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "OAuth Application Redirect URI"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "OAuth Response Type"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "OAuth Scope"
+              }
+            ]
+          },
+          "docs": "Grant access via OAuth\n\n`response_type` should be \"code\" and `scope` should be \"public ott\".\nThe client_id and redirect_uri should match the values configured for the OAuth application.\n\nOnce the user has signed in they will be prompted to authorise access for the application specified.\nAfter they have authorised the application a redirect will be done to the redirect_uri and a grant code passed in a parameter named `code`.\nThis code should be provided to /api/v3/consumer_portal/oauth/token end-"
+        },
+        {
+          "info": {
+            "name": "token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate OAuth access token.\n\nThis token can be refreshed using the same end-point and passing in the refresh token and grant_type 'refresh_token'.\n\nOnce a token is generated it can be passed in the HTTP Authorization header using the format `Bearer <token>`\n"
+        },
+        {
+          "info": {
+            "name": "revoke",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/oauth/revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke an OAuth access token.\n"
+        },
+        {
+          "info": {
+            "name": "one-time token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/oauth/ott"
+          },
+          "docs": "Generate a one-time token which can be passed to a web view to login the user automatically.\n\nThe access token must have the `ott` scope. The token response can only be used once and expires in 30 seconds.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

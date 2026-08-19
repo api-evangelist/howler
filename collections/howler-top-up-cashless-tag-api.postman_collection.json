@@ -1,0 +1,1329 @@
+{
+  "item": [
+    {
+      "id": "f968d8ff-1a8e-4679-bfbe-8aad096572cf",
+      "name": "Top Up Cashless Tag",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37167902-3664-4ac5-9f80-61d9d5c7939e",
+          "name": "select cashless tag (1)",
+          "request": {
+            "name": "select cashless tag (1)",
+            "description": {
+              "content": "Start the top up process of a cashless tag by providing the cashless tag's uid.\n\nThe next_step field in the body will indicate which action should be performed next.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "top_up"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da185318-5565-4553-927e-dc9660f6ca58",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"top_up_order\": {\n    \"id\": 4,\n    \"reference\": \"123\",\n    \"status\": \"pending\",\n    \"type\": \"TopUpOrder\",\n    \"user\": {}\n  },\n  \"next_step\": \"/api/v3/consumer_portal/cashless_tags/1234EEEEE/top_up/4/amounts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3bb914b-6557-43d2-a81b-463afaf62768",
+              "name": "cashless tag not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d747579f-50e6-4a45-b30b-cbc9a1b133d7",
+          "name": "accept amounts (2)",
+          "request": {
+            "name": "accept amounts (2)",
+            "description": {
+              "content": "Specify the amount to top up the cashless tag with.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "top_up",
+                ":top_up_order_id",
+                "amounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "top_up_order_id",
+                  "description": "(Required) top_up_order_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cashless_top_up\": {\n    \"amount\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ed1ae44-1727-47b5-b486-2133d6661778",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "amounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cashless_top_up\": {\n    \"amount\": 5.25\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"top_up_order\": {\n    \"id\": 8366,\n    \"reference\": \"string\",\n    \"status\": \"pending\",\n    \"type\": \"string\",\n    \"user\": {\n      \"id\": 9839,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": true\n    },\n    \"cashless_deposit_cents\": 1923\n  },\n  \"next_step\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37f5bbed-0663-49b9-a92a-d93ecd40ddc3",
+              "name": "top up order invalid status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "amounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cashless_top_up\": {\n    \"amount\": 5.25\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "547b6d44-1eed-4977-b40d-1f8808349261",
+              "name": "uid not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "amounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cashless_top_up\": {\n    \"amount\": 5.25\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e581d7a6-2f70-4d62-b440-a4861a9274fb",
+          "name": "select payment method (3)",
+          "request": {
+            "name": "select payment method (3)",
+            "description": {
+              "content": "Renders a webpage to allow the user to pay for their top up order.\n\nOnce the user has successfully completed a payment a redirect will be done to a specific URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "top_up",
+                ":top_up_order_id",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "top_up_order_id",
+                  "description": "(Required) top_up_order_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f89d291-fe90-49e1-9bb0-1d6a465df6c7",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6e10153-7004-4ce2-b2ce-6832fa7c37ea",
+              "name": "top up order invalid status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db0a9178-9645-4576-b392-31af0ed24b79",
+          "name": "check complete (4)",
+          "request": {
+            "name": "check complete (4)",
+            "description": {
+              "content": "Check if the top up order was completed. This request should be made after the payment web page has redirected back to the application.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "top_up",
+                ":top_up_order_id",
+                "completes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "top_up_order_id",
+                  "description": "(Required) top_up_order_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bd997b2-3303-45f4-973b-1af7bece64f0",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "completes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"top_up_order\": {\n    \"id\": 1423,\n    \"reference\": \"string\",\n    \"status\": \"expired\",\n    \"type\": \"string\",\n    \"user\": {\n      \"id\": 269,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": true\n    },\n    \"cashless_deposit_cents\": 8293\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c66f130-c504-468a-8088-d46a289eaaf6",
+              "name": "top up order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "completes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e55590cb-2a89-46ee-9361-e959c0592ffa",
+          "name": "submit payment method (3)",
+          "request": {
+            "name": "submit payment method (3)",
+            "description": {
+              "content": "**Private API**\nThis end-point should only ever be called by the web page rendered using the GET version of this end-point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "top_up",
+                ":top_up_order_id",
+                "successful_payment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_reference",
+                  "value": "<integer>",
+                  "description": "(Required) merchant_reference"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<cashless_tag_uid>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "top_up_order_id",
+                  "description": "(Required) top_up_order_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1cbf9cb-92f8-4ce7-8616-0a462a1aada7",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "successful_payment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_reference",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<cashless_tag_uid>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "See Other",
+              "code": 303,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "738c8d4b-11ab-4342-b2f5-de670d049927",
+          "name": "submit pending successful payment method (3)",
+          "request": {
+            "name": "submit pending successful payment method (3)",
+            "description": {
+              "content": "**Private API**\nThis end-point should only ever be called by the web page rendered using the GET version of this end-point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "top_up",
+                ":top_up_order_id",
+                "pending_successful_payment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_reference",
+                  "value": "<integer>",
+                  "description": "(Required) merchant_reference"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<cashless_tag_uid>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "top_up_order_id",
+                  "description": "(Required) top_up_order_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12e26f9f-ee74-4272-84f2-9d60ee65c9ad",
+              "name": "failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "pending_successful_payment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_reference",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<cashless_tag_uid>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "See Other",
+              "code": 303,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97293ad9-e501-412e-9934-76e42f257c57",
+          "name": "submit failed payment method (3)",
+          "request": {
+            "name": "submit failed payment method (3)",
+            "description": {
+              "content": "**Private API**\nThis end-point should only ever be called by the web page rendered using the GET version of this end-point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "top_up",
+                ":top_up_order_id",
+                "failed_payment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_reference",
+                  "value": "<integer>",
+                  "description": "(Required) merchant_reference"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "top_up_order_id",
+                  "description": "(Required) top_up_order_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b8b519e-d91b-4c0c-ba12-88c2ac96f0d7",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "top_up",
+                    ":top_up_order_id",
+                    "failed_payment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_reference",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "top_up_order_id",
+                      "description": "(Required) top_up_order_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "See Other",
+              "code": 303,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "www.howler.co.za",
+      "key": "defaultHost"
+    },
+    {
+      "type": "string",
+      "value": "https://{{defaultHost}}/api/v3/consumer_portal",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b8f20da-fb71-4885-a8ed-2cdb8171c564",
+    "name": "Howler API v3 Artists Top Up Cashless Tag API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: 2026-01-20 21:15:49 +0200*\n",
+      "type": "text/plain"
+    }
+  }
+}

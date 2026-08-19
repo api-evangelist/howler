@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Assign Ticket API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assign Ticket",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "assign ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/assign",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "ticket_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign the specified ticket to a user.\n\nThe ticket currently does not have an owner.\n\nOnly the purchaser of the ticket can perform this action.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

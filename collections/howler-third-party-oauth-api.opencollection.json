@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Third Party OAuth API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Third Party OAuth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/auth/google/web"
+          },
+          "docs": "Redirects to Google authentication page"
+        },
+        {
+          "info": {
+            "name": "Facebook authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/auth/facebook/web"
+          },
+          "docs": "Redirects to Facebook authentication page"
+        },
+        {
+          "info": {
+            "name": "Google authentication callback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/auth/google_oauth2/callback"
+          },
+          "docs": "Failed to authenticate with Google"
+        },
+        {
+          "info": {
+            "name": "Facebook authentication callback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/auth/facebook/callback"
+          },
+          "docs": "Failed to authenticate with Facebook"
+        },
+        {
+          "info": {
+            "name": "Authentication failure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/auth/failure"
+          },
+          "docs": "Authentication failure handler"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

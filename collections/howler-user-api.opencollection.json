@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists User API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get user details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/user"
+          },
+          "docs": "Retrieve details of the current user.\n"
+        },
+        {
+          "info": {
+            "name": "update user details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update details of the current user.\n"
+        },
+        {
+          "info": {
+            "name": "request user account deletion",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/user"
+          },
+          "docs": "Request deletion of a user account."
+        },
+        {
+          "info": {
+            "name": "check if user is setup for event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/events/:event_id/user/setup",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "Event Id"
+              }
+            ]
+          },
+          "docs": "Checks if the current user is setup for a specific event. Will return true if all required details are filled in for the user profile.\n\nThis can be compared to the event's `user_validation_configuration`.\n"
+        },
+        {
+          "info": {
+            "name": "resend user confirmation email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/user/resend_confirmation"
+          },
+          "docs": "Resend the confirmation email to the user's primary email address.\n"
+        },
+        {
+          "info": {
+            "name": "input user details on a rendered form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/user/web"
+          },
+          "docs": "Renders a webpage to allow the user to set their user details.\n\nOnce the user information has successfully been entered, a redirect will be done to a specific URL.\n"
+        },
+        {
+          "info": {
+            "name": "update user details from a rendered form",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/user/web",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

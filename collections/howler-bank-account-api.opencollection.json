@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Bank Account API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bank Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "edit bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/bank_account/edit",
+            "params": [
+              {
+                "name": "show_auto_cashout",
+                "value": "",
+                "type": "query",
+                "description": "show_auto_cashout"
+              },
+              {
+                "name": "cashless_tag_pairing_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Renders a webpage to allow the user to complete their bank account details. The user can also enable auto cashouts from this page.\n\nOnce the user has successfully updated their details a redirect will be done to a specific URL.\n"
+        },
+        {
+          "info": {
+            "name": "show bank account details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/bank_account",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the current bank account details of the authenticated user."
+        },
+        {
+          "info": {
+            "name": "create bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/bank_account",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates or updates bank account details for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "update bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/bank_account",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n"
+        },
+        {
+          "info": {
+            "name": "refresh bank account form layout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/bank_account/refresh_form",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

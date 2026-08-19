@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Cashless Tags API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cashless Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list cashless tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "query",
+                "description": "Event Id"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of cashless tags for the current user."
+        },
+        {
+          "info": {
+            "name": "list cashless transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/transactions",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "Cashless Tag UID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of cashless transactions for the specified cashless tag."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

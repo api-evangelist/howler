@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "c0ea80b8-e0de-4f55-903a-e7c4ff90e72c",
+      "name": "Cashless Tags",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff0d1084-64a2-4b6f-a4d4-c3755ce42d04",
+          "name": "list cashless tags",
+          "request": {
+            "name": "list cashless tags",
+            "description": {
+              "content": "Retrieve a list of cashless tags for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "event_id",
+                  "value": "<integer>",
+                  "description": "Event Id"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a499ed5-8e07-44b8-bcc8-ede0d9f71886",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "event_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cashless_tag_pairings\": [\n    {\n      \"id\": 7847,\n      \"event_id\": 1806,\n      \"cashless_tag_uid\": \"string\",\n      \"status\": \"string\",\n      \"user\": {\n        \"id\": 6473,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"primary_email\": \"string\",\n        \"dummy?\": false\n      },\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"cashless_tag_balance\": {\n        \"id\": 672,\n        \"amount_cents\": 5135,\n        \"amount_currency\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"last_transaction_time\": \"string\"\n      }\n    },\n    {\n      \"id\": 6549,\n      \"event_id\": 9470,\n      \"cashless_tag_uid\": \"string\",\n      \"status\": \"string\",\n      \"user\": {\n        \"id\": 6786,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"primary_email\": \"string\",\n        \"dummy?\": false\n      },\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"cashless_tag_balance\": {\n        \"id\": 9908,\n        \"amount_cents\": 2819,\n        \"amount_currency\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"last_transaction_time\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56287b89-9e3e-4d62-af06-075a081b1cd5",
+          "name": "list cashless transactions",
+          "request": {
+            "name": "list cashless transactions",
+            "description": {
+              "content": "Retrieve a list of cashless transactions for the specified cashless tag.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) Cashless Tag UID"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1624482-6cc2-4fe7-bd0b-ff0adee13b01",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) Cashless Tag UID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cashless_transactions\": [\n    {\n      \"action\": \"string\",\n      \"date\": \"string\",\n      \"transaction_messages\": [\n        {\n          \"product_name\": \"string\",\n          \"quantity\": 9970,\n          \"amount_cents\": 9186\n        },\n        {\n          \"product_name\": \"string\",\n          \"quantity\": 266,\n          \"amount_cents\": 1038\n        }\n      ],\n      \"currency_symbol\": \"string\",\n      \"amount_cents\": 3627,\n      \"amount_currency\": \"string\",\n      \"paid_with_virtual_credits\": true,\n      \"station_name\": \"string\",\n      \"credit_balance_cents\": 7563,\n      \"running_balance_cents\": 5242,\n      \"transaction_amounts\": [\n        {\n          \"amount_currency\": \"string\",\n          \"amount_cents\": 4476\n        },\n        {\n          \"amount_currency\": \"string\",\n          \"amount_cents\": 4267\n        }\n      ]\n    },\n    {\n      \"action\": \"string\",\n      \"date\": \"string\",\n      \"transaction_messages\": [\n        {\n          \"product_name\": \"string\",\n          \"quantity\": 529,\n          \"amount_cents\": 9953\n        },\n        {\n          \"product_name\": \"string\",\n          \"quantity\": 2379,\n          \"amount_cents\": 1595\n        }\n      ],\n      \"currency_symbol\": \"string\",\n      \"amount_cents\": 4435,\n      \"amount_currency\": \"string\",\n      \"paid_with_virtual_credits\": true,\n      \"station_name\": \"string\",\n      \"credit_balance_cents\": 9982,\n      \"running_balance_cents\": 9232,\n      \"transaction_amounts\": [\n        {\n          \"amount_currency\": \"string\",\n          \"amount_cents\": 3027\n        },\n        {\n          \"amount_currency\": \"string\",\n          \"amount_cents\": 7057\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d31ad55-3cb5-4ca2-acf5-d237615f316b",
+              "name": "cashless tag pairing cannot view transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) Cashless Tag UID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f8e22a1f-32d1-4669-acf9-dd24a8f5629f",
+              "name": "cashless tag pairing cannot be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) Cashless Tag UID"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "www.howler.co.za",
+      "key": "defaultHost"
+    },
+    {
+      "type": "string",
+      "value": "https://{{defaultHost}}/api/v3/consumer_portal",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "451e72d6-bbc1-4e30-a889-4d127d7e183f",
+    "name": "Howler API v3 Artists Cashless Tags API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: 2026-01-20 21:15:49 +0200*\n",
+      "type": "text/plain"
+    }
+  }
+}

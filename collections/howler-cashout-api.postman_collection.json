@@ -1,0 +1,1107 @@
+{
+  "item": [
+    {
+      "id": "6e07338f-7240-4d3a-b181-d81a52bc5dc3",
+      "name": "Cashout",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7cb0c5d-6e11-4442-a013-755c786cb49a",
+          "name": "check event (1)",
+          "request": {
+            "name": "check event (1)",
+            "description": {
+              "content": "Create a new cashless tag pairing for a specific cashless tag and event.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "cashout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cashless_tag_pairing\": {\n    \"event_id\": \"<integer>\",\n    \"ticket_id\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "32379d8b-a874-4f18-a79b-bcf4df2cbcbe",
+              "name": "pair (during event - where cashless_tag does not exist in core)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cashless_tag_pairing\": {\n    \"event_id\": 3\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cashless_tag_pairing\": {\n    \"id\": 1,\n    \"cashless_tag_uid\": \"123\",\n    \"status\": \"not_cashed_out\",\n    \"event\": {},\n    \"user\": {}\n  },\n  \"next_step\": \"/api/v3/consumer_portal/cashless_tags/1234EEEEE/cashout/1/amounts\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ff3ac20-87e3-4055-ab8f-be8c812a59d0",
+              "name": "cashless tag already linked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cashless_tag_pairing\": {\n    \"event_id\": 3\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4aeadb3a-4b13-409e-a03f-1dc573709068",
+              "name": "event not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cashless_tag_pairing\": {\n    \"event_id\": 3\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02a2bf2c-f99b-4267-acfd-2cd270fa1c52",
+          "name": "cashout amounts (2)",
+          "request": {
+            "name": "cashout amounts (2)",
+            "description": {
+              "content": "Check if the cashless tag pairing can be cashed out and if so retrieve the amounts for the cashouts.\n\nThe amounts include the current balance, estimated cashout fee and refundable balance (balance less fee).\nIt is also possible that the user might not have enough remaining balance to cashout.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "cashout",
+                ":cashless_tag_pairing_id",
+                "amounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "cashless_tag_pairing_id",
+                  "description": "(Required) cashless_tag_pairing_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbc3e19f-eec6-40d1-9d62-7b51cf5ad614",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout",
+                    ":cashless_tag_pairing_id",
+                    "amounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cashless_tag_pairing_id",
+                      "description": "(Required) cashless_tag_pairing_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cashless_tag_pairing\": {\n    \"id\": 1,\n    \"cashless_tag_uid\": \"123\",\n    \"status\": \"not_cashed_out\",\n    \"event\": {},\n    \"user\": {}\n  },\n  \"amounts\": {\n    \"balance\": 1000,\n    \"fee\": 100,\n    \"balance_less_fee\": 900\n  },\n  \"next_step\": \"/api/v3/consumer_portal/cashless_tags/1234EEEEE/cashout/1/confirmation\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "935ed653-6f92-48a7-bfbe-e7df068956bc",
+              "name": "tag paired to someone else",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout",
+                    ":cashless_tag_pairing_id",
+                    "amounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cashless_tag_pairing_id",
+                      "description": "(Required) cashless_tag_pairing_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4f18cee-08af-4e66-94fd-690516e235f7",
+              "name": "cashless tag pairing does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout",
+                    ":cashless_tag_pairing_id",
+                    "amounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cashless_tag_pairing_id",
+                      "description": "(Required) cashless_tag_pairing_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a6d0e01-bc88-4b61-984f-b8e2ae503089",
+          "name": "confirm cashout (3)",
+          "request": {
+            "name": "confirm cashout (3)",
+            "description": {
+              "content": "Confirm that the cashout should be processed.\n\nThe user must have enough balance available and have a bank account set up.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "cashout",
+                ":cashless_tag_pairing_id",
+                "confirmation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "cashless_tag_pairing_id",
+                  "description": "(Required) cashless_tag_pairing_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04bc1f00-ab69-4dc3-999d-c741e50b2dc9",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout",
+                    ":cashless_tag_pairing_id",
+                    "confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cashless_tag_pairing_id",
+                      "description": "(Required) cashless_tag_pairing_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cashless_tag_pairing\": {\n    \"id\": 1,\n    \"cashless_tag_uid\": \"123\",\n    \"status\": \"not_cashed_out\",\n    \"event\": {},\n    \"user\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ccf7845-1853-4f45-85cd-43511057cf4e",
+              "name": "tag paired to someone else",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout",
+                    ":cashless_tag_pairing_id",
+                    "confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cashless_tag_pairing_id",
+                      "description": "(Required) cashless_tag_pairing_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ec5c28f-258d-4f6b-8f52-b1d02274c01d",
+              "name": "cashless tag pairing does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout",
+                    ":cashless_tag_pairing_id",
+                    "confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cashless_tag_pairing_id",
+                      "description": "(Required) cashless_tag_pairing_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0244217-6a8a-4605-9284-6114695df240",
+          "name": "view amounts",
+          "request": {
+            "name": "view amounts",
+            "description": {
+              "content": "**Private API**\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "cashout",
+                ":cashless_tag_pairing_id",
+                "web",
+                "amounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "cashless_tag_pairing_id",
+                  "description": "(Required) cashless_tag_pairing_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fdf0b4d8-eeba-41d3-b50d-c3d898605b0b",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout",
+                    ":cashless_tag_pairing_id",
+                    "web",
+                    "amounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cashless_tag_pairing_id",
+                      "description": "(Required) cashless_tag_pairing_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "681d02e2-3cd4-407b-81f7-5fcd80c5381e",
+          "name": "confirm amounts",
+          "request": {
+            "name": "confirm amounts",
+            "description": {
+              "content": "**Private API**\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cashless_tags",
+                ":cashless_tag_uid",
+                "cashout",
+                ":cashless_tag_pairing_id",
+                "web",
+                "amounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cashless_tag_uid",
+                  "description": "(Required) cashless_tag_uid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "cashless_tag_pairing_id",
+                  "description": "(Required) cashless_tag_pairing_id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "027be978-eec8-49f8-81ae-aaa788134411",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cashless_tags",
+                    ":cashless_tag_uid",
+                    "cashout",
+                    ":cashless_tag_pairing_id",
+                    "web",
+                    "amounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cashless_tag_uid",
+                      "description": "(Required) cashless_tag_uid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "cashless_tag_pairing_id",
+                      "description": "(Required) cashless_tag_pairing_id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "www.howler.co.za",
+      "key": "defaultHost"
+    },
+    {
+      "type": "string",
+      "value": "https://{{defaultHost}}/api/v3/consumer_portal",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0a84311-3d5f-46d5-a2cd-cd76b620fcf5",
+    "name": "Howler API v3 Artists Cashout API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: 2026-01-20 21:15:49 +0200*\n",
+      "type": "text/plain"
+    }
+  }
+}

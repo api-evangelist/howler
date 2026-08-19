@@ -1,0 +1,905 @@
+{
+  "item": [
+    {
+      "id": "afeeb020-945b-4fc5-a6b4-dfa7a9bebd7d",
+      "name": "User",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10aa2ae9-886f-4a90-a659-be0a717efcd1",
+          "name": "request user account deletion",
+          "request": {
+            "name": "request user account deletion",
+            "description": {
+              "content": "Request deletion of a user account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f512335-64f6-4c4e-a073-24afeb9f2860",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "null",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff6ecaf6-28a6-408c-8aeb-33d50ba22e2e",
+          "name": "get user details",
+          "request": {
+            "name": "get user details",
+            "description": {
+              "content": "Retrieve details of the current user.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f018f338-d6ab-453d-9b69-a02c88f1e526",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": 8066,\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"primary_email\": \"string\",\n    \"dummy?\": false,\n    \"allow_email\": true,\n    \"allow_sms\": true,\n    \"auto_cashout\": false,\n    \"cellphone_number\": \"string\",\n    \"country\": \"string\",\n    \"city\": \"string\",\n    \"id_number\": \"string\",\n    \"gender\": \"male\",\n    \"date_of_birth\": \"string\",\n    \"nickname\": \"string\",\n    \"billing_address\": \"string\",\n    \"is_rsa_citizen\": false,\n    \"passport_number\": \"string\",\n    \"passport_country\": \"string\",\n    \"email_confirmed?\": true,\n    \"avatar_url\": \"string\",\n    \"postal_code\": \"string\",\n    \"street_and_number\": \"string\",\n    \"province\": \"string\",\n    \"country_of_birth\": \"string\",\n    \"province_of_birth\": \"string\",\n    \"city_of_birth\": \"string\",\n    \"medical_aid_provider\": \"string\",\n    \"medical_aid_number\": \"string\",\n    \"emergency_contact_name\": \"string\",\n    \"emergency_contact_relationship\": \"string\",\n    \"emergency_contact_number\": \"string\",\n    \"allergies\": \"string\",\n    \"medical_conditions\": \"string\",\n    \"language_locale\": \"string\",\n    \"is_language_locale_manually_set\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f1492b0-8a26-4c68-a12d-ea92159fc349",
+          "name": "update user details",
+          "request": {
+            "name": "update user details",
+            "description": {
+              "content": "Update details of the current user.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"allow_email\": \"<boolean,null>\",\n    \"allow_sms\": \"<boolean,null>\",\n    \"cellphone_number\": \"<string>\",\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"id_number\": \"<string>\",\n    \"gender\": \"<string,null>\",\n    \"date_of_birth\": \"<ISO 8601>\",\n    \"nickname\": \"<string,null>\",\n    \"billing_address\": \"<string,null>\",\n    \"is_rsa_citizen\": \"<boolean>\",\n    \"passport_number\": \"<string,null>\",\n    \"passport_country\": \"<string,null>\",\n    \"email_confirmed?\": \"<boolean>\",\n    \"avatar_url\": \"<string,null>\",\n    \"required_fields\": \"<array>\",\n    \"postal_code\": \"<string,null>\",\n    \"street_and_number\": \"<string,null>\",\n    \"province\": \"<string,null>\",\n    \"country_of_birth\": \"<string,null>\",\n    \"province_of_birth\": \"<string,null>\",\n    \"city_of_birth\": \"<string,null>\",\n    \"medical_aid_provider\": \"<string,null>\",\n    \"medical_aid_number\": \"<string,null>\",\n    \"emergency_contact_name\": \"<string,null>\",\n    \"emergency_contact_relationship\": \"<string,null>\",\n    \"emergency_contact_number\": \"<string,null>\",\n    \"allergies\": \"<string,null>\",\n    \"medical_conditions\": \"<string,null>\",\n    \"language_locale\": \"<string>\",\n    \"is_language_locale_manually_set\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0121baa5-ccc8-4250-b69b-0cb550dac39e",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"allow_email\": true,\n    \"allow_sms\": true,\n    \"cellphone_number\": \"string\",\n    \"country\": \"string\",\n    \"city\": \"string\",\n    \"id_number\": \"string\",\n    \"gender\": \"female\",\n    \"date_of_birth\": \"string\",\n    \"nickname\": \"string\",\n    \"billing_address\": \"string\",\n    \"is_rsa_citizen\": true,\n    \"passport_number\": \"string\",\n    \"passport_country\": \"string\",\n    \"email_confirmed?\": true,\n    \"avatar_url\": \"string\",\n    \"postal_code\": \"string\",\n    \"street_and_number\": \"string\",\n    \"province\": \"string\",\n    \"country_of_birth\": \"string\",\n    \"province_of_birth\": \"string\",\n    \"city_of_birth\": \"string\",\n    \"medical_aid_provider\": \"string\",\n    \"medical_aid_number\": \"string\",\n    \"emergency_contact_name\": \"string\",\n    \"emergency_contact_relationship\": \"string\",\n    \"emergency_contact_number\": \"string\",\n    \"allergies\": \"string\",\n    \"medical_conditions\": \"string\",\n    \"language_locale\": \"string\",\n    \"is_language_locale_manually_set\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": 8066,\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"primary_email\": \"string\",\n    \"dummy?\": false,\n    \"allow_email\": true,\n    \"allow_sms\": true,\n    \"auto_cashout\": false,\n    \"cellphone_number\": \"string\",\n    \"country\": \"string\",\n    \"city\": \"string\",\n    \"id_number\": \"string\",\n    \"gender\": \"male\",\n    \"date_of_birth\": \"string\",\n    \"nickname\": \"string\",\n    \"billing_address\": \"string\",\n    \"is_rsa_citizen\": false,\n    \"passport_number\": \"string\",\n    \"passport_country\": \"string\",\n    \"email_confirmed?\": true,\n    \"avatar_url\": \"string\",\n    \"postal_code\": \"string\",\n    \"street_and_number\": \"string\",\n    \"province\": \"string\",\n    \"country_of_birth\": \"string\",\n    \"province_of_birth\": \"string\",\n    \"city_of_birth\": \"string\",\n    \"medical_aid_provider\": \"string\",\n    \"medical_aid_number\": \"string\",\n    \"emergency_contact_name\": \"string\",\n    \"emergency_contact_relationship\": \"string\",\n    \"emergency_contact_number\": \"string\",\n    \"allergies\": \"string\",\n    \"medical_conditions\": \"string\",\n    \"language_locale\": \"string\",\n    \"is_language_locale_manually_set\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48041769-a446-44e9-afec-6e678b1f9b70",
+              "name": "invalid locale",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user\": {\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"allow_email\": true,\n    \"allow_sms\": true,\n    \"cellphone_number\": \"string\",\n    \"country\": \"string\",\n    \"city\": \"string\",\n    \"id_number\": \"string\",\n    \"gender\": \"female\",\n    \"date_of_birth\": \"string\",\n    \"nickname\": \"string\",\n    \"billing_address\": \"string\",\n    \"is_rsa_citizen\": true,\n    \"passport_number\": \"string\",\n    \"passport_country\": \"string\",\n    \"email_confirmed?\": true,\n    \"avatar_url\": \"string\",\n    \"postal_code\": \"string\",\n    \"street_and_number\": \"string\",\n    \"province\": \"string\",\n    \"country_of_birth\": \"string\",\n    \"province_of_birth\": \"string\",\n    \"city_of_birth\": \"string\",\n    \"medical_aid_provider\": \"string\",\n    \"medical_aid_number\": \"string\",\n    \"emergency_contact_name\": \"string\",\n    \"emergency_contact_relationship\": \"string\",\n    \"emergency_contact_number\": \"string\",\n    \"allergies\": \"string\",\n    \"medical_conditions\": \"string\",\n    \"language_locale\": \"string\",\n    \"is_language_locale_manually_set\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"user\": {\n      \"language_locale\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26b52358-463b-406a-9cbe-a9550c4c9530",
+          "name": "check if user is setup for event",
+          "request": {
+            "name": "check if user is setup for event",
+            "description": {
+              "content": "Checks if the current user is setup for a specific event. Will return true if all required details are filled in for the user profile.\n\nThis can be compared to the event's `user_validation_configuration`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":event_id",
+                "user",
+                "setup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event_id",
+                  "description": "(Required) Event Id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22c1a09b-d752-4ef6-91d7-24176cebde68",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":event_id",
+                    "user",
+                    "setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event_id",
+                      "description": "(Required) Event Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"event_id\": 6387,\n  \"is_setup?\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47a9d5f2-1e56-40a1-af7e-978393e2c83c",
+          "name": "resend user confirmation email",
+          "request": {
+            "name": "resend user confirmation email",
+            "description": {
+              "content": "Resend the confirmation email to the user's primary email address.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "resend_confirmation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7a99899-ec13-44ac-9af3-00a4beb4373a",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "resend_confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1789,\n  \"status\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbd3f76d-39f7-49b1-9dcb-76f6945f0115",
+          "name": "input user details on a rendered form",
+          "request": {
+            "name": "input user details on a rendered form",
+            "description": {
+              "content": "Renders a webpage to allow the user to set their user details.\n\nOnce the user information has successfully been entered, a redirect will be done to a specific URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "web"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "281ced0e-f26a-49c2-85ca-9514fb876478",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efc5190a-7cec-4a0f-9223-eb1a0d5dd796",
+          "name": "update user details from a rendered form",
+          "request": {
+            "name": "update user details from a rendered form",
+            "description": {
+              "content": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "web"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35599934-fb8f-4d40-a95b-83d4d9e19c4c",
+              "name": "failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4884c5fa-9aa1-4db4-8f9b-dea1ee86dcf9",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "See Other",
+              "code": 303,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "www.howler.co.za",
+      "key": "defaultHost"
+    },
+    {
+      "type": "string",
+      "value": "https://{{defaultHost}}/api/v3/consumer_portal",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9d829f1d-b304-46ad-9678-d3ad7251c846",
+    "name": "Howler API v3 Artists User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: 2026-01-20 21:15:49 +0200*\n",
+      "type": "text/plain"
+    }
+  }
+}

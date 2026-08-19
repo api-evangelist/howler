@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Events API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "show never live event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/events/:event_id",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "event_id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-auth-token",
+              "value": "{{x-auth-token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details of the specified event.\n"
+        },
+        {
+          "info": {
+            "name": "add performance to time table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/events/:event_id/performance/:performance_id",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "Event ID"
+              },
+              {
+                "name": "performance_id",
+                "value": "",
+                "type": "path",
+                "description": "Performance ID"
+              }
+            ]
+          },
+          "docs": "Add a performance to the time table for the current user."
+        },
+        {
+          "info": {
+            "name": "remove performance from time table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/events/:event_id/performance/:performance_id",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "Event ID"
+              },
+              {
+                "name": "performance_id",
+                "value": "",
+                "type": "path",
+                "description": "Performance ID"
+              }
+            ]
+          },
+          "docs": "Remove a performance from the time table for the current user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

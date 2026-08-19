@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Tickets API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tickets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list tickets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "query",
+                "description": "Event Id"
+              },
+              {
+                "name": "include_past_events",
+                "value": "",
+                "type": "query",
+                "description": "Include past events in the response"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "bearer_token",
+              "value": "{{bearer_token}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Retrieves a list of tickets for the current user."
+        },
+        {
+          "info": {
+            "name": "update data capture and marketing questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/update_data_capture",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the data capture and marketing questions for the current ticket."
+        },
+        {
+          "info": {
+            "name": "update personalised name on ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/update_personalised_name",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the personalised name on the specified ticket."
+        },
+        {
+          "info": {
+            "name": "update ticket owner of ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/update_owner",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the owner on the specified ticket. This action can only be performed if the current owner of the ticket has not yet created a howler account."
+        },
+        {
+          "info": {
+            "name": "assign a ticket to a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/assign/web",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id"
+              }
+            ]
+          },
+          "docs": "Renders a webpage to allow assigning a ticket to a user.\n\nOnce the user has successfully completed the data capture, a redirect will be done to a specific URL.\n"
+        },
+        {
+          "info": {
+            "name": "update data capture and marketing questions from a rendered form",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/assign/web",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n"
+        },
+        {
+          "info": {
+            "name": "retrieve ticket details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific ticket. Only returns tickets owned by the current user or purchased by the current user. Additionally, if partner restrictions are in place, only returns tickets from events associated with the current partner."
+        },
+        {
+          "info": {
+            "name": "input data capture and marketing questions on a rendered form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/update_data_capture/web",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id"
+              }
+            ]
+          },
+          "docs": "Renders a webpage to allow data capture and input of marketing questions.\n\nOnce the user has successfully completed the data capture, a redirect will be done to a specific URL.\n"
+        },
+        {
+          "info": {
+            "name": "update data capture and marketing questions from a rendered form",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/tickets/:ticket_id/update_data_capture/web",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "Ticket Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

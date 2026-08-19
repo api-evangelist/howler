@@ -1,0 +1,1952 @@
+{
+  "item": [
+    {
+      "id": "cd14e76b-fd2c-4fcf-a9d5-61224e9dd8d0",
+      "name": "Tickets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e285530e-a3c9-414a-8894-384f377efba2",
+          "name": "list tickets",
+          "request": {
+            "name": "list tickets",
+            "description": {
+              "content": "Retrieves a list of tickets for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "event_id",
+                  "value": "<integer>",
+                  "description": "Event Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_past_events",
+                  "value": "<boolean>",
+                  "description": "Include past events in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "bearer_token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3c62f21d-d421-4061-be2a-53e79635f2fc",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "event_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include_past_events",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "bearer_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tickets\": [\n    {\n      \"id\": 6667,\n      \"personalised_name\": \"string\",\n      \"barcode\": \"string\",\n      \"status\": \"pending_assignment\",\n      \"purchaser\": {\n        \"id\": 636,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"primary_email\": \"string\",\n        \"dummy?\": false\n      },\n      \"updated_at\": \"string\",\n      \"created_at\": \"string\",\n      \"event_id\": 1875,\n      \"event\": {\n        \"id\": 6054,\n        \"name\": \"string\",\n        \"currency\": \"string\",\n        \"auto_cashouts_enabled?\": false,\n        \"slug\": \"string\",\n        \"enable_live_topups?\": true,\n        \"onsite_top_up_available?\": true,\n        \"header_image_url\": \"string\",\n        \"is_past_event?\": false,\n        \"live\": false,\n        \"ticket_types\": [\n          {\n            \"id\": 6791,\n            \"updated_at\": \"string\",\n            \"created_at\": \"string\",\n            \"topups_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"ticket_category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cost\": 381,\n            \"fee\": 9792,\n            \"booking_status\": \"string\",\n            \"virtual_credit_cents\": 6383,\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"customer_settings_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hidden\": true,\n            \"hidden_by_promo_code\": false\n          },\n          {\n            \"id\": 1919,\n            \"updated_at\": \"string\",\n            \"created_at\": \"string\",\n            \"topups_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"ticket_category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cost\": 2821,\n            \"fee\": 4299,\n            \"booking_status\": \"string\",\n            \"virtual_credit_cents\": 4763,\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"customer_settings_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hidden\": false,\n            \"hidden_by_promo_code\": false\n          }\n        ],\n        \"add_ons\": [\n          {\n            \"id\": 7375,\n            \"updated_at\": \"string\",\n            \"created_at\": \"string\",\n            \"topups_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"ticket_category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cost\": 8032,\n            \"fee\": 7484,\n            \"booking_status\": \"string\",\n            \"virtual_credit_cents\": 4343,\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"customer_settings_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hidden\": false,\n            \"hidden_by_promo_code\": true\n          },\n          {\n            \"id\": 2812,\n            \"updated_at\": \"string\",\n            \"created_at\": \"string\",\n            \"topups_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"ticket_category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cost\": 2360,\n            \"fee\": 2233,\n            \"booking_status\": \"string\",\n            \"virtual_credit_cents\": 4403,\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"customer_settings_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hidden\": true,\n            \"hidden_by_promo_code\": false\n          }\n        ],\n        \"status\": \"active\",\n        \"start_time\": \"string\",\n        \"end_time\": \"string\",\n        \"cashouts_enabled_at\": \"string\",\n        \"cashouts_disabled_at\": \"string\",\n        \"claim_barcode_feature?\": true,\n        \"short_url\": \"string\",\n        \"classification\": \"howler\",\n        \"venue\": {\n          \"id\": 9114,\n          \"address\": \"string\",\n          \"external_identifier\": \"string\",\n          \"latitude\": \"string\",\n          \"longitude\": \"string\",\n          \"name\": \"string\",\n          \"source\": \"string\"\n        },\n        \"artist_lineup\": [\n          {\n            \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n          },\n          {\n            \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n          }\n        ],\n        \"my_artist_lineup\": [\n          {\n            \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n          },\n          {\n            \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n          }\n        ],\n        \"is_cashless?\": true,\n        \"user_validation_configuration\": {\n          \"require_id_number?\": false,\n          \"require_unique_identifier?\": false,\n          \"require_first_name?\": false,\n          \"require_last_name?\": true,\n          \"require_cellphone_number?\": false,\n          \"require_country?\": false,\n          \"require_passport_country?\": true,\n          \"require_city?\": false,\n          \"require_gender?\": true,\n          \"require_date_of_birth?\": false,\n          \"require_passport_number?\": false,\n          \"require_nickname?\": false,\n          \"require_billing_address?\": true\n        },\n        \"cashless_deposit_cents\": 3740,\n        \"mapboxUrl\": \"string\"\n      },\n      \"ticket_type\": {\n        \"id\": 9429,\n        \"updated_at\": \"string\",\n        \"created_at\": \"string\",\n        \"topups_configuration\": {\n          \"topups_enabled?\": true,\n          \"small_topup_amount\": 5512,\n          \"medium_topup_amount\": 8258,\n          \"large_topup_amount\": 9185,\n          \"prevent_topup_for_multiple_tickets_of_same_type?\": false\n        },\n        \"name\": \"string\",\n        \"ticket_category\": {\n          \"id\": 9433,\n          \"name\": \"string\",\n          \"position\": 9383,\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"description\": \"string\"\n        },\n        \"cost\": 7342,\n        \"fee\": 8889,\n        \"booking_status\": \"string\",\n        \"virtual_credit_cents\": 9580,\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"customer_settings_configuration\": {\n          \"customer_transfers_enabled?\": false,\n          \"require_signup_for_ticket_downloads?\": true,\n          \"ticket_downloads_enabled_at\": \"string\",\n          \"ticket_downloads_enabled?\": false,\n          \"show_ticket_barcode?\": false,\n          \"sharing_required_enabled?\": true\n        },\n        \"questions\": [\n          {\n            \"id\": 4915,\n            \"text\": \"string\",\n            \"required\": false,\n            \"question_type\": \"text\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 3725\n          },\n          {\n            \"id\": 1058,\n            \"text\": \"string\",\n            \"required\": false,\n            \"question_type\": \"date\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 4014\n          }\n        ],\n        \"hidden\": false,\n        \"hidden_by_promo_code\": true\n      },\n      \"is_addonable?\": true,\n      \"addonable\": {\n        \"name\": \"string\",\n        \"size\": \"string\"\n      },\n      \"can_be_transferred?\": false,\n      \"can_be_topped_up?\": false,\n      \"can_show_barcode?\": false,\n      \"claimed?\": true,\n      \"scanned_at\": \"string\",\n      \"user\": {\n        \"id\": 5968,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"primary_email\": \"string\",\n        \"dummy?\": false\n      },\n      \"cashless_tag_uid\": \"string\",\n      \"can_be_downloaded?\": true,\n      \"active_status\": \"sold\",\n      \"can_edit_ticket_transfer?\": true,\n      \"registered?\": true,\n      \"total_top_up_amount_cents\": 4305,\n      \"download_url\": \"string\",\n      \"answers\": [\n        {\n          \"id\": 7205,\n          \"question_id\": 5967,\n          \"response\": \"string\"\n        },\n        {\n          \"id\": 8034,\n          \"question_id\": 2421,\n          \"response\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 8409,\n      \"personalised_name\": \"string\",\n      \"barcode\": \"string\",\n      \"status\": \"refunded\",\n      \"purchaser\": {\n        \"id\": 8407,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"primary_email\": \"string\",\n        \"dummy?\": false\n      },\n      \"updated_at\": \"string\",\n      \"created_at\": \"string\",\n      \"event_id\": 7653,\n      \"event\": {\n        \"id\": 1116,\n        \"name\": \"string\",\n        \"currency\": \"string\",\n        \"auto_cashouts_enabled?\": false,\n        \"slug\": \"string\",\n        \"enable_live_topups?\": true,\n        \"onsite_top_up_available?\": false,\n        \"header_image_url\": \"string\",\n        \"is_past_event?\": false,\n        \"live\": true,\n        \"ticket_types\": [\n          {\n            \"id\": 7240,\n            \"updated_at\": \"string\",\n            \"created_at\": \"string\",\n            \"topups_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"ticket_category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cost\": 2566,\n            \"fee\": 1568,\n            \"booking_status\": \"string\",\n            \"virtual_credit_cents\": 7302,\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"customer_settings_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hidden\": true,\n            \"hidden_by_promo_code\": false\n          },\n          {\n            \"id\": 7162,\n            \"updated_at\": \"string\",\n            \"created_at\": \"string\",\n            \"topups_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"ticket_category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cost\": 5902,\n            \"fee\": 6389,\n            \"booking_status\": \"string\",\n            \"virtual_credit_cents\": 1028,\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"customer_settings_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hidden\": true,\n            \"hidden_by_promo_code\": false\n          }\n        ],\n        \"add_ons\": [\n          {\n            \"id\": 166,\n            \"updated_at\": \"string\",\n            \"created_at\": \"string\",\n            \"topups_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"ticket_category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cost\": 2787,\n            \"fee\": 5240,\n            \"booking_status\": \"string\",\n            \"virtual_credit_cents\": 8641,\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"customer_settings_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hidden\": false,\n            \"hidden_by_promo_code\": false\n          },\n          {\n            \"id\": 6274,\n            \"updated_at\": \"string\",\n            \"created_at\": \"string\",\n            \"topups_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"ticket_category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cost\": 3647,\n            \"fee\": 5923,\n            \"booking_status\": \"string\",\n            \"virtual_credit_cents\": 4612,\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"customer_settings_configuration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"questions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"hidden\": false,\n            \"hidden_by_promo_code\": false\n          }\n        ],\n        \"status\": \"cancelled\",\n        \"start_time\": \"string\",\n        \"end_time\": \"string\",\n        \"cashouts_enabled_at\": \"string\",\n        \"cashouts_disabled_at\": \"string\",\n        \"claim_barcode_feature?\": false,\n        \"short_url\": \"string\",\n        \"classification\": \"howler_cashless\",\n        \"venue\": {\n          \"id\": 6615,\n          \"address\": \"string\",\n          \"external_identifier\": \"string\",\n          \"latitude\": \"string\",\n          \"longitude\": \"string\",\n          \"name\": \"string\",\n          \"source\": \"string\"\n        },\n        \"artist_lineup\": [\n          {\n            \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n          },\n          {\n            \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n          }\n        ],\n        \"my_artist_lineup\": [\n          {\n            \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n          },\n          {\n            \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n          }\n        ],\n        \"is_cashless?\": true,\n        \"user_validation_configuration\": {\n          \"require_id_number?\": true,\n          \"require_unique_identifier?\": false,\n          \"require_first_name?\": true,\n          \"require_last_name?\": false,\n          \"require_cellphone_number?\": false,\n          \"require_country?\": false,\n          \"require_passport_country?\": true,\n          \"require_city?\": false,\n          \"require_gender?\": true,\n          \"require_date_of_birth?\": false,\n          \"require_passport_number?\": true,\n          \"require_nickname?\": true,\n          \"require_billing_address?\": false\n        },\n        \"cashless_deposit_cents\": 2744,\n        \"mapboxUrl\": \"string\"\n      },\n      \"ticket_type\": {\n        \"id\": 4993,\n        \"updated_at\": \"string\",\n        \"created_at\": \"string\",\n        \"topups_configuration\": {\n          \"topups_enabled?\": true,\n          \"small_topup_amount\": 2931,\n          \"medium_topup_amount\": 8160,\n          \"large_topup_amount\": 3503,\n          \"prevent_topup_for_multiple_tickets_of_same_type?\": false\n        },\n        \"name\": \"string\",\n        \"ticket_category\": {\n          \"id\": 7106,\n          \"name\": \"string\",\n          \"position\": 5277,\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"description\": \"string\"\n        },\n        \"cost\": 8786,\n        \"fee\": 3080,\n        \"booking_status\": \"string\",\n        \"virtual_credit_cents\": 8518,\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"customer_settings_configuration\": {\n          \"customer_transfers_enabled?\": false,\n          \"require_signup_for_ticket_downloads?\": false,\n          \"ticket_downloads_enabled_at\": \"string\",\n          \"ticket_downloads_enabled?\": true,\n          \"show_ticket_barcode?\": true,\n          \"sharing_required_enabled?\": false\n        },\n        \"questions\": [\n          {\n            \"id\": 3622,\n            \"text\": \"string\",\n            \"required\": false,\n            \"question_type\": \"date\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 4603\n          },\n          {\n            \"id\": 8191,\n            \"text\": \"string\",\n            \"required\": true,\n            \"question_type\": \"multiple_choice\",\n            \"options\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"position\": 5711\n          }\n        ],\n        \"hidden\": false,\n        \"hidden_by_promo_code\": true\n      },\n      \"is_addonable?\": true,\n      \"addonable\": {\n        \"name\": \"string\",\n        \"size\": \"string\"\n      },\n      \"can_be_transferred?\": true,\n      \"can_be_topped_up?\": false,\n      \"can_show_barcode?\": false,\n      \"claimed?\": false,\n      \"scanned_at\": \"string\",\n      \"user\": {\n        \"id\": 8390,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"primary_email\": \"string\",\n        \"dummy?\": false\n      },\n      \"cashless_tag_uid\": \"string\",\n      \"can_be_downloaded?\": true,\n      \"active_status\": \"transfer_pending\",\n      \"can_edit_ticket_transfer?\": true,\n      \"registered?\": false,\n      \"total_top_up_amount_cents\": 9277,\n      \"download_url\": \"string\",\n      \"answers\": [\n        {\n          \"id\": 7202,\n          \"question_id\": 9036,\n          \"response\": \"string\"\n        },\n        {\n          \"id\": 8112,\n          \"question_id\": 4529,\n          \"response\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0df1e52-f94a-4040-aedb-577367feba96",
+              "name": "not setup",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "event_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include_past_events",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "bearer_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc71f93a-e379-4f2b-a595-97ef88b404b2",
+              "name": "unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "event_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include_past_events",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "bearer_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 496,\n  \"status\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9428777-2228-45f8-94f5-176e968e2b52",
+          "name": "update data capture and marketing questions",
+          "request": {
+            "name": "update data capture and marketing questions",
+            "description": {
+              "content": "Update the data capture and marketing questions for the current ticket.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets",
+                ":ticket_id",
+                "update_data_capture"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) Ticket Id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticket\": {\n    \"answers_attributes\": [\n      {\n        \"id\": \"<integer>\",\n        \"question_instance_id\": \"<integer>\",\n        \"response\": {}\n      },\n      {\n        \"id\": \"<integer>\",\n        \"question_instance_id\": \"<integer>\",\n        \"response\": {}\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6ee097f-c845-480a-8588-0a283965423c",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_data_capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticket\": {\n    \"answers_attributes\": [\n      {\n        \"id\": \"<integer>\",\n        \"question_instance_id\": \"<integer>\",\n        \"response\": {}\n      },\n      {\n        \"id\": \"<integer>\",\n        \"question_instance_id\": \"<integer>\",\n        \"response\": {}\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticket\": {\n    \"id\": 5921,\n    \"personalised_name\": \"string\",\n    \"barcode\": \"string\",\n    \"status\": \"pending\",\n    \"purchaser\": {\n      \"id\": 2752,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": false\n    },\n    \"updated_at\": \"string\",\n    \"created_at\": \"string\",\n    \"event_id\": 7700,\n    \"event\": {\n      \"id\": 7653,\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"auto_cashouts_enabled?\": false,\n      \"slug\": \"string\",\n      \"enable_live_topups?\": true,\n      \"onsite_top_up_available?\": false,\n      \"header_image_url\": \"string\",\n      \"is_past_event?\": false,\n      \"live\": false,\n      \"ticket_types\": [\n        {\n          \"id\": 5069,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 1292,\n          \"fee\": 3502,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 5908,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": true,\n          \"hidden_by_promo_code\": true\n        },\n        {\n          \"id\": 4564,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7494,\n          \"fee\": 9831,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 8767,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": false\n        }\n      ],\n      \"add_ons\": [\n        {\n          \"id\": 6171,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7446,\n          \"fee\": 7593,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 8538,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": true\n        },\n        {\n          \"id\": 6124,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7575,\n          \"fee\": 3374,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 9789,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": true\n        }\n      ],\n      \"status\": \"active\",\n      \"start_time\": \"string\",\n      \"end_time\": \"string\",\n      \"cashouts_enabled_at\": \"string\",\n      \"cashouts_disabled_at\": \"string\",\n      \"claim_barcode_feature?\": true,\n      \"short_url\": \"string\",\n      \"classification\": \"howler_ticketing\",\n      \"venue\": {\n        \"id\": 6650,\n        \"address\": \"string\",\n        \"external_identifier\": \"string\",\n        \"latitude\": \"string\",\n        \"longitude\": \"string\",\n        \"name\": \"string\",\n        \"source\": \"string\"\n      },\n      \"artist_lineup\": [\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        }\n      ],\n      \"my_artist_lineup\": [\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        }\n      ],\n      \"is_cashless?\": true,\n      \"user_validation_configuration\": {\n        \"require_id_number?\": false,\n        \"require_unique_identifier?\": false,\n        \"require_first_name?\": false,\n        \"require_last_name?\": false,\n        \"require_cellphone_number?\": false,\n        \"require_country?\": false,\n        \"require_passport_country?\": true,\n        \"require_city?\": true,\n        \"require_gender?\": false,\n        \"require_date_of_birth?\": true,\n        \"require_passport_number?\": true,\n        \"require_nickname?\": false,\n        \"require_billing_address?\": false\n      },\n      \"cashless_deposit_cents\": 2428,\n      \"mapboxUrl\": \"string\"\n    },\n    \"ticket_type\": {\n      \"id\": 1835,\n      \"updated_at\": \"string\",\n      \"created_at\": \"string\",\n      \"topups_configuration\": {\n        \"topups_enabled?\": false,\n        \"small_topup_amount\": 8100,\n        \"medium_topup_amount\": 5696,\n        \"large_topup_amount\": 7084,\n        \"prevent_topup_for_multiple_tickets_of_same_type?\": false\n      },\n      \"name\": \"string\",\n      \"ticket_category\": {\n        \"id\": 9665,\n        \"name\": \"string\",\n        \"position\": 7428,\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"description\": \"string\"\n      },\n      \"cost\": 7,\n      \"fee\": 7188,\n      \"booking_status\": \"string\",\n      \"virtual_credit_cents\": 3683,\n      \"description\": \"string\",\n      \"image_url\": \"string\",\n      \"customer_settings_configuration\": {\n        \"customer_transfers_enabled?\": true,\n        \"require_signup_for_ticket_downloads?\": false,\n        \"ticket_downloads_enabled_at\": \"string\",\n        \"ticket_downloads_enabled?\": true,\n        \"show_ticket_barcode?\": false,\n        \"sharing_required_enabled?\": false\n      },\n      \"questions\": [\n        {\n          \"id\": 2970,\n          \"text\": \"string\",\n          \"required\": true,\n          \"question_type\": \"date\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"position\": 7680\n        },\n        {\n          \"id\": 2140,\n          \"text\": \"string\",\n          \"required\": false,\n          \"question_type\": \"id_number\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"position\": 4662\n        }\n      ],\n      \"hidden\": false,\n      \"hidden_by_promo_code\": false\n    },\n    \"is_addonable?\": true,\n    \"addonable\": {\n      \"name\": \"string\",\n      \"size\": \"string\"\n    },\n    \"can_be_transferred?\": false,\n    \"can_be_topped_up?\": true,\n    \"can_show_barcode?\": false,\n    \"claimed?\": false,\n    \"scanned_at\": \"string\",\n    \"user\": {\n      \"id\": 1284,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": true\n    },\n    \"cashless_tag_uid\": \"string\",\n    \"can_be_downloaded?\": true,\n    \"active_status\": \"pending_assignment\",\n    \"can_edit_ticket_transfer?\": true,\n    \"registered?\": false,\n    \"total_top_up_amount_cents\": 1683,\n    \"download_url\": \"string\",\n    \"answers\": [\n      {\n        \"id\": 8484,\n        \"question_id\": 638,\n        \"response\": \"string\"\n      },\n      {\n        \"id\": 6356,\n        \"question_id\": 2424,\n        \"response\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab712582-57ac-47b7-a4fe-4a2ac0ef7f0f",
+              "name": "unprocessable entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_data_capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticket\": {\n    \"answers_attributes\": [\n      {\n        \"id\": \"<integer>\",\n        \"question_instance_id\": \"<integer>\",\n        \"response\": {}\n      },\n      {\n        \"id\": \"<integer>\",\n        \"question_instance_id\": \"<integer>\",\n        \"response\": {}\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"answers\": {},\n    \"sticker\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8afea33-4dce-4350-81ae-636e2780edf8",
+          "name": "update personalised name on ticket",
+          "request": {
+            "name": "update personalised name on ticket",
+            "description": {
+              "content": "Update the personalised name on the specified ticket.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets",
+                ":ticket_id",
+                "update_personalised_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) Ticket Id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticket\": {\n    \"personalised_name\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42b46315-32f3-4d99-afd7-fa4a6e41ee2c",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_personalised_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticket\": {\n    \"personalised_name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticket\": {\n    \"id\": 5921,\n    \"personalised_name\": \"string\",\n    \"barcode\": \"string\",\n    \"status\": \"pending\",\n    \"purchaser\": {\n      \"id\": 2752,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": false\n    },\n    \"updated_at\": \"string\",\n    \"created_at\": \"string\",\n    \"event_id\": 7700,\n    \"event\": {\n      \"id\": 7653,\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"auto_cashouts_enabled?\": false,\n      \"slug\": \"string\",\n      \"enable_live_topups?\": true,\n      \"onsite_top_up_available?\": false,\n      \"header_image_url\": \"string\",\n      \"is_past_event?\": false,\n      \"live\": false,\n      \"ticket_types\": [\n        {\n          \"id\": 5069,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 1292,\n          \"fee\": 3502,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 5908,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": true,\n          \"hidden_by_promo_code\": true\n        },\n        {\n          \"id\": 4564,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7494,\n          \"fee\": 9831,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 8767,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": false\n        }\n      ],\n      \"add_ons\": [\n        {\n          \"id\": 6171,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7446,\n          \"fee\": 7593,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 8538,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": true\n        },\n        {\n          \"id\": 6124,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7575,\n          \"fee\": 3374,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 9789,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": true\n        }\n      ],\n      \"status\": \"active\",\n      \"start_time\": \"string\",\n      \"end_time\": \"string\",\n      \"cashouts_enabled_at\": \"string\",\n      \"cashouts_disabled_at\": \"string\",\n      \"claim_barcode_feature?\": true,\n      \"short_url\": \"string\",\n      \"classification\": \"howler_ticketing\",\n      \"venue\": {\n        \"id\": 6650,\n        \"address\": \"string\",\n        \"external_identifier\": \"string\",\n        \"latitude\": \"string\",\n        \"longitude\": \"string\",\n        \"name\": \"string\",\n        \"source\": \"string\"\n      },\n      \"artist_lineup\": [\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        }\n      ],\n      \"my_artist_lineup\": [\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        }\n      ],\n      \"is_cashless?\": true,\n      \"user_validation_configuration\": {\n        \"require_id_number?\": false,\n        \"require_unique_identifier?\": false,\n        \"require_first_name?\": false,\n        \"require_last_name?\": false,\n        \"require_cellphone_number?\": false,\n        \"require_country?\": false,\n        \"require_passport_country?\": true,\n        \"require_city?\": true,\n        \"require_gender?\": false,\n        \"require_date_of_birth?\": true,\n        \"require_passport_number?\": true,\n        \"require_nickname?\": false,\n        \"require_billing_address?\": false\n      },\n      \"cashless_deposit_cents\": 2428,\n      \"mapboxUrl\": \"string\"\n    },\n    \"ticket_type\": {\n      \"id\": 1835,\n      \"updated_at\": \"string\",\n      \"created_at\": \"string\",\n      \"topups_configuration\": {\n        \"topups_enabled?\": false,\n        \"small_topup_amount\": 8100,\n        \"medium_topup_amount\": 5696,\n        \"large_topup_amount\": 7084,\n        \"prevent_topup_for_multiple_tickets_of_same_type?\": false\n      },\n      \"name\": \"string\",\n      \"ticket_category\": {\n        \"id\": 9665,\n        \"name\": \"string\",\n        \"position\": 7428,\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"description\": \"string\"\n      },\n      \"cost\": 7,\n      \"fee\": 7188,\n      \"booking_status\": \"string\",\n      \"virtual_credit_cents\": 3683,\n      \"description\": \"string\",\n      \"image_url\": \"string\",\n      \"customer_settings_configuration\": {\n        \"customer_transfers_enabled?\": true,\n        \"require_signup_for_ticket_downloads?\": false,\n        \"ticket_downloads_enabled_at\": \"string\",\n        \"ticket_downloads_enabled?\": true,\n        \"show_ticket_barcode?\": false,\n        \"sharing_required_enabled?\": false\n      },\n      \"questions\": [\n        {\n          \"id\": 2970,\n          \"text\": \"string\",\n          \"required\": true,\n          \"question_type\": \"date\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"position\": 7680\n        },\n        {\n          \"id\": 2140,\n          \"text\": \"string\",\n          \"required\": false,\n          \"question_type\": \"id_number\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"position\": 4662\n        }\n      ],\n      \"hidden\": false,\n      \"hidden_by_promo_code\": false\n    },\n    \"is_addonable?\": true,\n    \"addonable\": {\n      \"name\": \"string\",\n      \"size\": \"string\"\n    },\n    \"can_be_transferred?\": false,\n    \"can_be_topped_up?\": true,\n    \"can_show_barcode?\": false,\n    \"claimed?\": false,\n    \"scanned_at\": \"string\",\n    \"user\": {\n      \"id\": 1284,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": true\n    },\n    \"cashless_tag_uid\": \"string\",\n    \"can_be_downloaded?\": true,\n    \"active_status\": \"pending_assignment\",\n    \"can_edit_ticket_transfer?\": true,\n    \"registered?\": false,\n    \"total_top_up_amount_cents\": 1683,\n    \"download_url\": \"string\",\n    \"answers\": [\n      {\n        \"id\": 8484,\n        \"question_id\": 638,\n        \"response\": \"string\"\n      },\n      {\n        \"id\": 6356,\n        \"question_id\": 2424,\n        \"response\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a3b7113-3dea-4152-8ad5-f5a70a13ff10",
+              "name": "invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_personalised_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticket\": {\n    \"personalised_name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3330971c-807c-4280-9b46-624ba28495d4",
+              "name": "ticket not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_personalised_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticket\": {\n    \"personalised_name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c570495-fccf-424b-b05a-6bb6b09d66f3",
+          "name": "update ticket owner of ticket",
+          "request": {
+            "name": "update ticket owner of ticket",
+            "description": {
+              "content": "Update the owner on the specified ticket. This action can only be performed if the current owner of the ticket has not yet created a howler account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets",
+                ":ticket_id",
+                "update_owner"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) Ticket Id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticket\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"email_confirmation\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b5036b16-615d-4470-8e15-49852d5d6269",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_owner"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticket\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"email_confirmation\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticket\": {\n    \"id\": 5921,\n    \"personalised_name\": \"string\",\n    \"barcode\": \"string\",\n    \"status\": \"pending\",\n    \"purchaser\": {\n      \"id\": 2752,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": false\n    },\n    \"updated_at\": \"string\",\n    \"created_at\": \"string\",\n    \"event_id\": 7700,\n    \"event\": {\n      \"id\": 7653,\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"auto_cashouts_enabled?\": false,\n      \"slug\": \"string\",\n      \"enable_live_topups?\": true,\n      \"onsite_top_up_available?\": false,\n      \"header_image_url\": \"string\",\n      \"is_past_event?\": false,\n      \"live\": false,\n      \"ticket_types\": [\n        {\n          \"id\": 5069,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 1292,\n          \"fee\": 3502,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 5908,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": true,\n          \"hidden_by_promo_code\": true\n        },\n        {\n          \"id\": 4564,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7494,\n          \"fee\": 9831,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 8767,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": false\n        }\n      ],\n      \"add_ons\": [\n        {\n          \"id\": 6171,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7446,\n          \"fee\": 7593,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 8538,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": true\n        },\n        {\n          \"id\": 6124,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7575,\n          \"fee\": 3374,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 9789,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": true\n        }\n      ],\n      \"status\": \"active\",\n      \"start_time\": \"string\",\n      \"end_time\": \"string\",\n      \"cashouts_enabled_at\": \"string\",\n      \"cashouts_disabled_at\": \"string\",\n      \"claim_barcode_feature?\": true,\n      \"short_url\": \"string\",\n      \"classification\": \"howler_ticketing\",\n      \"venue\": {\n        \"id\": 6650,\n        \"address\": \"string\",\n        \"external_identifier\": \"string\",\n        \"latitude\": \"string\",\n        \"longitude\": \"string\",\n        \"name\": \"string\",\n        \"source\": \"string\"\n      },\n      \"artist_lineup\": [\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        }\n      ],\n      \"my_artist_lineup\": [\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        }\n      ],\n      \"is_cashless?\": true,\n      \"user_validation_configuration\": {\n        \"require_id_number?\": false,\n        \"require_unique_identifier?\": false,\n        \"require_first_name?\": false,\n        \"require_last_name?\": false,\n        \"require_cellphone_number?\": false,\n        \"require_country?\": false,\n        \"require_passport_country?\": true,\n        \"require_city?\": true,\n        \"require_gender?\": false,\n        \"require_date_of_birth?\": true,\n        \"require_passport_number?\": true,\n        \"require_nickname?\": false,\n        \"require_billing_address?\": false\n      },\n      \"cashless_deposit_cents\": 2428,\n      \"mapboxUrl\": \"string\"\n    },\n    \"ticket_type\": {\n      \"id\": 1835,\n      \"updated_at\": \"string\",\n      \"created_at\": \"string\",\n      \"topups_configuration\": {\n        \"topups_enabled?\": false,\n        \"small_topup_amount\": 8100,\n        \"medium_topup_amount\": 5696,\n        \"large_topup_amount\": 7084,\n        \"prevent_topup_for_multiple_tickets_of_same_type?\": false\n      },\n      \"name\": \"string\",\n      \"ticket_category\": {\n        \"id\": 9665,\n        \"name\": \"string\",\n        \"position\": 7428,\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"description\": \"string\"\n      },\n      \"cost\": 7,\n      \"fee\": 7188,\n      \"booking_status\": \"string\",\n      \"virtual_credit_cents\": 3683,\n      \"description\": \"string\",\n      \"image_url\": \"string\",\n      \"customer_settings_configuration\": {\n        \"customer_transfers_enabled?\": true,\n        \"require_signup_for_ticket_downloads?\": false,\n        \"ticket_downloads_enabled_at\": \"string\",\n        \"ticket_downloads_enabled?\": true,\n        \"show_ticket_barcode?\": false,\n        \"sharing_required_enabled?\": false\n      },\n      \"questions\": [\n        {\n          \"id\": 2970,\n          \"text\": \"string\",\n          \"required\": true,\n          \"question_type\": \"date\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"position\": 7680\n        },\n        {\n          \"id\": 2140,\n          \"text\": \"string\",\n          \"required\": false,\n          \"question_type\": \"id_number\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"position\": 4662\n        }\n      ],\n      \"hidden\": false,\n      \"hidden_by_promo_code\": false\n    },\n    \"is_addonable?\": true,\n    \"addonable\": {\n      \"name\": \"string\",\n      \"size\": \"string\"\n    },\n    \"can_be_transferred?\": false,\n    \"can_be_topped_up?\": true,\n    \"can_show_barcode?\": false,\n    \"claimed?\": false,\n    \"scanned_at\": \"string\",\n    \"user\": {\n      \"id\": 1284,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": true\n    },\n    \"cashless_tag_uid\": \"string\",\n    \"can_be_downloaded?\": true,\n    \"active_status\": \"pending_assignment\",\n    \"can_edit_ticket_transfer?\": true,\n    \"registered?\": false,\n    \"total_top_up_amount_cents\": 1683,\n    \"download_url\": \"string\",\n    \"answers\": [\n      {\n        \"id\": 8484,\n        \"question_id\": 638,\n        \"response\": \"string\"\n      },\n      {\n        \"id\": 6356,\n        \"question_id\": 2424,\n        \"response\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1131540e-536c-4e08-a16e-2f71b0e0a99e",
+              "name": "invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_owner"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticket\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"email_confirmation\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84683224-6e13-4a84-8209-4a0a2ee8a773",
+              "name": "ticket not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_owner"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticket\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"email_confirmation\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7eb602b-7333-4a71-9f22-436b2526bd94",
+          "name": "assign a ticket to a user",
+          "request": {
+            "name": "assign a ticket to a user",
+            "description": {
+              "content": "Renders a webpage to allow assigning a ticket to a user.\n\nOnce the user has successfully completed the data capture, a redirect will be done to a specific URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets",
+                ":ticket_id",
+                "assign",
+                "web"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) Ticket Id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39dc8f3e-6629-4739-8282-4f3179b17d61",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "assign",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ceefeab-1a29-4e58-97fd-fffe55107f3f",
+              "name": "resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "assign",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10c01496-fe82-4598-93f6-da999b3bf765",
+          "name": "update data capture and marketing questions from a rendered form",
+          "request": {
+            "name": "update data capture and marketing questions from a rendered form",
+            "description": {
+              "content": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets",
+                ":ticket_id",
+                "assign",
+                "web"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) Ticket Id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c164cb6d-e09e-4b2d-8225-9be5b8843ea4",
+              "name": "unsuccessful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "assign",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16008d48-49c8-4b4e-a1de-fe9437385dbf",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "assign",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9afc4ff4-94a0-4558-be46-ced62864f69e",
+          "name": "retrieve ticket details",
+          "request": {
+            "name": "retrieve ticket details",
+            "description": {
+              "content": "Retrieves the details of a specific ticket. Only returns tickets owned by the current user or purchased by the current user. Additionally, if partner restrictions are in place, only returns tickets from events associated with the current partner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Ticket Id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f2025b4-f16b-40d0-bb51-3fe88f411bf4",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticket\": {\n    \"id\": 5921,\n    \"personalised_name\": \"string\",\n    \"barcode\": \"string\",\n    \"status\": \"pending\",\n    \"purchaser\": {\n      \"id\": 2752,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": false\n    },\n    \"updated_at\": \"string\",\n    \"created_at\": \"string\",\n    \"event_id\": 7700,\n    \"event\": {\n      \"id\": 7653,\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"auto_cashouts_enabled?\": false,\n      \"slug\": \"string\",\n      \"enable_live_topups?\": true,\n      \"onsite_top_up_available?\": false,\n      \"header_image_url\": \"string\",\n      \"is_past_event?\": false,\n      \"live\": false,\n      \"ticket_types\": [\n        {\n          \"id\": 5069,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 1292,\n          \"fee\": 3502,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 5908,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": true,\n          \"hidden_by_promo_code\": true\n        },\n        {\n          \"id\": 4564,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7494,\n          \"fee\": 9831,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 8767,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": false\n        }\n      ],\n      \"add_ons\": [\n        {\n          \"id\": 6171,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7446,\n          \"fee\": 7593,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 8538,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": true\n        },\n        {\n          \"id\": 6124,\n          \"updated_at\": \"string\",\n          \"created_at\": \"string\",\n          \"topups_configuration\": {\n            \"topups_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"small_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large_topup_amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"prevent_topup_for_multiple_tickets_of_same_type?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"ticket_category\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cost\": 7575,\n          \"fee\": 3374,\n          \"booking_status\": \"string\",\n          \"virtual_credit_cents\": 9789,\n          \"description\": \"string\",\n          \"image_url\": \"string\",\n          \"customer_settings_configuration\": {\n            \"customer_transfers_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"require_signup_for_ticket_downloads?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ticket_downloads_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"show_ticket_barcode?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sharing_required_enabled?\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"questions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"hidden\": false,\n          \"hidden_by_promo_code\": true\n        }\n      ],\n      \"status\": \"active\",\n      \"start_time\": \"string\",\n      \"end_time\": \"string\",\n      \"cashouts_enabled_at\": \"string\",\n      \"cashouts_disabled_at\": \"string\",\n      \"claim_barcode_feature?\": true,\n      \"short_url\": \"string\",\n      \"classification\": \"howler_ticketing\",\n      \"venue\": {\n        \"id\": 6650,\n        \"address\": \"string\",\n        \"external_identifier\": \"string\",\n        \"latitude\": \"string\",\n        \"longitude\": \"string\",\n        \"name\": \"string\",\n        \"source\": \"string\"\n      },\n      \"artist_lineup\": [\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        }\n      ],\n      \"my_artist_lineup\": [\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        },\n        {\n          \"value\": \"reference #/components/schemas/ArtistLineup not found in the OpenAPI spec\"\n        }\n      ],\n      \"is_cashless?\": true,\n      \"user_validation_configuration\": {\n        \"require_id_number?\": false,\n        \"require_unique_identifier?\": false,\n        \"require_first_name?\": false,\n        \"require_last_name?\": false,\n        \"require_cellphone_number?\": false,\n        \"require_country?\": false,\n        \"require_passport_country?\": true,\n        \"require_city?\": true,\n        \"require_gender?\": false,\n        \"require_date_of_birth?\": true,\n        \"require_passport_number?\": true,\n        \"require_nickname?\": false,\n        \"require_billing_address?\": false\n      },\n      \"cashless_deposit_cents\": 2428,\n      \"mapboxUrl\": \"string\"\n    },\n    \"ticket_type\": {\n      \"id\": 1835,\n      \"updated_at\": \"string\",\n      \"created_at\": \"string\",\n      \"topups_configuration\": {\n        \"topups_enabled?\": false,\n        \"small_topup_amount\": 8100,\n        \"medium_topup_amount\": 5696,\n        \"large_topup_amount\": 7084,\n        \"prevent_topup_for_multiple_tickets_of_same_type?\": false\n      },\n      \"name\": \"string\",\n      \"ticket_category\": {\n        \"id\": 9665,\n        \"name\": \"string\",\n        \"position\": 7428,\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"description\": \"string\"\n      },\n      \"cost\": 7,\n      \"fee\": 7188,\n      \"booking_status\": \"string\",\n      \"virtual_credit_cents\": 3683,\n      \"description\": \"string\",\n      \"image_url\": \"string\",\n      \"customer_settings_configuration\": {\n        \"customer_transfers_enabled?\": true,\n        \"require_signup_for_ticket_downloads?\": false,\n        \"ticket_downloads_enabled_at\": \"string\",\n        \"ticket_downloads_enabled?\": true,\n        \"show_ticket_barcode?\": false,\n        \"sharing_required_enabled?\": false\n      },\n      \"questions\": [\n        {\n          \"id\": 2970,\n          \"text\": \"string\",\n          \"required\": true,\n          \"question_type\": \"date\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"position\": 7680\n        },\n        {\n          \"id\": 2140,\n          \"text\": \"string\",\n          \"required\": false,\n          \"question_type\": \"id_number\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ],\n          \"position\": 4662\n        }\n      ],\n      \"hidden\": false,\n      \"hidden_by_promo_code\": false\n    },\n    \"is_addonable?\": true,\n    \"addonable\": {\n      \"name\": \"string\",\n      \"size\": \"string\"\n    },\n    \"can_be_transferred?\": false,\n    \"can_be_topped_up?\": true,\n    \"can_show_barcode?\": false,\n    \"claimed?\": false,\n    \"scanned_at\": \"string\",\n    \"user\": {\n      \"id\": 1284,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"primary_email\": \"string\",\n      \"dummy?\": true\n    },\n    \"cashless_tag_uid\": \"string\",\n    \"can_be_downloaded?\": true,\n    \"active_status\": \"pending_assignment\",\n    \"can_edit_ticket_transfer?\": true,\n    \"registered?\": false,\n    \"total_top_up_amount_cents\": 1683,\n    \"download_url\": \"string\",\n    \"answers\": [\n      {\n        \"id\": 8484,\n        \"question_id\": 638,\n        \"response\": \"string\"\n      },\n      {\n        \"id\": 6356,\n        \"question_id\": 2424,\n        \"response\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ecfb53b-fff8-4ff6-b1be-ac65dc268f7a",
+              "name": "ticket not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56c7d7bc-3551-4e0d-89f3-b0b77b7b9412",
+          "name": "input data capture and marketing questions on a rendered form",
+          "request": {
+            "name": "input data capture and marketing questions on a rendered form",
+            "description": {
+              "content": "Renders a webpage to allow data capture and input of marketing questions.\n\nOnce the user has successfully completed the data capture, a redirect will be done to a specific URL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets",
+                ":ticket_id",
+                "update_data_capture",
+                "web"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) Ticket Id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd7ec75a-2009-4544-8e4e-5893124682a6",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_data_capture",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9c2925e-d4d6-4698-af1b-3096d2c604a6",
+              "name": "resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_data_capture",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "106b5ef5-4b15-44c3-878f-321959c08899",
+          "name": "update data capture and marketing questions from a rendered form",
+          "request": {
+            "name": "update data capture and marketing questions from a rendered form",
+            "description": {
+              "content": "**Private API**\nThis end-point should only ever be called using by the web page rendered using the GET version of this end-point.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets",
+                ":ticket_id",
+                "update_data_capture",
+                "web"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) Ticket Id"
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{defaultHost}}",
+                  "key": "defaultHost"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b668019b-172a-4751-8151-55ee8ea68270",
+              "name": "unsuccessful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_data_capture",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f63034eb-c291-4562-8e58-c9cf6bfbff24",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticket_id",
+                    "update_data_capture",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) Ticket Id"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{defaultHost}}",
+                      "key": "defaultHost"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "www.howler.co.za",
+      "key": "defaultHost"
+    },
+    {
+      "type": "string",
+      "value": "https://{{defaultHost}}/api/v3/consumer_portal",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c32f4de0-c58c-4005-a35d-4902cf8ed581",
+    "name": "Howler API v3 Artists Tickets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: 2026-01-20 21:15:49 +0200*\n",
+      "type": "text/plain"
+    }
+  }
+}

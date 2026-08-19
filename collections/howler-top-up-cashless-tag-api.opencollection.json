@@ -1,0 +1,215 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Howler API v3 Artists Top Up Cashless Tag API",
+    "version": "3.6.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Top Up Cashless Tag",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "select cashless tag (1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/top_up",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              }
+            ]
+          },
+          "docs": "Start the top up process of a cashless tag by providing the cashless tag's uid.\n\nThe next_step field in the body will indicate which action should be performed next.\n"
+        },
+        {
+          "info": {
+            "name": "accept amounts (2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/top_up/:top_up_order_id/amounts",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Specify the amount to top up the cashless tag with.\n"
+        },
+        {
+          "info": {
+            "name": "select payment method (3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/top_up/:top_up_order_id/payments",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              }
+            ]
+          },
+          "docs": "Renders a webpage to allow the user to pay for their top up order.\n\nOnce the user has successfully completed a payment a redirect will be done to a specific URL.\n"
+        },
+        {
+          "info": {
+            "name": "check complete (4)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/top_up/:top_up_order_id/completes",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              }
+            ]
+          },
+          "docs": "Check if the top up order was completed. This request should be made after the payment web page has redirected back to the application.\n"
+        },
+        {
+          "info": {
+            "name": "submit payment method (3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/top_up/:top_up_order_id/successful_payment",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              },
+              {
+                "name": "merchant_reference",
+                "value": "",
+                "type": "query",
+                "description": "merchant_reference"
+              }
+            ]
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called by the web page rendered using the GET version of this end-point.\n"
+        },
+        {
+          "info": {
+            "name": "submit pending successful payment method (3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/top_up/:top_up_order_id/pending_successful_payment",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              },
+              {
+                "name": "merchant_reference",
+                "value": "",
+                "type": "query",
+                "description": "merchant_reference"
+              }
+            ]
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called by the web page rendered using the GET version of this end-point.\n"
+        },
+        {
+          "info": {
+            "name": "submit failed payment method (3)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{defaultHost}/api/v3/consumer_portal/cashless_tags/:cashless_tag_uid/top_up/:top_up_order_id/failed_payment",
+            "params": [
+              {
+                "name": "cashless_tag_uid",
+                "value": "",
+                "type": "path",
+                "description": "cashless_tag_uid"
+              },
+              {
+                "name": "top_up_order_id",
+                "value": "",
+                "type": "path",
+                "description": "top_up_order_id"
+              },
+              {
+                "name": "merchant_reference",
+                "value": "",
+                "type": "query",
+                "description": "merchant_reference"
+              }
+            ]
+          },
+          "docs": "**Private API**\nThis end-point should only ever be called by the web page rendered using the GET version of this end-point.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
