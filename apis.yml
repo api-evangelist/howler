@@ -8,6 +8,18 @@ description: >-
   API v3 consumer portal exposes 67 operations for authentication (OAuth2, JWT, email OTP, third-party
   OAuth), tickets (buy, assign, transfer), cashless RFID tags, top-ups, and cashout to bank accounts,
   and a Howler Webhooks v1 surface pushes ticket, event, and payment events to partner endpoints.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
