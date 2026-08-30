@@ -159,7 +159,7 @@ apis:
   humanURL: https://developer.howler.co.za/api-docs
   baseURL: https://www.howler.co.za/api/v3/consumer_portal
   tags:
-  - Email  O T P
+  - Email OTP
   tags_raw:
   - Email OTP
   properties:
@@ -235,7 +235,7 @@ apis:
   humanURL: https://developer.howler.co.za/api-docs
   baseURL: https://www.howler.co.za/api/v3/consumer_portal
   tags:
-  - Top-Up
+  - Top Up
   tags_raw:
   - Top Up
   properties:
