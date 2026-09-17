@@ -185,22 +185,6 @@ apis:
     url: https://developer.howler.co.za/api-docs
   - type: Webhooks
     url: openapi/howler-webhooks-openapi.yml
-- aid: howler:howler-oauth-api
-  name: Howler OAuth API
-  description: The OAuth API from Howler — 4 operation(s) for oauth.
-  humanURL: https://developer.howler.co.za/api-docs
-  baseURL: https://www.howler.co.za/api/v3/consumer_portal
-  tags:
-  - Authentication
-  tags_raw:
-  - OAuth
-  properties:
-  - type: OpenAPI
-    url: openapi/howler-oauth-api-openapi.yml
-  - type: APIReference
-    url: https://developer.howler.co.za/api-docs
-  - type: Webhooks
-    url: openapi/howler-webhooks-openapi.yml
 - aid: howler:howler-third-party-oauth-api
   name: Howler Third Party OAuth API
   description: The Third Party OAuth API from Howler — 5 operation(s) for third party oauth.
@@ -311,6 +295,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/howler-user-api-openapi.yml
+  - type: APIReference
+    url: https://developer.howler.co.za/api-docs
+  - type: Webhooks
+    url: openapi/howler-webhooks-openapi.yml
+- aid: howler:howler-oauth-api
+  name: Howler O Auth API
+  description: The OAuth API from Howler — 4 operation(s) for oauth.
+  humanURL: https://developer.howler.co.za/api-docs
+  baseURL: https://www.howler.co.za/api/v3/consumer_portal
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/howler-oauth-api-openapi.yml
   - type: APIReference
     url: https://developer.howler.co.za/api-docs
   - type: Webhooks
