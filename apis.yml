@@ -305,6 +305,8 @@ apis:
   humanURL: https://developer.howler.co.za/api-docs
   baseURL: https://www.howler.co.za/api/v3/consumer_portal
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
