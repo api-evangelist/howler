@@ -1,10 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Howler API v3 Artists Third Party OAuth API
+  title: Howler API v3 Third Party OAuth API
   version: 3.6.1
-  description: '*Last updated: 2026-01-20 21:15:49 +0200*
-
-    '
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:
 - url: https://{defaultHost}/api/v3/consumer_portal
   variables:

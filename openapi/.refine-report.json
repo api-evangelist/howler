@@ -1,23 +1,7 @@
 {
   "provider": "howler",
   "sources": [
-    "howler-artists-api-openapi.yml",
-    "howler-assign-ticket-api-openapi.yml",
-    "howler-bank-account-api-openapi.yml",
-    "howler-basic-authentication-api-openapi.yml",
-    "howler-cashless-tags-api-openapi.yml",
-    "howler-cashout-api-openapi.yml",
-    "howler-email-otp-api-openapi.yml",
-    "howler-events-api-openapi.yml",
-    "howler-oauth-api-openapi.yml",
-    "howler-third-party-oauth-api-openapi.yml",
-    "howler-tickets-api-openapi.yml",
-    "howler-top-up-api-openapi.yml",
-    "howler-top-up-cashless-tag-api-openapi.yml",
-    "howler-top-up-ticket-api-openapi.yml",
-    "howler-topupables-api-openapi.yml",
-    "howler-transfer-ticket-api-openapi.yml",
-    "howler-user-api-openapi.yml"
+    "_original/howler-consumer-portal-openapi.yml"
   ],
   "outputs": [
     "howler-artists-api-openapi.yml",
@@ -38,15 +22,37 @@
     "howler-transfer-ticket-api-openapi.yml",
     "howler-user-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [
-    "howler-assign-ticket-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup",
-    "howler-events-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup",
-    "howler-tickets-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup",
-    "howler-top-up-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup",
-    "howler-topupables-api-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup"
+    "howler-consumer-portal-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup"
   ],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "howler-consumer-portal-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "howler-consumer-portal-openapi.yml: declared missing tag: Artists",
+    "superseded outputs removed: howler-o-auth-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 17 total)"
+  ],
+  "skipped": [
+    "howler-artists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-assign-ticket-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-bank-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-basic-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-cashless-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-cashout-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-email-otp-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-third-party-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-tickets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-top-up-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-top-up-cashless-tag-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-top-up-ticket-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-topupables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-transfer-ticket-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

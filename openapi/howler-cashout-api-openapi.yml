@@ -1,10 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Howler API v3 Artists Cashout API
+  title: Howler API v3 Cashout API
   version: 3.6.1
-  description: '*Last updated: 2026-01-20 21:15:49 +0200*
-
-    '
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:
 - url: https://{defaultHost}/api/v3/consumer_portal
   variables:
@@ -33,9 +31,7 @@ paths:
       tags:
       - Cashout
       parameters: []
-      description: 'Create a new cashless tag pairing for a specific cashless tag and event.
-
-        '
+      description: Create a new cashless tag pairing for a specific cashless tag and event.
       responses:
         '200':
           description: pair (during event - where cashless_tag does not exist in core)
@@ -112,9 +108,7 @@ paths:
 
         The amounts include the current balance, estimated cashout fee and refundable balance (balance less fee).
 
-        It is also possible that the user might not have enough remaining balance to cashout.
-
-        '
+        It is also possible that the user might not have enough remaining balance to cashout.'
       responses:
         '200':
           description: successful
@@ -177,9 +171,7 @@ paths:
       description: 'Confirm that the cashout should be processed.
 
 
-        The user must have enough balance available and have a bank account set up.
-
-        '
+        The user must have enough balance available and have a bank account set up.'
       responses:
         '200':
           description: successful
@@ -218,9 +210,7 @@ paths:
       operationId: showCashlessTagCashoutAmountWeb
       tags:
       - Cashout
-      description: '**Private API**
-
-        '
+      description: '**Private API**'
       parameters:
       - name: cashless_tag_uid
         in: path
@@ -242,9 +232,7 @@ paths:
       operationId: updateCashlessTagCashoutAmountWeb
       tags:
       - Cashout
-      description: '**Private API**
-
-        '
+      description: '**Private API**'
       parameters:
       - name: cashless_tag_uid
         in: path
@@ -299,6 +287,29 @@ components:
       - user
       - created_at
       - updated_at
+    CashlessTagBalance:
+      type: object
+      properties:
+        id:
+          type: integer
+        amount_cents:
+          type: integer
+        amount_currency:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        last_transaction_time:
+          type: string
+      required:
+      - id
+      - amount_cents
+      - amount_currency
+      - created_at
+      - updated_at
     User:
       type: object
       properties:
@@ -326,29 +337,6 @@ components:
       - last_name
       - primary_email
       - dummy?
-    CashlessTagBalance:
-      type: object
-      properties:
-        id:
-          type: integer
-        amount_cents:
-          type: integer
-        amount_currency:
-          type: string
-        created_at:
-          type: string
-          format: ISO 8601
-        updated_at:
-          type: string
-          format: ISO 8601
-        last_transaction_time:
-          type: string
-      required:
-      - id
-      - amount_cents
-      - amount_currency
-      - created_at
-      - updated_at
   securitySchemes:
     oauth2:
       type: oauth2

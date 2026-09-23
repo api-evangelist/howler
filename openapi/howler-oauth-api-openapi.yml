@@ -1,10 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Howler API v3 Artists OAuth API
+  title: Howler API v3 O Auth API
   version: 3.6.1
-  description: '*Last updated: 2026-01-20 21:15:49 +0200*
-
-    '
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:
 - url: https://{defaultHost}/api/v3/consumer_portal
   variables:
@@ -37,9 +35,7 @@ paths:
 
         After they have authorised the application a redirect will be done to the redirect_uri and a grant code passed in a parameter named `code`.
 
-        This code should be provided to /api/v3/consumer_portal/oauth/token end-point to generate an access token which can be used for authentication.
-
-        '
+        This code should be provided to /api/v3/consumer_portal/oauth/token end-point to generate an access token which can be used for authentication.'
       security: []
       parameters:
       - name: client_id
@@ -84,9 +80,7 @@ paths:
         This token can be refreshed using the same end-point and passing in the refresh token and grant_type ''refresh_token''.
 
 
-        Once a token is generated it can be passed in the HTTP Authorization header using the format `Bearer <token>`
-
-        '
+        Once a token is generated it can be passed in the HTTP Authorization header using the format `Bearer `'
       security: []
       parameters: []
       responses:
@@ -156,9 +150,7 @@ paths:
       operationId: destroyConsumerOAuthToken
       tags:
       - OAuth
-      description: 'Revoke an OAuth access token.
-
-        '
+      description: Revoke an OAuth access token.
       security: []
       parameters: []
       responses:
@@ -193,9 +185,7 @@ paths:
       description: 'Generate a one-time token which can be passed to a web view to login the user automatically.
 
 
-        The access token must have the `ott` scope. The token response can only be used once and expires in 30 seconds.
-
-        '
+        The access token must have the `ott` scope. The token response can only be used once and expires in 30 seconds.'
       responses:
         '200':
           description: generate

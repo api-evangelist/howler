@@ -1,10 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Howler API v3 Artists Top Up API
+  title: Howler API v3 Top Up API
   version: 3.6.1
-  description: '*Last updated: 2026-01-20 21:15:49 +0200*
-
-    '
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:
 - url: https://{defaultHost}/api/v3/consumer_portal
   variables:
@@ -32,9 +30,7 @@ paths:
         The next_step in the body will indicate which action should be performed next.
 
 
-        Whether the provided barcode or uid is a ticket or cashless tag will also depend on the response. Either the ticket or cashless_tag property will be populated.
-
-        '
+        Whether the provided barcode or uid is a ticket or cashless tag will also depend on the response. Either the ticket or cashless_tag property will be populated.'
       responses:
         '200':
           description: successful
@@ -105,25 +101,85 @@ paths:
         required: true
 components:
   schemas:
-    Answer:
+    CustomerSettingsConfiguration:
+      type: object
+      properties:
+        customer_transfers_enabled?:
+          type: boolean
+          description: Ticket transfers are allowed
+        require_signup_for_ticket_downloads?:
+          type: boolean
+          description: User profile must be setup, all required data capture completed and marketing questions answered before a user can download their tickets.
+        ticket_downloads_enabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+          description: Specified date and time when tickets will be able to be downloaded.
+        ticket_downloads_enabled?:
+          type: boolean
+          description: If true a user will be able to download their tickets at the specified date and time
+        show_ticket_barcode?:
+          type: boolean
+          description: If tickets cannot be downloaded and this is true then the user will be able to see their barcode number of their ticket as text but not download or view it.
+        sharing_required_enabled?:
+          type: boolean
+          description: Sharing required enabled.
+      required: []
+    Venue:
       type: object
       properties:
         id:
           type: integer
-          description: Answer ID
-        question_id:
-          type: integer
-          description: ID of the question this answer belongs to
-        response:
+          readOnly: true
+          description: Primary Key
+        address:
+          type: string
+          description: Address
+        external_identifier:
           type:
           - string
           - 'null'
-          - array
-          description: The answer text
+          description: External Identifier
+        latitude:
+          type: string
+          description: Latitude
+        longitude:
+          type: string
+          description: Longitude
+        name:
+          type: string
+          description: Name
+        source:
+          type:
+          - string
+          - 'null'
+          description: Source
       required:
       - id
-      - question_id
-      - response
+      - address
+      - external_identifier
+      - latitude
+      - longitude
+      - name
+      - source
+    CashlessTag:
+      type: object
+      properties:
+        id:
+          type: integer
+        event_id:
+          type: integer
+        uid:
+          type: string
+        tag_type:
+          type: string
+          enum:
+          - card
+          - wristband
+      required:
+      - id
+      - uid
     UserValidationConfiguration:
       type: object
       properties:
@@ -181,23 +237,6 @@ components:
       - require_nickname?
       - require_billing_address?
       description: Indicates which user details need to be completed before their profile is considered setup for an event.
-    CashlessTag:
-      type: object
-      properties:
-        id:
-          type: integer
-        event_id:
-          type: integer
-        uid:
-          type: string
-        tag_type:
-          type: string
-          enum:
-          - card
-          - wristband
-      required:
-      - id
-      - uid
     Addonable:
       type:
       - object
@@ -212,86 +251,6 @@ components:
       required:
       - name
       - size
-    Order:
-      type: object
-      properties:
-        id:
-          type: integer
-        reference:
-          type: string
-        type:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - paid
-          - expired
-          - pending_payment
-          - created
-          - processing
-        user:
-          $ref: '#/components/schemas/User'
-        cashless_deposit_cents:
-          type: integer
-      required:
-      - id
-      - reference
-      - status
-      - type
-      - user
-      - cashless_deposit_cents
-    TicketType:
-      type: object
-      properties:
-        id:
-          type: integer
-        created_at:
-          type: string
-          format: ISO 8601
-        updated_at:
-          type: string
-          format: ISO 8601
-        name:
-          type: string
-        ticket_category:
-          $ref: '#/components/schemas/TicketCategory'
-          nullable: true
-        cost:
-          type: integer
-        fee:
-          type: integer
-        booking_status:
-          type: string
-        virtual_credit_cents:
-          type:
-          - integer
-          - 'null'
-        description:
-          type: string
-        image_url:
-          type:
-          - string
-          - 'null'
-          description: URL to the ticket type image if attached
-        topups_configuration:
-          $ref: '#/components/schemas/TopupsConfiguration'
-        customer_settings_configuration:
-          $ref: '#/components/schemas/CustomerSettingsConfiguration'
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Question'
-          description: Questions associated with this ticket type
-        hidden:
-          type: boolean
-        hidden_by_promo_code:
-          type: boolean
-      required:
-      - id
-      - updated_at
-      - created_at
-      - topups_configuration
     Question:
       type: object
       properties:
@@ -331,66 +290,220 @@ components:
       - text
       - required
       - question_type
-    TopupsConfiguration:
+    TicketCategory:
       type: object
       properties:
-        topups_enabled?:
-          type: boolean
-          description: Top Ups are enabled for the event
-        prevent_topup_for_multiple_tickets_of_same_type?:
-          type: boolean
-          description: If a user own mutliple tickets of the same ticket type then they cannot bt topped up.
-        small_topup_amount:
+        id:
           type: integer
-          description: Small Topup Amount
-        medium_topup_amount:
+        name:
+          type: string
+        position:
           type: integer
-          description: Medium Topup Amount
-        large_topup_amount:
-          type: integer
-          description: Large Topup Amount
+        description:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
       required:
-      - topups_enabled?
-      - small_topup_amount
-      - medium_topup_amount
-      - large_topup_amount
-    Venue:
+      - id
+      - name
+      - position
+      - created_at
+      - updated_at
+    User:
       type: object
       properties:
         id:
           type: integer
           readOnly: true
           description: Primary Key
-        address:
+        first_name:
           type: string
-          description: Address
-        external_identifier:
-          type:
-          - string
-          - 'null'
-          description: External Identifier
-        latitude:
+          description: First Name
+        last_name:
           type: string
-          description: Latitude
-        longitude:
+          description: Last Name
+        primary_email:
           type: string
-          description: Longitude
-        name:
-          type: string
-          description: Name
-        source:
-          type:
-          - string
-          - 'null'
-          description: Source
+          readOnly: true
+          description: Email address of user or dummy user
+        dummy?:
+          type: boolean
+          readOnly: true
+          description: True if the user has not yet signed up for an account.
       required:
       - id
-      - address
-      - external_identifier
-      - latitude
-      - longitude
+      - first_name
+      - last_name
+      - primary_email
+      - dummy?
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: Name of the event
+        ticket_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/TicketType'
+          description: List of ticket types available for this event
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/TicketType'
+          description: List of addon ticket types for the event
+        status:
+          type: string
+          enum:
+          - pending
+          - active
+          - cancelled
+        start_time:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        end_time:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        currency:
+          type: string
+          description: ISO 4217 Currency Code
+        cashouts_enabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        cashouts_disabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+        auto_cashouts_enabled?:
+          type: boolean
+          description: Event supports auto cashouts
+        claim_barcode_feature?:
+          type: boolean
+          description: Tickets can be claimed by topping them up.
+        enable_live_topups?:
+          type: boolean
+          description: Topups are allowed during the event.
+        slug:
+          type: string
+          description: 'URL slug used for the event. The url for the event can be generated as follows: https://{baseUrl}/events/{slug}'
+        short_url:
+          type:
+          - string
+          - 'null'
+          description: 'Short URL slug used for the event. The url for the event can be generated as follows: https://{baseUrl}/{short_url}'
+        classification:
+          type: string
+          enum:
+          - howler
+          - howler_ticketing
+          - howler_cashless
+          - foreign_ticketing
+        venue:
+          $ref: '#/components/schemas/Venue'
+        artist_lineup:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistLineup'
+          description: List of artists performing at the event
+        my_artist_lineup:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistLineup'
+          description: List of this user's performances for the event
+        is_cashless?:
+          type: boolean
+        is_past_event?:
+          type: boolean
+        user_validation_configuration:
+          $ref: '#/components/schemas/UserValidationConfiguration'
+        onsite_top_up_available?:
+          type: boolean
+        cashless_deposit_cents:
+          type: integer
+        header_image_url:
+          type:
+          - string
+          - 'null'
+        live:
+          type: boolean
+        mapboxUrl:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
       - name
-      - source
+      - currency
+      - auto_cashouts_enabled?
+      - slug
+      - enable_live_topups?
+      - onsite_top_up_available?
+      - header_image_url
+      - is_past_event?
+      - live
+      - ticket_types
+      - add_ons
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+        reference:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - paid
+          - expired
+          - pending_payment
+          - created
+          - processing
+        user:
+          $ref: '#/components/schemas/User'
+        cashless_deposit_cents:
+          type: integer
+      required:
+      - id
+      - reference
+      - status
+      - type
+      - user
+      - cashless_deposit_cents
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Answer ID
+        question_id:
+          type: integer
+          description: ID of the question this answer belongs to
+        response:
+          type:
+          - string
+          - 'null'
+          - array
+          description: The answer text
+      required:
+      - id
+      - question_id
+      - response
     Ticket:
       type: object
       properties:
@@ -515,197 +628,80 @@ components:
       - can_be_topped_up?
       - can_show_barcode?
       - claimed?
-    TicketCategory:
+    TicketType:
       type: object
       properties:
         id:
           type: integer
-        name:
-          type: string
-        position:
-          type: integer
-        description:
-          type: string
         created_at:
           type: string
           format: ISO 8601
         updated_at:
           type: string
           format: ISO 8601
-      required:
-      - id
-      - name
-      - position
-      - created_at
-      - updated_at
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-          description: Primary Key
-        first_name:
-          type: string
-          description: First Name
-        last_name:
-          type: string
-          description: Last Name
-        primary_email:
-          type: string
-          readOnly: true
-          description: Email address of user or dummy user
-        dummy?:
-          type: boolean
-          readOnly: true
-          description: True if the user has not yet signed up for an account.
-      required:
-      - id
-      - first_name
-      - last_name
-      - primary_email
-      - dummy?
-    CustomerSettingsConfiguration:
-      type: object
-      properties:
-        customer_transfers_enabled?:
-          type: boolean
-          description: Ticket transfers are allowed
-        require_signup_for_ticket_downloads?:
-          type: boolean
-          description: User profile must be setup, all required data capture completed and marketing questions answered before a user can download their tickets.
-        ticket_downloads_enabled_at:
-          type:
-          - string
-          - 'null'
-          format: ISO 8601
-          description: Specified date and time when tickets will be able to be downloaded.
-        ticket_downloads_enabled?:
-          type: boolean
-          description: If true a user will be able to download their tickets at the specified date and time
-        show_ticket_barcode?:
-          type: boolean
-          description: If tickets cannot be downloaded and this is true then the user will be able to see their barcode number of their ticket as text but not download or view it.
-        sharing_required_enabled?:
-          type: boolean
-          description: Sharing required enabled.
-      required: []
-    Event:
-      type: object
-      properties:
-        id:
-          type: integer
         name:
           type: string
-          description: Name of the event
-        ticket_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/TicketType'
-          description: List of ticket types available for this event
-        add_ons:
-          type: array
-          items:
-            $ref: '#/components/schemas/TicketType'
-          description: List of addon ticket types for the event
-        status:
-          type: string
-          enum:
-          - pending
-          - active
-          - cancelled
-        start_time:
-          type:
-          - string
-          - 'null'
-          format: ISO 8601
-        end_time:
-          type:
-          - string
-          - 'null'
-          format: ISO 8601
-        currency:
-          type: string
-          description: ISO 4217 Currency Code
-        cashouts_enabled_at:
-          type:
-          - string
-          - 'null'
-          format: ISO 8601
-        cashouts_disabled_at:
-          type:
-          - string
-          - 'null'
-          format: ISO 8601
-        auto_cashouts_enabled?:
-          type: boolean
-          description: Event supports auto cashouts
-        claim_barcode_feature?:
-          type: boolean
-          description: Tickets can be claimed by topping them up.
-        enable_live_topups?:
-          type: boolean
-          description: Topups are allowed during the event.
-        slug:
-          type: string
-          description: 'URL slug used for the event. The url for the event can be generated as follows: https://{baseUrl}/events/{slug}'
-        short_url:
-          type:
-          - string
-          - 'null'
-          description: 'Short URL slug used for the event. The url for the event can be generated as follows: https://{baseUrl}/{short_url}'
-        classification:
-          type: string
-          enum:
-          - howler
-          - howler_ticketing
-          - howler_cashless
-          - foreign_ticketing
-        venue:
-          $ref: '#/components/schemas/Venue'
-        artist_lineup:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArtistLineup'
-          description: List of artists performing at the event
-        my_artist_lineup:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArtistLineup'
-          description: List of this user's performances for the event
-        is_cashless?:
-          type: boolean
-        is_past_event?:
-          type: boolean
-        user_validation_configuration:
-          $ref: '#/components/schemas/UserValidationConfiguration'
-        onsite_top_up_available?:
-          type: boolean
-        cashless_deposit_cents:
+        ticket_category:
+          $ref: '#/components/schemas/TicketCategory'
+          nullable: true
+        cost:
           type: integer
-        header_image_url:
+        fee:
+          type: integer
+        booking_status:
+          type: string
+        virtual_credit_cents:
+          type:
+          - integer
+          - 'null'
+        description:
+          type: string
+        image_url:
           type:
           - string
           - 'null'
-        live:
+          description: URL to the ticket type image if attached
+        topups_configuration:
+          $ref: '#/components/schemas/TopupsConfiguration'
+        customer_settings_configuration:
+          $ref: '#/components/schemas/CustomerSettingsConfiguration'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+          description: Questions associated with this ticket type
+        hidden:
           type: boolean
-        mapboxUrl:
-          type:
-          - string
-          - 'null'
+        hidden_by_promo_code:
+          type: boolean
       required:
       - id
-      - name
-      - currency
-      - auto_cashouts_enabled?
-      - slug
-      - enable_live_topups?
-      - onsite_top_up_available?
-      - header_image_url
-      - is_past_event?
-      - live
-      - ticket_types
-      - add_ons
+      - updated_at
+      - created_at
+      - topups_configuration
+    TopupsConfiguration:
+      type: object
+      properties:
+        topups_enabled?:
+          type: boolean
+          description: Top Ups are enabled for the event
+        prevent_topup_for_multiple_tickets_of_same_type?:
+          type: boolean
+          description: If a user own mutliple tickets of the same ticket type then they cannot bt topped up.
+        small_topup_amount:
+          type: integer
+          description: Small Topup Amount
+        medium_topup_amount:
+          type: integer
+          description: Medium Topup Amount
+        large_topup_amount:
+          type: integer
+          description: Large Topup Amount
+      required:
+      - topups_enabled?
+      - small_topup_amount
+      - medium_topup_amount
+      - large_topup_amount
   securitySchemes:
     oauth2:
       type: oauth2

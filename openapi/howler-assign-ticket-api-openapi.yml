@@ -1,10 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Howler API v3 Artists Assign Ticket API
+  title: Howler API v3 Assign Ticket API
   version: 3.6.1
-  description: '*Last updated: 2026-01-20 21:15:49 +0200*
-
-    '
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:
 - url: https://{defaultHost}/api/v3/consumer_portal
   variables:
@@ -38,9 +36,7 @@ paths:
         The ticket currently does not have an owner.
 
 
-        Only the purchaser of the ticket can perform this action.
-
-        '
+        Only the purchaser of the ticket can perform this action.'
       parameters: []
       responses:
         '200':
@@ -83,25 +79,68 @@ paths:
         required: true
 components:
   schemas:
-    Answer:
+    CustomerSettingsConfiguration:
+      type: object
+      properties:
+        customer_transfers_enabled?:
+          type: boolean
+          description: Ticket transfers are allowed
+        require_signup_for_ticket_downloads?:
+          type: boolean
+          description: User profile must be setup, all required data capture completed and marketing questions answered before a user can download their tickets.
+        ticket_downloads_enabled_at:
+          type:
+          - string
+          - 'null'
+          format: ISO 8601
+          description: Specified date and time when tickets will be able to be downloaded.
+        ticket_downloads_enabled?:
+          type: boolean
+          description: If true a user will be able to download their tickets at the specified date and time
+        show_ticket_barcode?:
+          type: boolean
+          description: If tickets cannot be downloaded and this is true then the user will be able to see their barcode number of their ticket as text but not download or view it.
+        sharing_required_enabled?:
+          type: boolean
+          description: Sharing required enabled.
+      required: []
+    Venue:
       type: object
       properties:
         id:
           type: integer
-          description: Answer ID
-        question_id:
-          type: integer
-          description: ID of the question this answer belongs to
-        response:
+          readOnly: true
+          description: Primary Key
+        address:
+          type: string
+          description: Address
+        external_identifier:
           type:
           - string
           - 'null'
-          - array
-          description: The answer text
+          description: External Identifier
+        latitude:
+          type: string
+          description: Latitude
+        longitude:
+          type: string
+          description: Longitude
+        name:
+          type: string
+          description: Name
+        source:
+          type:
+          - string
+          - 'null'
+          description: Source
       required:
       - id
-      - question_id
-      - response
+      - address
+      - external_identifier
+      - latitude
+      - longitude
+      - name
+      - source
     UserValidationConfiguration:
       type: object
       properties:
@@ -159,6 +198,109 @@ components:
       - require_nickname?
       - require_billing_address?
       description: Indicates which user details need to be completed before their profile is considered setup for an event.
+    Addonable:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type: string
+          description: Name
+        size:
+          type: string
+          description: Size
+      required:
+      - name
+      - size
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Question ID
+        text:
+          type: string
+          description: Question text
+        required:
+          type: boolean
+          description: Whether the question is required
+        question_type:
+          type: string
+          description: Type of question
+          enum:
+          - text
+          - number
+          - multiple_choice
+          - multiple_answer
+          - date
+          - boolean
+          - cellphone_number
+          - id_number
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Available options for multiple choice questions
+        position:
+          type: integer
+          description: Display position of the question
+      required:
+      - id
+      - text
+      - required
+      - question_type
+    TicketCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        position:
+          type: integer
+        description:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+      required:
+      - id
+      - name
+      - position
+      - created_at
+      - updated_at
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        first_name:
+          type: string
+          description: First Name
+        last_name:
+          type: string
+          description: Last Name
+        primary_email:
+          type: string
+          readOnly: true
+          description: Email address of user or dummy user
+        dummy?:
+          type: boolean
+          readOnly: true
+          description: True if the user has not yet signed up for an account.
+      required:
+      - id
+      - first_name
+      - last_name
+      - primary_email
+      - dummy?
     Event:
       type: object
       properties:
@@ -275,156 +417,25 @@ components:
       - live
       - ticket_types
       - add_ons
-    TicketType:
+    Answer:
       type: object
       properties:
         id:
           type: integer
-        created_at:
-          type: string
-          format: ISO 8601
-        updated_at:
-          type: string
-          format: ISO 8601
-        name:
-          type: string
-        ticket_category:
-          $ref: '#/components/schemas/TicketCategory'
-          nullable: true
-        cost:
+          description: Answer ID
+        question_id:
           type: integer
-        fee:
-          type: integer
-        booking_status:
-          type: string
-        virtual_credit_cents:
-          type:
-          - integer
-          - 'null'
-        description:
-          type: string
-        image_url:
+          description: ID of the question this answer belongs to
+        response:
           type:
           - string
           - 'null'
-          description: URL to the ticket type image if attached
-        topups_configuration:
-          $ref: '#/components/schemas/TopupsConfiguration'
-        customer_settings_configuration:
-          $ref: '#/components/schemas/CustomerSettingsConfiguration'
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Question'
-          description: Questions associated with this ticket type
-        hidden:
-          type: boolean
-        hidden_by_promo_code:
-          type: boolean
-      required:
-      - id
-      - updated_at
-      - created_at
-      - topups_configuration
-    Question:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Question ID
-        text:
-          type: string
-          description: Question text
-        required:
-          type: boolean
-          description: Whether the question is required
-        question_type:
-          type: string
-          description: Type of question
-          enum:
-          - text
-          - number
-          - multiple_choice
-          - multiple_answer
-          - date
-          - boolean
-          - cellphone_number
-          - id_number
-        options:
-          type:
           - array
-          - 'null'
-          items:
-            type: string
-          description: Available options for multiple choice questions
-        position:
-          type: integer
-          description: Display position of the question
+          description: The answer text
       required:
       - id
-      - text
-      - required
-      - question_type
-    TopupsConfiguration:
-      type: object
-      properties:
-        topups_enabled?:
-          type: boolean
-          description: Top Ups are enabled for the event
-        prevent_topup_for_multiple_tickets_of_same_type?:
-          type: boolean
-          description: If a user own mutliple tickets of the same ticket type then they cannot bt topped up.
-        small_topup_amount:
-          type: integer
-          description: Small Topup Amount
-        medium_topup_amount:
-          type: integer
-          description: Medium Topup Amount
-        large_topup_amount:
-          type: integer
-          description: Large Topup Amount
-      required:
-      - topups_enabled?
-      - small_topup_amount
-      - medium_topup_amount
-      - large_topup_amount
-    Venue:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-          description: Primary Key
-        address:
-          type: string
-          description: Address
-        external_identifier:
-          type:
-          - string
-          - 'null'
-          description: External Identifier
-        latitude:
-          type: string
-          description: Latitude
-        longitude:
-          type: string
-          description: Longitude
-        name:
-          type: string
-          description: Name
-        source:
-          type:
-          - string
-          - 'null'
-          description: Source
-      required:
-      - id
-      - address
-      - external_identifier
-      - latitude
-      - longitude
-      - name
-      - source
+      - question_id
+      - response
     Ticket:
       type: object
       properties:
@@ -549,95 +560,80 @@ components:
       - can_be_topped_up?
       - can_show_barcode?
       - claimed?
-    TicketCategory:
+    TicketType:
       type: object
       properties:
         id:
           type: integer
-        name:
-          type: string
-        position:
-          type: integer
-        description:
-          type: string
         created_at:
           type: string
           format: ISO 8601
         updated_at:
           type: string
           format: ISO 8601
-      required:
-      - id
-      - name
-      - position
-      - created_at
-      - updated_at
-    User:
-      type: object
-      properties:
-        id:
+        name:
+          type: string
+        ticket_category:
+          $ref: '#/components/schemas/TicketCategory'
+          nullable: true
+        cost:
           type: integer
-          readOnly: true
-          description: Primary Key
-        first_name:
+        fee:
+          type: integer
+        booking_status:
           type: string
-          description: First Name
-        last_name:
+        virtual_credit_cents:
+          type:
+          - integer
+          - 'null'
+        description:
           type: string
-          description: Last Name
-        primary_email:
-          type: string
-          readOnly: true
-          description: Email address of user or dummy user
-        dummy?:
-          type: boolean
-          readOnly: true
-          description: True if the user has not yet signed up for an account.
-      required:
-      - id
-      - first_name
-      - last_name
-      - primary_email
-      - dummy?
-    CustomerSettingsConfiguration:
-      type: object
-      properties:
-        customer_transfers_enabled?:
-          type: boolean
-          description: Ticket transfers are allowed
-        require_signup_for_ticket_downloads?:
-          type: boolean
-          description: User profile must be setup, all required data capture completed and marketing questions answered before a user can download their tickets.
-        ticket_downloads_enabled_at:
+        image_url:
           type:
           - string
           - 'null'
-          format: ISO 8601
-          description: Specified date and time when tickets will be able to be downloaded.
-        ticket_downloads_enabled?:
+          description: URL to the ticket type image if attached
+        topups_configuration:
+          $ref: '#/components/schemas/TopupsConfiguration'
+        customer_settings_configuration:
+          $ref: '#/components/schemas/CustomerSettingsConfiguration'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+          description: Questions associated with this ticket type
+        hidden:
           type: boolean
-          description: If true a user will be able to download their tickets at the specified date and time
-        show_ticket_barcode?:
+        hidden_by_promo_code:
           type: boolean
-          description: If tickets cannot be downloaded and this is true then the user will be able to see their barcode number of their ticket as text but not download or view it.
-        sharing_required_enabled?:
-          type: boolean
-          description: Sharing required enabled.
-      required: []
-    Addonable:
-      type:
-      - object
-      - 'null'
-      properties:
-        name:
-          type: string
-          description: Name
-        size:
-          type: string
-          description: Size
       required:
-      - name
-      - size
+      - id
+      - updated_at
+      - created_at
+      - topups_configuration
+    TopupsConfiguration:
+      type: object
+      properties:
+        topups_enabled?:
+          type: boolean
+          description: Top Ups are enabled for the event
+        prevent_topup_for_multiple_tickets_of_same_type?:
+          type: boolean
+          description: If a user own mutliple tickets of the same ticket type then they cannot bt topped up.
+        small_topup_amount:
+          type: integer
+          description: Small Topup Amount
+        medium_topup_amount:
+          type: integer
+          description: Medium Topup Amount
+        large_topup_amount:
+          type: integer
+          description: Large Topup Amount
+      required:
+      - topups_enabled?
+      - small_topup_amount
+      - medium_topup_amount
+      - large_topup_amount
   securitySchemes:
     oauth2:
       type: oauth2

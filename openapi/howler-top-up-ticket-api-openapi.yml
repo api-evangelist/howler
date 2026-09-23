@@ -1,10 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Howler API v3 Artists Top Up Ticket API
+  title: Howler API v3 Top Up Ticket API
   version: 3.6.1
-  description: '*Last updated: 2026-01-20 21:15:49 +0200*
-
-    '
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:
 - url: https://{defaultHost}/api/v3/consumer_portal
   variables:
@@ -38,9 +36,7 @@ paths:
         The next_step in the body will indicate which action should be performed next.
 
 
-        If the user is typing in the barcode manually use `/api/v3/consumer_portal/top_up` instead.
-
-        '
+        If the user is typing in the barcode manually use `/api/v3/consumer_portal/top_up` instead.'
       responses:
         '200':
           description: successful
@@ -79,9 +75,7 @@ paths:
       operationId: updateConsumerTicketAmounts
       tags:
       - Top Up Ticket
-      description: 'Specify the amount to top up the ticket with.
-
-        '
+      description: Specify the amount to top up the ticket with.
       parameters: []
       responses:
         '200':
@@ -146,9 +140,7 @@ paths:
       description: 'Renders a webpage to allow the user to pay for their top up order.
 
 
-        Once the user has successfully completed a payment, a redirect will be done to a specific URL.
-
-        '
+        Once the user has successfully completed a payment, a redirect will be done to a specific URL.'
       responses:
         '200':
           description: successful
@@ -173,9 +165,7 @@ paths:
       operationId: getConsumerTicketComplete
       tags:
       - Top Up Ticket
-      description: 'Check if the top up order was completed. This request should be made after the payment web page has redirected back to the application.
-
-        '
+      description: Check if the top up order was completed. This request should be made after the payment web page has redirected back to the application.
       responses:
         '200':
           description: successful
@@ -217,9 +207,7 @@ paths:
       - Top Up Ticket
       description: '**Private API**
 
-        Tests the custom redirect page rendering for Safari browsers with custom schema URLs.
-
-        '
+        Tests the custom redirect page rendering for Safari browsers with custom schema URLs.'
       responses:
         '303':
           description: successful
@@ -252,9 +240,7 @@ paths:
       - Top Up Ticket
       description: '**Private API**
 
-        This end-point should only ever be called by the web page rendered using the GET version of this end-point.
-
-        '
+        This end-point should only ever be called by the web page rendered using the GET version of this end-point.'
       responses:
         '303':
           description: failed
@@ -285,9 +271,7 @@ paths:
       - Top Up Ticket
       description: '**Private API**
 
-        This end-point should only ever be called by the web page rendered using the GET version of this end-point.
-
-        '
+        This end-point should only ever be called by the web page rendered using the GET version of this end-point.'
       responses:
         '303':
           description: successful

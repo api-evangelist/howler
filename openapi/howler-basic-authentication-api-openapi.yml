@@ -1,10 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Howler API v3 Artists Basic Authentication API
+  title: Howler API v3 Basic Authentication API
   version: 3.6.1
-  description: '*Last updated: 2026-01-20 21:15:49 +0200*
-
-    '
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:
 - url: https://{defaultHost}/api/v3/consumer_portal
   variables:
@@ -27,9 +25,7 @@ paths:
       security: []
       operationId: loginUser
       parameters: []
-      description: 'Creates a new user session in and returns a JSON web token
-
-        '
+      description: Creates a new user session in and returns a JSON web token
       responses:
         '200':
           description: Successful login
@@ -177,9 +173,7 @@ paths:
       security: []
       operationId: resetPassword
       parameters: []
-      description: 'Requests a password reset email to be sent to the provided email address
-
-        '
+      description: Requests a password reset email to be sent to the provided email address
       responses:
         '201':
           description: Password reset request for non-existent email
@@ -280,9 +274,7 @@ paths:
       security: []
       operationId: registerUser
       parameters: []
-      description: 'Creates a new user account and returns the user data
-
-        '
+      description: Creates a new user account and returns the user data
       responses:
         '201':
           description: User created and merged with dummy user

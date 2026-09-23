@@ -1,10 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Howler API v3 Artists User API
+  title: Howler API v3 User API
   version: 3.6.1
-  description: '*Last updated: 2026-01-20 21:15:49 +0200*
-
-    '
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:
 - url: https://{defaultHost}/api/v3/consumer_portal
   variables:
@@ -40,9 +38,7 @@ paths:
       operationId: getConsumerUser
       tags:
       - User
-      description: 'Retrieve details of the current user.
-
-        '
+      description: Retrieve details of the current user.
       responses:
         '200':
           description: successful
@@ -58,9 +54,7 @@ paths:
       operationId: updateConsumerUser
       tags:
       - User
-      description: 'Update details of the current user.
-
-        '
+      description: Update details of the current user.
       parameters: []
       responses:
         '200':
@@ -116,9 +110,7 @@ paths:
       description: 'Checks if the current user is setup for a specific event. Will return true if all required details are filled in for the user profile.
 
 
-        This can be compared to the event''s `user_validation_configuration`.
-
-        '
+        This can be compared to the event''s `user_validation_configuration`.'
       responses:
         '200':
           description: successful
@@ -140,9 +132,7 @@ paths:
       operationId: resendUserConfirmation
       tags:
       - User
-      description: 'Resend the confirmation email to the user''s primary email address.
-
-        '
+      description: Resend the confirmation email to the user's primary email address.
       responses:
         '200':
           description: successful
@@ -166,9 +156,7 @@ paths:
       description: 'Renders a webpage to allow the user to set their user details.
 
 
-        Once the user information has successfully been entered, a redirect will be done to a specific URL.
-
-        '
+        Once the user information has successfully been entered, a redirect will be done to a specific URL.'
       responses:
         '200':
           description: successful
@@ -179,9 +167,7 @@ paths:
       - User
       description: '**Private API**
 
-        This end-point should only ever be called using by the web page rendered using the GET version of this end-point.
-
-        '
+        This end-point should only ever be called using by the web page rendered using the GET version of this end-point.'
       parameters: []
       responses:
         '303':

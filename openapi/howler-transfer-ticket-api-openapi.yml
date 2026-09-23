@@ -1,10 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Howler API v3 Artists Transfer Ticket API
+  title: Howler API v3 Transfer Ticket API
   version: 3.6.1
-  description: '*Last updated: 2026-01-20 21:15:49 +0200*
-
-    '
+  description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:
 - url: https://{defaultHost}/api/v3/consumer_portal
   variables:
@@ -41,9 +39,7 @@ paths:
         This action can only be performed if transfers are allow for the ticket.
 
 
-        The transfer needs to be completed using `/api/v3/consumer_portal/tickets/{ticket_id}/transfer/{transfer_order_id}/confirmation`.
-
-        '
+        The transfer needs to be completed using `/api/v3/consumer_portal/tickets/{ticket_id}/transfer/{transfer_order_id}/confirmation`.'
       parameters: []
       responses:
         '200':
@@ -106,9 +102,7 @@ paths:
       description: '**Step 2 of 2**
 
 
-        Confirms a transfer order and completes the order.
-
-        '
+        Confirms a transfer order and completes the order.'
       responses:
         '200':
           description: successful
