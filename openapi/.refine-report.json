@@ -22,9 +22,7 @@
     "howler-transfer-ticket-api-openapi.yml",
     "howler-user-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [
     "howler-consumer-portal-openapi.yml: dangling $ref: #/components/schemas/ArtistLineup"
   ],
@@ -33,8 +31,7 @@
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "howler-consumer-portal-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "howler-consumer-portal-openapi.yml: declared missing tag: Artists",
-    "superseded outputs removed: howler-o-auth-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 17 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "howler-artists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -45,7 +42,7 @@
     "howler-cashout-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "howler-email-otp-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "howler-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "howler-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "howler-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "howler-third-party-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "howler-tickets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "howler-top-up-api-openapi.yml: previously refined output, superseded by openapi/_original/",

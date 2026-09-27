@@ -75,6 +75,29 @@ paths:
           description: cashless tag pairing cannot be found
 components:
   schemas:
+    CashlessTagBalance:
+      type: object
+      properties:
+        id:
+          type: integer
+        amount_cents:
+          type: integer
+        amount_currency:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        last_transaction_time:
+          type: string
+      required:
+      - id
+      - amount_cents
+      - amount_currency
+      - created_at
+      - updated_at
     CashlessTagPairing:
       type: object
       properties:
@@ -109,29 +132,6 @@ components:
       - cashless_tag_uid
       - status
       - user
-      - created_at
-      - updated_at
-    CashlessTagBalance:
-      type: object
-      properties:
-        id:
-          type: integer
-        amount_cents:
-          type: integer
-        amount_currency:
-          type: string
-        created_at:
-          type: string
-          format: ISO 8601
-        updated_at:
-          type: string
-          format: ISO 8601
-        last_transaction_time:
-          type: string
-      required:
-      - id
-      - amount_cents
-      - amount_currency
       - created_at
       - updated_at
     User:

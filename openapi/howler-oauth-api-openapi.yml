@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Howler API v3 O Auth API
+  title: Howler API v3 OAuth API
   version: 3.6.1
   description: '*Last updated: 2026-01-20 21:15:49 +0200*'
 servers:

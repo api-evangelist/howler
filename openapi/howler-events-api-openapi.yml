@@ -77,6 +77,114 @@ paths:
           description: not added to time table
 components:
   schemas:
+    TicketType:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        name:
+          type: string
+        ticket_category:
+          $ref: '#/components/schemas/TicketCategory'
+          nullable: true
+        cost:
+          type: integer
+        fee:
+          type: integer
+        booking_status:
+          type: string
+        virtual_credit_cents:
+          type:
+          - integer
+          - 'null'
+        description:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+          description: URL to the ticket type image if attached
+        topups_configuration:
+          $ref: '#/components/schemas/TopupsConfiguration'
+        customer_settings_configuration:
+          $ref: '#/components/schemas/CustomerSettingsConfiguration'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+          description: Questions associated with this ticket type
+        hidden:
+          type: boolean
+        hidden_by_promo_code:
+          type: boolean
+      required:
+      - id
+      - updated_at
+      - created_at
+      - topups_configuration
+    UserValidationConfiguration:
+      type: object
+      properties:
+        require_id_number?:
+          type: boolean
+          description: South African ID number is required
+        require_unique_identifier?:
+          type: boolean
+          description: ''
+        require_first_name?:
+          type: boolean
+          description: First Name is required
+        require_last_name?:
+          type: boolean
+          description: Last Name is required
+        require_cellphone_number?:
+          type: boolean
+          description: Cellphone Number is required
+        require_country?:
+          type: boolean
+          description: Country of Residence is required
+        require_passport_country?:
+          type: boolean
+          description: Passport Country is required
+        require_city?:
+          type: boolean
+          description: City of Residence is required
+        require_gender?:
+          type: boolean
+          description: Gender is required
+        require_date_of_birth?:
+          type: boolean
+          description: Date of Birth is required
+        require_passport_number?:
+          type: boolean
+          description: Passport Number is required
+        require_nickname?:
+          type: boolean
+          description: Nickname is required
+        require_billing_address?:
+          type: boolean
+          description: Nilling Address is required
+      required:
+      - require_id_number?
+      - require_unique_identifier?
+      - require_first_name?
+      - require_last_name?
+      - require_cellphone_number?
+      - require_country?
+      - require_passport_country?
+      - require_city?
+      - require_gender?
+      - require_date_of_birth?
+      - require_passport_number?
+      - require_nickname?
+      - require_billing_address?
+      description: Indicates which user details need to be completed before their profile is considered setup for an event.
     CustomerSettingsConfiguration:
       type: object
       properties:
@@ -139,125 +247,6 @@ components:
       - longitude
       - name
       - source
-    UserValidationConfiguration:
-      type: object
-      properties:
-        require_id_number?:
-          type: boolean
-          description: South African ID number is required
-        require_unique_identifier?:
-          type: boolean
-          description: ''
-        require_first_name?:
-          type: boolean
-          description: First Name is required
-        require_last_name?:
-          type: boolean
-          description: Last Name is required
-        require_cellphone_number?:
-          type: boolean
-          description: Cellphone Number is required
-        require_country?:
-          type: boolean
-          description: Country of Residence is required
-        require_passport_country?:
-          type: boolean
-          description: Passport Country is required
-        require_city?:
-          type: boolean
-          description: City of Residence is required
-        require_gender?:
-          type: boolean
-          description: Gender is required
-        require_date_of_birth?:
-          type: boolean
-          description: Date of Birth is required
-        require_passport_number?:
-          type: boolean
-          description: Passport Number is required
-        require_nickname?:
-          type: boolean
-          description: Nickname is required
-        require_billing_address?:
-          type: boolean
-          description: Nilling Address is required
-      required:
-      - require_id_number?
-      - require_unique_identifier?
-      - require_first_name?
-      - require_last_name?
-      - require_cellphone_number?
-      - require_country?
-      - require_passport_country?
-      - require_city?
-      - require_gender?
-      - require_date_of_birth?
-      - require_passport_number?
-      - require_nickname?
-      - require_billing_address?
-      description: Indicates which user details need to be completed before their profile is considered setup for an event.
-    Question:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Question ID
-        text:
-          type: string
-          description: Question text
-        required:
-          type: boolean
-          description: Whether the question is required
-        question_type:
-          type: string
-          description: Type of question
-          enum:
-          - text
-          - number
-          - multiple_choice
-          - multiple_answer
-          - date
-          - boolean
-          - cellphone_number
-          - id_number
-        options:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Available options for multiple choice questions
-        position:
-          type: integer
-          description: Display position of the question
-      required:
-      - id
-      - text
-      - required
-      - question_type
-    TicketCategory:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        position:
-          type: integer
-        description:
-          type: string
-        created_at:
-          type: string
-          format: ISO 8601
-        updated_at:
-          type: string
-          format: ISO 8601
-      required:
-      - id
-      - name
-      - position
-      - created_at
-      - updated_at
     Event:
       type: object
       properties:
@@ -374,57 +363,68 @@ components:
       - live
       - ticket_types
       - add_ons
-    TicketType:
+    Question:
       type: object
       properties:
         id:
           type: integer
+          description: Question ID
+        text:
+          type: string
+          description: Question text
+        required:
+          type: boolean
+          description: Whether the question is required
+        question_type:
+          type: string
+          description: Type of question
+          enum:
+          - text
+          - number
+          - multiple_choice
+          - multiple_answer
+          - date
+          - boolean
+          - cellphone_number
+          - id_number
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Available options for multiple choice questions
+        position:
+          type: integer
+          description: Display position of the question
+      required:
+      - id
+      - text
+      - required
+      - question_type
+    TicketCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        position:
+          type: integer
+        description:
+          type: string
         created_at:
           type: string
           format: ISO 8601
         updated_at:
           type: string
           format: ISO 8601
-        name:
-          type: string
-        ticket_category:
-          $ref: '#/components/schemas/TicketCategory'
-          nullable: true
-        cost:
-          type: integer
-        fee:
-          type: integer
-        booking_status:
-          type: string
-        virtual_credit_cents:
-          type:
-          - integer
-          - 'null'
-        description:
-          type: string
-        image_url:
-          type:
-          - string
-          - 'null'
-          description: URL to the ticket type image if attached
-        topups_configuration:
-          $ref: '#/components/schemas/TopupsConfiguration'
-        customer_settings_configuration:
-          $ref: '#/components/schemas/CustomerSettingsConfiguration'
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Question'
-          description: Questions associated with this ticket type
-        hidden:
-          type: boolean
-        hidden_by_promo_code:
-          type: boolean
       required:
       - id
-      - updated_at
+      - name
+      - position
       - created_at
-      - topups_configuration
+      - updated_at
     TopupsConfiguration:
       type: object
       properties:

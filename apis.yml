@@ -205,6 +205,8 @@ apis:
   humanURL: https://developer.howler.co.za/api-docs
   baseURL: https://www.howler.co.za/api/v3/consumer_portal
   tags:
+  - Ticketing
+  tags_raw:
   - Tickets
   properties:
   - type: OpenAPI
