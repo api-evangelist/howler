@@ -251,29 +251,33 @@ paths:
           description: successful
 components:
   schemas:
-    CashlessTagBalance:
+    User:
       type: object
       properties:
         id:
           type: integer
-        amount_cents:
-          type: integer
-        amount_currency:
+          readOnly: true
+          description: Primary Key
+        first_name:
           type: string
-        created_at:
+          description: First Name
+        last_name:
           type: string
-          format: ISO 8601
-        updated_at:
+          description: Last Name
+        primary_email:
           type: string
-          format: ISO 8601
-        last_transaction_time:
-          type: string
+          readOnly: true
+          description: Email address of user or dummy user
+        dummy?:
+          type: boolean
+          readOnly: true
+          description: True if the user has not yet signed up for an account.
       required:
       - id
-      - amount_cents
-      - amount_currency
-      - created_at
-      - updated_at
+      - first_name
+      - last_name
+      - primary_email
+      - dummy?
     CashlessTagPairing:
       type: object
       properties:
@@ -310,33 +314,29 @@ components:
       - user
       - created_at
       - updated_at
-    User:
+    CashlessTagBalance:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
-          description: Primary Key
-        first_name:
+        amount_cents:
+          type: integer
+        amount_currency:
           type: string
-          description: First Name
-        last_name:
+        created_at:
           type: string
-          description: Last Name
-        primary_email:
+          format: ISO 8601
+        updated_at:
           type: string
-          readOnly: true
-          description: Email address of user or dummy user
-        dummy?:
-          type: boolean
-          readOnly: true
-          description: True if the user has not yet signed up for an account.
+          format: ISO 8601
+        last_transaction_time:
+          type: string
       required:
       - id
-      - first_name
-      - last_name
-      - primary_email
-      - dummy?
+      - amount_cents
+      - amount_currency
+      - created_at
+      - updated_at
   securitySchemes:
     oauth2:
       type: oauth2

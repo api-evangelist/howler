@@ -101,133 +101,45 @@ paths:
         required: true
 components:
   schemas:
-    Answer:
+    Question:
       type: object
       properties:
         id:
           type: integer
-          description: Answer ID
-        question_id:
-          type: integer
-          description: ID of the question this answer belongs to
-        response:
+          description: Question ID
+        text:
+          type: string
+          description: Question text
+        required:
+          type: boolean
+          description: Whether the question is required
+        question_type:
+          type: string
+          description: Type of question
+          enum:
+          - text
+          - number
+          - multiple_choice
+          - multiple_answer
+          - date
+          - boolean
+          - cellphone_number
+          - id_number
+        options:
           type:
-          - string
-          - 'null'
           - array
-          description: The answer text
-      required:
-      - id
-      - question_id
-      - response
-    TicketType:
-      type: object
-      properties:
-        id:
-          type: integer
-        created_at:
-          type: string
-          format: ISO 8601
-        updated_at:
-          type: string
-          format: ISO 8601
-        name:
-          type: string
-        ticket_category:
-          $ref: '#/components/schemas/TicketCategory'
-          nullable: true
-        cost:
-          type: integer
-        fee:
-          type: integer
-        booking_status:
-          type: string
-        virtual_credit_cents:
-          type:
-          - integer
           - 'null'
-        description:
-          type: string
-        image_url:
-          type:
-          - string
-          - 'null'
-          description: URL to the ticket type image if attached
-        topups_configuration:
-          $ref: '#/components/schemas/TopupsConfiguration'
-        customer_settings_configuration:
-          $ref: '#/components/schemas/CustomerSettingsConfiguration'
-        questions:
-          type: array
           items:
-            $ref: '#/components/schemas/Question'
-          description: Questions associated with this ticket type
-        hidden:
-          type: boolean
-        hidden_by_promo_code:
-          type: boolean
+            type: string
+          description: Available options for multiple choice questions
+        position:
+          type: integer
+          description: Display position of the question
       required:
       - id
-      - updated_at
-      - created_at
-      - topups_configuration
-    UserValidationConfiguration:
-      type: object
-      properties:
-        require_id_number?:
-          type: boolean
-          description: South African ID number is required
-        require_unique_identifier?:
-          type: boolean
-          description: ''
-        require_first_name?:
-          type: boolean
-          description: First Name is required
-        require_last_name?:
-          type: boolean
-          description: Last Name is required
-        require_cellphone_number?:
-          type: boolean
-          description: Cellphone Number is required
-        require_country?:
-          type: boolean
-          description: Country of Residence is required
-        require_passport_country?:
-          type: boolean
-          description: Passport Country is required
-        require_city?:
-          type: boolean
-          description: City of Residence is required
-        require_gender?:
-          type: boolean
-          description: Gender is required
-        require_date_of_birth?:
-          type: boolean
-          description: Date of Birth is required
-        require_passport_number?:
-          type: boolean
-          description: Passport Number is required
-        require_nickname?:
-          type: boolean
-          description: Nickname is required
-        require_billing_address?:
-          type: boolean
-          description: Nilling Address is required
-      required:
-      - require_id_number?
-      - require_unique_identifier?
-      - require_first_name?
-      - require_last_name?
-      - require_cellphone_number?
-      - require_country?
-      - require_passport_country?
-      - require_city?
-      - require_gender?
-      - require_date_of_birth?
-      - require_passport_number?
-      - require_nickname?
-      - require_billing_address?
-      description: Indicates which user details need to be completed before their profile is considered setup for an event.
+      - text
+      - required
+      - question_type
     Ticket:
       type: object
       properties:
@@ -352,31 +264,137 @@ components:
       - can_be_topped_up?
       - can_show_barcode?
       - claimed?
-    CustomerSettingsConfiguration:
+    Addonable:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type: string
+          description: Name
+        size:
+          type: string
+          description: Size
+      required:
+      - name
+      - size
+    Venue:
       type: object
       properties:
-        customer_transfers_enabled?:
-          type: boolean
-          description: Ticket transfers are allowed
-        require_signup_for_ticket_downloads?:
-          type: boolean
-          description: User profile must be setup, all required data capture completed and marketing questions answered before a user can download their tickets.
-        ticket_downloads_enabled_at:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        address:
+          type: string
+          description: Address
+        external_identifier:
           type:
           - string
           - 'null'
+          description: External Identifier
+        latitude:
+          type: string
+          description: Latitude
+        longitude:
+          type: string
+          description: Longitude
+        name:
+          type: string
+          description: Name
+        source:
+          type:
+          - string
+          - 'null'
+          description: Source
+      required:
+      - id
+      - address
+      - external_identifier
+      - latitude
+      - longitude
+      - name
+      - source
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+        reference:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - paid
+          - expired
+          - pending_payment
+          - created
+          - processing
+        user:
+          $ref: '#/components/schemas/User'
+        cashless_deposit_cents:
+          type: integer
+      required:
+      - id
+      - reference
+      - status
+      - type
+      - user
+      - cashless_deposit_cents
+    TicketType:
+      type: object
+      properties:
+        id:
+          type: integer
+        created_at:
+          type: string
           format: ISO 8601
-          description: Specified date and time when tickets will be able to be downloaded.
-        ticket_downloads_enabled?:
+        updated_at:
+          type: string
+          format: ISO 8601
+        name:
+          type: string
+        ticket_category:
+          $ref: '#/components/schemas/TicketCategory'
+          nullable: true
+        cost:
+          type: integer
+        fee:
+          type: integer
+        booking_status:
+          type: string
+        virtual_credit_cents:
+          type:
+          - integer
+          - 'null'
+        description:
+          type: string
+        image_url:
+          type:
+          - string
+          - 'null'
+          description: URL to the ticket type image if attached
+        topups_configuration:
+          $ref: '#/components/schemas/TopupsConfiguration'
+        customer_settings_configuration:
+          $ref: '#/components/schemas/CustomerSettingsConfiguration'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+          description: Questions associated with this ticket type
+        hidden:
           type: boolean
-          description: If true a user will be able to download their tickets at the specified date and time
-        show_ticket_barcode?:
+        hidden_by_promo_code:
           type: boolean
-          description: If tickets cannot be downloaded and this is true then the user will be able to see their barcode number of their ticket as text but not download or view it.
-        sharing_required_enabled?:
-          type: boolean
-          description: Sharing required enabled.
-      required: []
+      required:
+      - id
+      - updated_at
+      - created_at
+      - topups_configuration
     CashlessTag:
       type: object
       properties:
@@ -421,43 +439,77 @@ components:
       - last_name
       - primary_email
       - dummy?
-    Venue:
+    TicketCategory:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
-          description: Primary Key
-        address:
-          type: string
-          description: Address
-        external_identifier:
-          type:
-          - string
-          - 'null'
-          description: External Identifier
-        latitude:
-          type: string
-          description: Latitude
-        longitude:
-          type: string
-          description: Longitude
         name:
           type: string
-          description: Name
-        source:
+        position:
+          type: integer
+        description:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+      required:
+      - id
+      - name
+      - position
+      - created_at
+      - updated_at
+    CustomerSettingsConfiguration:
+      type: object
+      properties:
+        customer_transfers_enabled?:
+          type: boolean
+          description: Ticket transfers are allowed
+        require_signup_for_ticket_downloads?:
+          type: boolean
+          description: User profile must be setup, all required data capture completed and marketing questions answered before a user can download their tickets.
+        ticket_downloads_enabled_at:
           type:
           - string
           - 'null'
-          description: Source
+          format: ISO 8601
+          description: Specified date and time when tickets will be able to be downloaded.
+        ticket_downloads_enabled?:
+          type: boolean
+          description: If true a user will be able to download their tickets at the specified date and time
+        show_ticket_barcode?:
+          type: boolean
+          description: If tickets cannot be downloaded and this is true then the user will be able to see their barcode number of their ticket as text but not download or view it.
+        sharing_required_enabled?:
+          type: boolean
+          description: Sharing required enabled.
+      required: []
+    TopupsConfiguration:
+      type: object
+      properties:
+        topups_enabled?:
+          type: boolean
+          description: Top Ups are enabled for the event
+        prevent_topup_for_multiple_tickets_of_same_type?:
+          type: boolean
+          description: If a user own mutliple tickets of the same ticket type then they cannot bt topped up.
+        small_topup_amount:
+          type: integer
+          description: Small Topup Amount
+        medium_topup_amount:
+          type: integer
+          description: Medium Topup Amount
+        large_topup_amount:
+          type: integer
+          description: Large Topup Amount
       required:
-      - id
-      - address
-      - external_identifier
-      - latitude
-      - longitude
-      - name
-      - source
+      - topups_enabled?
+      - small_topup_amount
+      - medium_topup_amount
+      - large_topup_amount
     Event:
       type: object
       properties:
@@ -574,134 +626,82 @@ components:
       - live
       - ticket_types
       - add_ons
-    Addonable:
-      type:
-      - object
-      - 'null'
-      properties:
-        name:
-          type: string
-          description: Name
-        size:
-          type: string
-          description: Size
-      required:
-      - name
-      - size
-    Question:
+    Answer:
       type: object
       properties:
         id:
           type: integer
-          description: Question ID
-        text:
-          type: string
-          description: Question text
-        required:
-          type: boolean
-          description: Whether the question is required
-        question_type:
-          type: string
-          description: Type of question
-          enum:
-          - text
-          - number
-          - multiple_choice
-          - multiple_answer
-          - date
-          - boolean
-          - cellphone_number
-          - id_number
-        options:
+          description: Answer ID
+        question_id:
+          type: integer
+          description: ID of the question this answer belongs to
+        response:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            type: string
-          description: Available options for multiple choice questions
-        position:
-          type: integer
-          description: Display position of the question
+          - array
+          description: The answer text
       required:
       - id
-      - text
-      - required
-      - question_type
-    TicketCategory:
+      - question_id
+      - response
+    UserValidationConfiguration:
       type: object
       properties:
-        id:
-          type: integer
-        name:
-          type: string
-        position:
-          type: integer
-        description:
-          type: string
-        created_at:
-          type: string
-          format: ISO 8601
-        updated_at:
-          type: string
-          format: ISO 8601
-      required:
-      - id
-      - name
-      - position
-      - created_at
-      - updated_at
-    TopupsConfiguration:
-      type: object
-      properties:
-        topups_enabled?:
+        require_id_number?:
           type: boolean
-          description: Top Ups are enabled for the event
-        prevent_topup_for_multiple_tickets_of_same_type?:
+          description: South African ID number is required
+        require_unique_identifier?:
           type: boolean
-          description: If a user own mutliple tickets of the same ticket type then they cannot bt topped up.
-        small_topup_amount:
-          type: integer
-          description: Small Topup Amount
-        medium_topup_amount:
-          type: integer
-          description: Medium Topup Amount
-        large_topup_amount:
-          type: integer
-          description: Large Topup Amount
+          description: ''
+        require_first_name?:
+          type: boolean
+          description: First Name is required
+        require_last_name?:
+          type: boolean
+          description: Last Name is required
+        require_cellphone_number?:
+          type: boolean
+          description: Cellphone Number is required
+        require_country?:
+          type: boolean
+          description: Country of Residence is required
+        require_passport_country?:
+          type: boolean
+          description: Passport Country is required
+        require_city?:
+          type: boolean
+          description: City of Residence is required
+        require_gender?:
+          type: boolean
+          description: Gender is required
+        require_date_of_birth?:
+          type: boolean
+          description: Date of Birth is required
+        require_passport_number?:
+          type: boolean
+          description: Passport Number is required
+        require_nickname?:
+          type: boolean
+          description: Nickname is required
+        require_billing_address?:
+          type: boolean
+          description: Nilling Address is required
       required:
-      - topups_enabled?
-      - small_topup_amount
-      - medium_topup_amount
-      - large_topup_amount
-    Order:
-      type: object
-      properties:
-        id:
-          type: integer
-        reference:
-          type: string
-        type:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - paid
-          - expired
-          - pending_payment
-          - created
-          - processing
-        user:
-          $ref: '#/components/schemas/User'
-        cashless_deposit_cents:
-          type: integer
-      required:
-      - id
-      - reference
-      - status
-      - type
-      - user
-      - cashless_deposit_cents
+      - require_id_number?
+      - require_unique_identifier?
+      - require_first_name?
+      - require_last_name?
+      - require_cellphone_number?
+      - require_country?
+      - require_passport_country?
+      - require_city?
+      - require_gender?
+      - require_date_of_birth?
+      - require_passport_number?
+      - require_nickname?
+      - require_billing_address?
+      description: Indicates which user details need to be completed before their profile is considered setup for an event.
   securitySchemes:
     oauth2:
       type: oauth2
