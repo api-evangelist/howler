@@ -77,45 +77,63 @@ paths:
           description: not added to time table
 components:
   schemas:
-    Question:
+    UserValidationConfiguration:
       type: object
       properties:
-        id:
-          type: integer
-          description: Question ID
-        text:
-          type: string
-          description: Question text
-        required:
+        require_id_number?:
           type: boolean
-          description: Whether the question is required
-        question_type:
-          type: string
-          description: Type of question
-          enum:
-          - text
-          - number
-          - multiple_choice
-          - multiple_answer
-          - date
-          - boolean
-          - cellphone_number
-          - id_number
-        options:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Available options for multiple choice questions
-        position:
-          type: integer
-          description: Display position of the question
+          description: South African ID number is required
+        require_unique_identifier?:
+          type: boolean
+          description: ''
+        require_first_name?:
+          type: boolean
+          description: First Name is required
+        require_last_name?:
+          type: boolean
+          description: Last Name is required
+        require_cellphone_number?:
+          type: boolean
+          description: Cellphone Number is required
+        require_country?:
+          type: boolean
+          description: Country of Residence is required
+        require_passport_country?:
+          type: boolean
+          description: Passport Country is required
+        require_city?:
+          type: boolean
+          description: City of Residence is required
+        require_gender?:
+          type: boolean
+          description: Gender is required
+        require_date_of_birth?:
+          type: boolean
+          description: Date of Birth is required
+        require_passport_number?:
+          type: boolean
+          description: Passport Number is required
+        require_nickname?:
+          type: boolean
+          description: Nickname is required
+        require_billing_address?:
+          type: boolean
+          description: Nilling Address is required
       required:
-      - id
-      - text
-      - required
-      - question_type
+      - require_id_number?
+      - require_unique_identifier?
+      - require_first_name?
+      - require_last_name?
+      - require_cellphone_number?
+      - require_country?
+      - require_passport_country?
+      - require_city?
+      - require_gender?
+      - require_date_of_birth?
+      - require_passport_number?
+      - require_nickname?
+      - require_billing_address?
+      description: Indicates which user details need to be completed before their profile is considered setup for an event.
     TicketType:
       type: object
       properties:
@@ -167,29 +185,43 @@ components:
       - updated_at
       - created_at
       - topups_configuration
-    TicketCategory:
+    Venue:
       type: object
       properties:
         id:
           type: integer
+          readOnly: true
+          description: Primary Key
+        address:
+          type: string
+          description: Address
+        external_identifier:
+          type:
+          - string
+          - 'null'
+          description: External Identifier
+        latitude:
+          type: string
+          description: Latitude
+        longitude:
+          type: string
+          description: Longitude
         name:
           type: string
-        position:
-          type: integer
-        description:
-          type: string
-        created_at:
-          type: string
-          format: ISO 8601
-        updated_at:
-          type: string
-          format: ISO 8601
+          description: Name
+        source:
+          type:
+          - string
+          - 'null'
+          description: Source
       required:
       - id
+      - address
+      - external_identifier
+      - latitude
+      - longitude
       - name
-      - position
-      - created_at
-      - updated_at
+      - source
     CustomerSettingsConfiguration:
       type: object
       properties:
@@ -215,29 +247,29 @@ components:
           type: boolean
           description: Sharing required enabled.
       required: []
-    TopupsConfiguration:
+    TicketCategory:
       type: object
       properties:
-        topups_enabled?:
-          type: boolean
-          description: Top Ups are enabled for the event
-        prevent_topup_for_multiple_tickets_of_same_type?:
-          type: boolean
-          description: If a user own mutliple tickets of the same ticket type then they cannot bt topped up.
-        small_topup_amount:
+        id:
           type: integer
-          description: Small Topup Amount
-        medium_topup_amount:
+        name:
+          type: string
+        position:
           type: integer
-          description: Medium Topup Amount
-        large_topup_amount:
-          type: integer
-          description: Large Topup Amount
+        description:
+          type: string
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
       required:
-      - topups_enabled?
-      - small_topup_amount
-      - medium_topup_amount
-      - large_topup_amount
+      - id
+      - name
+      - position
+      - created_at
+      - updated_at
     Event:
       type: object
       properties:
@@ -354,100 +386,68 @@ components:
       - live
       - ticket_types
       - add_ons
-    Venue:
+    TopupsConfiguration:
+      type: object
+      properties:
+        topups_enabled?:
+          type: boolean
+          description: Top Ups are enabled for the event
+        prevent_topup_for_multiple_tickets_of_same_type?:
+          type: boolean
+          description: If a user own mutliple tickets of the same ticket type then they cannot bt topped up.
+        small_topup_amount:
+          type: integer
+          description: Small Topup Amount
+        medium_topup_amount:
+          type: integer
+          description: Medium Topup Amount
+        large_topup_amount:
+          type: integer
+          description: Large Topup Amount
+      required:
+      - topups_enabled?
+      - small_topup_amount
+      - medium_topup_amount
+      - large_topup_amount
+    Question:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
-          description: Primary Key
-        address:
+          description: Question ID
+        text:
           type: string
-          description: Address
-        external_identifier:
+          description: Question text
+        required:
+          type: boolean
+          description: Whether the question is required
+        question_type:
+          type: string
+          description: Type of question
+          enum:
+          - text
+          - number
+          - multiple_choice
+          - multiple_answer
+          - date
+          - boolean
+          - cellphone_number
+          - id_number
+        options:
           type:
-          - string
+          - array
           - 'null'
-          description: External Identifier
-        latitude:
-          type: string
-          description: Latitude
-        longitude:
-          type: string
-          description: Longitude
-        name:
-          type: string
-          description: Name
-        source:
-          type:
-          - string
-          - 'null'
-          description: Source
+          items:
+            type: string
+          description: Available options for multiple choice questions
+        position:
+          type: integer
+          description: Display position of the question
       required:
       - id
-      - address
-      - external_identifier
-      - latitude
-      - longitude
-      - name
-      - source
-    UserValidationConfiguration:
-      type: object
-      properties:
-        require_id_number?:
-          type: boolean
-          description: South African ID number is required
-        require_unique_identifier?:
-          type: boolean
-          description: ''
-        require_first_name?:
-          type: boolean
-          description: First Name is required
-        require_last_name?:
-          type: boolean
-          description: Last Name is required
-        require_cellphone_number?:
-          type: boolean
-          description: Cellphone Number is required
-        require_country?:
-          type: boolean
-          description: Country of Residence is required
-        require_passport_country?:
-          type: boolean
-          description: Passport Country is required
-        require_city?:
-          type: boolean
-          description: City of Residence is required
-        require_gender?:
-          type: boolean
-          description: Gender is required
-        require_date_of_birth?:
-          type: boolean
-          description: Date of Birth is required
-        require_passport_number?:
-          type: boolean
-          description: Passport Number is required
-        require_nickname?:
-          type: boolean
-          description: Nickname is required
-        require_billing_address?:
-          type: boolean
-          description: Nilling Address is required
-      required:
-      - require_id_number?
-      - require_unique_identifier?
-      - require_first_name?
-      - require_last_name?
-      - require_cellphone_number?
-      - require_country?
-      - require_passport_country?
-      - require_city?
-      - require_gender?
-      - require_date_of_birth?
-      - require_passport_number?
-      - require_nickname?
-      - require_billing_address?
-      description: Indicates which user details need to be completed before their profile is considered setup for an event.
+      - text
+      - required
+      - question_type
   securitySchemes:
     oauth2:
       type: oauth2

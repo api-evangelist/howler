@@ -117,6 +117,33 @@ paths:
           description: transfer order not found
 components:
   schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Primary Key
+        first_name:
+          type: string
+          description: First Name
+        last_name:
+          type: string
+          description: Last Name
+        primary_email:
+          type: string
+          readOnly: true
+          description: Email address of user or dummy user
+        dummy?:
+          type: boolean
+          readOnly: true
+          description: True if the user has not yet signed up for an account.
+      required:
+      - id
+      - first_name
+      - last_name
+      - primary_email
+      - dummy?
     Order:
       type: object
       properties:
@@ -146,33 +173,6 @@ components:
       - type
       - user
       - cashless_deposit_cents
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-          description: Primary Key
-        first_name:
-          type: string
-          description: First Name
-        last_name:
-          type: string
-          description: Last Name
-        primary_email:
-          type: string
-          readOnly: true
-          description: Email address of user or dummy user
-        dummy?:
-          type: boolean
-          readOnly: true
-          description: True if the user has not yet signed up for an account.
-      required:
-      - id
-      - first_name
-      - last_name
-      - primary_email
-      - dummy?
   securitySchemes:
     oauth2:
       type: oauth2

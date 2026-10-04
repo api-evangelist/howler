@@ -102,42 +102,6 @@ components:
       - last_name
       - primary_email
       - dummy?
-    CashlessTagPairing:
-      type: object
-      properties:
-        id:
-          type: integer
-        event_id:
-          type: integer
-        cashless_tag_uid:
-          type: string
-        status:
-          type: string
-          status:
-            type: string
-            enum:
-            - not_cashed_out
-            - cashed_out
-            - pending_cash_out
-            - pending_pair_and_cash_out
-        user:
-          $ref: '#/components/schemas/User'
-        created_at:
-          type: string
-          format: ISO 8601
-        updated_at:
-          type: string
-          format: ISO 8601
-        cashless_tag_balance:
-          $ref: '#/components/schemas/CashlessTagBalance'
-      required:
-      - id
-      - event_id
-      - cashless_tag_uid
-      - status
-      - user
-      - created_at
-      - updated_at
     CashlessTransaction:
       type: object
       properties:
@@ -210,6 +174,42 @@ components:
       - id
       - amount_cents
       - amount_currency
+      - created_at
+      - updated_at
+    CashlessTagPairing:
+      type: object
+      properties:
+        id:
+          type: integer
+        event_id:
+          type: integer
+        cashless_tag_uid:
+          type: string
+        status:
+          type: string
+          status:
+            type: string
+            enum:
+            - not_cashed_out
+            - cashed_out
+            - pending_cash_out
+            - pending_pair_and_cash_out
+        user:
+          $ref: '#/components/schemas/User'
+        created_at:
+          type: string
+          format: ISO 8601
+        updated_at:
+          type: string
+          format: ISO 8601
+        cashless_tag_balance:
+          $ref: '#/components/schemas/CashlessTagBalance'
+      required:
+      - id
+      - event_id
+      - cashless_tag_uid
+      - status
+      - user
       - created_at
       - updated_at
   securitySchemes:
