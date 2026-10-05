@@ -1,0 +1,12 @@
+{
+ "url": "https://developer.howler.co.za/api-docs/v3/consumer_portal_swagger.yaml",
+ "requested_url": "https://developer.howler.co.za/api-docs/v3/consumer_portal_swagger.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 104331,
+ "sha256": "a3ac8cfd88894f1e9e8f6dc54f6966f7c4ae99a613fe6936a16454062f53f69d",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
